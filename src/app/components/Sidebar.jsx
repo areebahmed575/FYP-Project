@@ -3,23 +3,23 @@ import { FaPlane, FaHotel, FaCar, FaSuitcase } from 'react-icons/fa';
 
 const Sidebar = () => {
   return (
-    <div className="w-64 h-screen bg-gray-100 p-4">
+    <div className="w-64 h-screen bg-theme-Lightgreen p-4">
       <ul>
-        <li className="flex items-center space-x-2 p-2 hover:bg-gray-200 cursor-pointer">
-          <FaPlane className="text-gray-500" />
-          <span>Flights</span>
+        <li className="flex items-center space-x-2 p-2 hover:bg-theme-green cursor-pointer group">
+          <FaPlane className="text-gray-500 group-hover:text-white" />
+          <span className='group-hover:text-white'>Flights</span>
         </li>
-        <li className="flex items-center space-x-2 p-2 hover:bg-gray-200 cursor-pointer">
-          <FaHotel className="text-gray-500" />
-          <span>Stays</span>
+        <li className="flex items-center space-x-2 p-2 hover:bg-theme-green cursor-pointer group">
+          <FaHotel className="text-gray-500 group-hover:text-white" />
+          <span className='group-hover:text-white'>Stays</span>
         </li>
-        <li className="flex items-center space-x-2 p-2 hover:bg-gray-200 cursor-pointer">
-          <FaCar className="text-gray-500" />
-          <span>Cars</span>
+        <li className="flex items-center space-x-2 p-2 hover:bg-theme-green cursor-pointer group">
+          <FaCar className="text-gray-500 group-hover:text-white" />
+          <span className='group-hover:text-white'>Cars</span>
         </li>
-        <li className="flex items-center space-x-2 p-2 hover:bg-gray-200 cursor-pointer">
-          <FaSuitcase className="text-gray-500" />
-          <span>Packages</span>
+        <li className="flex items-center space-x-2 p-2 hover:bg-theme-green cursor-pointer group">
+          <FaSuitcase className="text-gray-500 group-hover:text-white" />
+          <span className='group-hover:text-white'>Packages</span>
         </li>
       </ul>
     </div>
