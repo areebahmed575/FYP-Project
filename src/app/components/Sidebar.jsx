@@ -26,7 +26,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     if (hovering) {
       timer = setTimeout(() => {
         setIsOpen(true);
-      }, 300); //300
+      }, 400); //300
     } else {
       clearTimeout(timer);
       setIsOpen(false);
