@@ -1,17 +1,15 @@
 import React from 'react';
+import { FaBars } from 'react-icons/fa';
 
-const Navbar = () => {
-  return (  
-    <div className="flex justify-between items-center p-4 bg-theme-Lightgreen ">
-      <div className="text-3xl font-extrabold tracking-widest">TourAI</div>
+const Navbar = ({ toggleSidebar }) => {
+  return (
+    <div className="flex justify-between items-center p-4 bg-white w-full fixed top-0 z-10 border-b border-gray-300 shadow-lg">
+      <div className="flex items-center space-x-4">
+        <FaBars className="text-2xl cursor-pointer ml-2" onClick={toggleSidebar} size={15} />
+        <div className="text-2xl font-bold text-orange-600">Tourism</div>
+      </div>
       <div>
-        <button class="cursor-pointer relative group overflow-hidden border-2 px-8 py-2 border-green-500 rounded">
-          <span class="font-bold text-white relative z-10 group-hover:text-green-500 duration-500">Sign in</span>
-          <span class="absolute top-0 left-0 w-full bg-green-500 duration-500 group-hover:-translate-x-full h-full"></span>
-          <span class="absolute top-0 left-0 w-full bg-green-500 duration-500 group-hover:translate-x-full h-full"></span>
-          <span class="absolute top-0 left-0 w-full bg-green-500 duration-500 delay-300 group-hover:-translate-y-full h-full"></span>
-          <span class="absolute delay-300 top-0 left-0 w-full bg-green-500 duration-500 group-hover:translate-y-full h-full"></span>
-        </button>
+        <button className="bg-orange-600 text-white px-4 py-2 rounded shadow hover:bg-orange-700 transition duration-300">Sign in</button>
       </div>
     </div>
   );
