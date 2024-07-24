@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BiSolidPlaneAlt } from 'react-icons/bi';
 import { IoBedSharp } from 'react-icons/io5';
 import { FaCar, FaUmbrellaBeach } from 'react-icons/fa';
+import { IoSparklesSharp } from "react-icons/io5";
+import Link from 'next/link'
+
 
 const SidebarItem = ({ Icon, text, isOpen }) => {
   return (
@@ -47,6 +50,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <SidebarItem Icon={IoBedSharp} text="Stays" isOpen={isOpen} />
         <SidebarItem Icon={FaCar} text="Cars" isOpen={isOpen} />
         <SidebarItem Icon={FaUmbrellaBeach} text="Packages" isOpen={isOpen} />
+        <Link href={`/Ask`}>
+        <SidebarItem Icon={IoSparklesSharp } text="Ask Pak tour" isOpen={isOpen}  />
+        </Link>
       </ul>
     </div>
   );
