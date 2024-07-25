@@ -34,7 +34,7 @@ const SearchBar = () => {
     }
     return (
         <>
-            <div className="searchMainBox w-[100%] bg-white drop-shadow-lg my-4 rounded">
+            <div className="searchMainBox w-[60%] bg-white drop-shadow-lg my-4 rounded">
                 <div className="wrapper flex items-center justify-between gap-4 pe-4">
                     <div className="left flex-1 py-4 px-3 hover:bg-slate-200 rounded">
                         <p className='text-[12px] font-semibold'>Where</p>
