@@ -46,8 +46,12 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       onMouseLeave={() => setHovering(false)}
     >
       <ul className="mt-6">
+      <Link href={`/Flight`}>
         <SidebarItem Icon={BiSolidPlaneAlt} text="Flights" isOpen={isOpen} />
+        </Link>  
+        <Link href={`/Stay`}>
         <SidebarItem Icon={IoBedSharp} text="Stays" isOpen={isOpen} />
+        </Link>
         <SidebarItem Icon={FaCar} text="Cars" isOpen={isOpen} />
         <SidebarItem Icon={FaUmbrellaBeach} text="Packages" isOpen={isOpen} />
         <Link href={`/Ask`}>
