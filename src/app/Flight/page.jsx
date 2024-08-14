@@ -121,7 +121,7 @@ export default function FlightPage() {
             {weekendDeals.map((deal, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
                 <Image
-                  src={`/hunzaValley2.jpg`}  // Replace with appropriate images for each deal
+                  src={`/hunzaValley2.jpg`}  
                   alt={deal.destination}
                   width={300}
                   height={200}
