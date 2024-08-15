@@ -3,7 +3,7 @@ import { FaStar, FaRegHeart } from "react-icons/fa";
 
 const TrendingBox = () => {
     return (
-        <div className="box h-[400px] w-[300px] shadow-md rounded-lg cursor-pointer mb-[40px]">
+        <div className="box h-[400px] w-[300px] shadow-md rounded-lg cursor-pointer mb-[40px] bg-white">
             <div className="image relative w-[100%] h-[70%] rounded-lg">
                 <div className="absolute z-10 top-2 left-2">
                     <FaRegHeart />
