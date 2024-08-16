@@ -53,7 +53,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <SidebarItem Icon={IoBedSharp} text="Stays" isOpen={isOpen} />
         </Link>
         <SidebarItem Icon={FaCar} text="Cars" isOpen={isOpen} />
+        <Link href={`/Packages`}>
         <SidebarItem Icon={FaUmbrellaBeach} text="Packages" isOpen={isOpen} />
+        </Link>
         <Link href={`/Ask`}>
         <SidebarItem Icon={IoSparklesSharp } text="Ask Pak tour" isOpen={isOpen}  />
         </Link>
