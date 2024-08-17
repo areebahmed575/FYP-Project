@@ -17,7 +17,7 @@ const PackageBox = () => {
                             <p className='text-[20px]'>PKR <span>16,000</span></p>
                         </div>
                         <Link href={"/Packages"} className='flex-[1] '>
-                            <p className='bg-orange-500 px-[15px] py-[8px] rounded-full text-white hover:bg-orange-700 transition duration-150'>
+                            <p className='bg-orange-600 px-[15px] py-[8px] rounded-full text-white hover:bg-orange-700 transition duration-150'>
                                 Explore
                             </p>
                         </Link>
