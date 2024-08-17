@@ -13,7 +13,7 @@ export default function StayPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-orange-100 to-white">
+    <div className="min-h-screen ">
       <main className="container mx-auto px-4 py-12">
         <h1 className="text-5xl font-extrabold text-center mb-12 text-gray-800">Find Your Perfect Stay</h1>
 
@@ -27,7 +27,7 @@ export default function StayPage() {
             <p className="mb-6 text-gray-600">Let our AI suggest the perfect stay for you! Get tailored recommendations that match your preferences and budget.</p>
             <button
               onClick={generateAiSuggestion}
-              className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition duration-300 text-lg font-semibold mb-6"
+              className="w-full bg-teal-500 text-white py-3 rounded-lg hover:bg-teal-600 transition duration-300 text-lg font-semibold mb-6"
             >
               Generate AI Suggestion
             </button>
@@ -42,15 +42,15 @@ export default function StayPage() {
             <h2 className="text-3xl font-semibold mb-6 text-gray-800">Why Choose Us?</h2>
             <ul className="space-y-4 text-gray-600">
               <li className="flex items-center">
-                <svg className="w-6 h-6 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                <svg className="w-6 h-6 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 AI-powered recommendations for personalized stays
               </li>
               <li className="flex items-center">
-                <svg className="w-6 h-6 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                <svg className="w-6 h-6 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 Curated selection of top-rated accommodations
               </li>
               <li className="flex items-center">
-                <svg className="w-6 h-6 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                <svg className="w-6 h-6 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 24/7 customer support to assist you anytime
               </li>
             </ul>
@@ -107,7 +107,7 @@ export default function StayPage() {
                   className="w-full h-56 object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="text-2xl font-semibold mb-2 text-orange-700">{rental}</h3>
+                  <h3 className="text-2xl font-semibold mb-2 text-gray-700">{rental}</h3>
                   <div className="flex items-center mb-2">
                     <span className="text-yellow-500 mr-1">★★★★★</span>
                     <span className="text-gray-600">(4.9)</span>
@@ -141,10 +141,10 @@ export default function StayPage() {
                   className="w-full h-56 object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="text-2xl font-semibold mb-2 text-orange-700">Luxury Suite</h3>
+                  <h3 className="text-2xl font-semibold mb-2 text-gray-700">Luxury Suite</h3>
                   <p className="text-gray-600 mb-2">Skardu, Upper Kachura Lake</p>
-                  <p className="text-2xl font-bold text-gray-700">$299/night</p>
-                  <button className="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition duration-300">
+                  <p className="text-2xl font-bold text-gray-700">Rs299/night</p>
+                  <button className="mt-4 w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition duration-300">
                     Book Now
                   </button>
                 </div>
@@ -154,7 +154,7 @@ export default function StayPage() {
         </section>
       </main>
 
-      <footer className="bg-orange-800 text-white text-center py-6 mt-16">
+      <footer className="bg-teal-800 text-white text-center py-6 mt-16">
         <p>&copy; 2024 AI-Powered Tourism. All rights reserved.</p>
       </footer>
     </div>

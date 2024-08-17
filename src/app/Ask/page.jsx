@@ -8,7 +8,7 @@ const Ask = () => {
           <div className="mb-2">
             <span className="text-xs bg-gray-200 px-2 py-1 rounded">BETA</span>
           </div>
-          <h1 className="text-6xl font-bold text-black mb-2">Ask Pak Tour<span className="text-orange-500">.</span></h1>
+          <h1 className="text-6xl font-bold text-black mb-2">Ask Pak Tour<span className="text-teal-500">.</span></h1>
           <p className="text-gray-600 mb-6 max-w-2xl">
             Meet your new favorite travel planning tool. Powered by our data and AI, 
             we'll help you discover your next vacation.
@@ -29,7 +29,7 @@ const Ask = () => {
                 className="flex-grow p-4 text-gray-700 focus:outline-none border border-gray-300 rounded-l-lg"
                 placeholder="What are you looking for in your next trip?"
               />
-              <button className="bg-orange-500 text-white p-4 rounded-r-lg">
+              <button className="bg-teal-500 text-white p-4 rounded-r-lg">
                 <FaSearch />
               </button>
             </div>

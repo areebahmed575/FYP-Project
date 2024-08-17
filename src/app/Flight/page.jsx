@@ -15,15 +15,15 @@ export default function FlightPage() {
   
   
   const weekendDeals = [
-    { destination: 'Hunza Valley, Gilgit-Baltistan', price: '$199', savings: '30%' },
-    { destination: 'Shalimar Gardens, Lahore', price: '$149', savings: '25%' },
-    { destination: 'Badshahi Mosque, Lahore', price: '$179', savings: '20%' },
-    { destination: 'Makran Coast, Balochistan', price: '$229', savings: '15%' },
+    { destination: 'Hunza Valley, Gilgit-Baltistan', price: 'Rs199', savings: '30%' },
+    { destination: 'Shalimar Gardens, Lahore', price: 'Rs149', savings: '25%' },
+    { destination: 'Badshahi Mosque, Lahore', price: 'Rs179', savings: '20%' },
+    { destination: 'Makran Coast, Balochistan', price: 'Rs229', savings: '15%' },
   ]
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-orange-100 to-white">
+    <div className="min-h-screen">
       <main className="container mx-auto px-4 py-12">
         <h1 className="text-5xl font-extrabold text-center mb-12 text-gray-800">Find Your Perfect Flight</h1>
 
@@ -38,7 +38,7 @@ export default function FlightPage() {
             <p className="mb-6 text-gray-600">Let our AI suggest the perfect flight itinerary based on your preferences!</p>
             <button
               onClick={generateAiSuggestion}
-              className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition duration-300 text-lg font-semibold mb-6"
+              className="w-full bg-teal-500 text-white py-3 rounded-lg hover:bg-teal-600 transition duration-300 text-lg font-semibold mb-6"
             >
               Generate AI Suggestion
             </button>
@@ -53,15 +53,15 @@ export default function FlightPage() {
             <h2 className="text-3xl font-semibold mb-6 text-gray-800">Why Fly With Us?</h2>
             <ul className="space-y-4 text-gray-600">
               <li className="flex items-center">
-                <svg className="w-6 h-6 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                <svg className="w-6 h-6 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 AI-powered flight recommendations
               </li>
               <li className="flex items-center">
-                <svg className="w-6 h-6 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                <svg className="w-6 h-6 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 Exclusive deals with top airlines
               </li>
               <li className="flex items-center">
-                <svg className="w-6 h-6 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                <svg className="w-6 h-6 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 24/7 customer support
               </li>
             </ul>
@@ -105,7 +105,7 @@ export default function FlightPage() {
                 <div className="p-6">
                   <h3 className="text-2xl font-semibold mb-2 text-gray-700">{offer}</h3>
                   <p className="text-gray-600 mb-4">Limited time offer. Book now and save!</p>
-                  <button className="w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition duration-300">
+                  <button className="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition duration-300">
                     View Offer
                   </button>
                 </div>
@@ -134,7 +134,7 @@ export default function FlightPage() {
                     <span className="text-2xl font-bold text-gray-600">{deal.price}</span>
                     <span className="text-sm font-semibold text-gray-500">Save {deal.savings}</span>
                   </div>
-                  <button className="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition duration-300 text-sm font-semibold">
+                  <button className="mt-4 w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition duration-300 text-sm font-semibold">
                     Book Now
                   </button>
                 </div>
@@ -151,15 +151,15 @@ export default function FlightPage() {
           <div className="bg-white rounded-xl shadow-lg p-8">
             <ul className="space-y-4 text-gray-600">
               <li className="flex items-start">
-                <svg className="w-6 h-6 mr-2 text-orange-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <svg className="w-6 h-6 mr-2 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <p><span className="font-semibold">Book in advance:</span> Generally, booking 6-8 weeks before your trip can help you find better deals.</p>
               </li>
               <li className="flex items-start">
-                <svg className="w-6 h-6 mr-2 text-orange-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <svg className="w-6 h-6 mr-2 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <p><span className="font-semibold">Be flexible:</span> Consider flying on weekdays or during off-peak seasons for better prices.</p>
               </li>
               <li className="flex items-start">
-                <svg className="w-6 h-6 mr-2 text-orange-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <svg className="w-6 h-6 mr-2 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <p><span className="font-semibold">Compare options:</span> Don't forget to check alternative airports and consider layovers for potential savings.</p>
               </li>
             </ul>
@@ -167,7 +167,7 @@ export default function FlightPage() {
         </section>
 
         
-      <footer className="bg-orange-800 text-white text-center py-6 mt-16">
+      <footer className="bg-teal-800 text-white text-center py-6 mt-16">
         <p>&copy; 2024 AI-Powered Tourism. All rights reserved.</p>
       </footer>
     </div>

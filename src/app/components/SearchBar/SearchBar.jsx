@@ -65,7 +65,7 @@ const SearchBar = () => {
 
                         }
                     </div>
-                    <div className="icon bg-orange-500 p-4 rounded-full text-white cursor-pointer hover:bg-orange-600">
+                    <div className="icon bg-teal-500 p-4 rounded-full text-white cursor-pointer hover:bg-teal-600">
                         <FaSearch />
                     </div>
                 </div>
