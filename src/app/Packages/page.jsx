@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchBar from '../components/SearchBar/SearchBar'
+import PackageBox from '../components/PackageBox/PackageBox'
 
 const PackagesPage = () => {
     return (
@@ -9,10 +10,16 @@ const PackagesPage = () => {
                 <div className="bg-white rounded-xl shadow-xl p-8 mb-12 flex justify-center items-center">
                     <SearchBar />
                 </div>
-                <div className='grid md:grid-cols-2 gap-8 mb-16'>
-                    <div className="text">
+                <div className='mb-16'>
+                    <div className="text mb-5">
                         <h1 className='text-4xl font-semibold mb-2 text-gray-800'>Your Wishlist starts here</h1>
                         <p className='text-gray-500'>Save destinations all in one place—even if you're not ready to book</p>
+                    </div>
+                    <div className='flex justify-between flex-wrap'>
+                        <PackageBox />
+                        <PackageBox />
+                        <PackageBox />
+                        <PackageBox />
                     </div>
                 </div>
             </main>
