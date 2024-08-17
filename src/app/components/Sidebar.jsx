@@ -3,14 +3,17 @@ import { BiSolidPlaneAlt } from 'react-icons/bi';
 import { IoBedSharp } from 'react-icons/io5';
 import { FaCar, FaUmbrellaBeach } from 'react-icons/fa';
 import { IoSparklesSharp } from "react-icons/io5";
+import { IoGlobeOutline } from "react-icons/io5";
+import { IoIosHeart } from "react-icons/io";
 import Link from 'next/link'
+
 
 
 const SidebarItem = ({ Icon, text, isOpen }) => {
   return (
     <li className="flex items-center hover:bg-gray-100 cursor-pointer group">
       <div className="w-16 h-16 flex items-center justify-center flex-shrink-0">
-        <Icon className="text-gray-400 group-hover:text-orange-600 transition-colors duration-200" size={20} />
+        <Icon className="text-gray-400 group-hover:text-teal-600 transition-colors duration-200" size={20} />
       </div>
       {isOpen && (
         <span className="whitespace-nowrap transition-opacity duration-300">
@@ -52,13 +55,20 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <Link href={`/Stay`}>
         <SidebarItem Icon={IoBedSharp} text="Stays" isOpen={isOpen} />
         </Link>
-        <SidebarItem Icon={FaCar} text="Cars" isOpen={isOpen} />
+        {/* <SidebarItem Icon={FaCar} text="Cars" isOpen={isOpen} /> */}
         <Link href={`/Packages`}>
         <SidebarItem Icon={FaUmbrellaBeach} text="Packages" isOpen={isOpen} />
         </Link>
         <Link href={`/Ask`}>
         <SidebarItem Icon={IoSparklesSharp } text="Ask Pak tour" isOpen={isOpen}  />
         </Link>
+        <Link href={`/Trips`}>
+        <SidebarItem Icon={IoIosHeart } text="Trips" isOpen={isOpen}  />
+        </Link>
+        <Link href={`/Explore`}>
+        <SidebarItem Icon={IoGlobeOutline } text="Explore" isOpen={isOpen}  />
+        </Link>
+
       </ul>
     </div>
   );
