@@ -2,7 +2,7 @@ import { FaPencilAlt, FaSearch } from 'react-icons/fa';
 
 const Ask = () => {
   return (
-    <div className="min-h-screen bg-white p-8 flex items-center justify-center">
+    <div className="min-h-screen bg-white p-8 flex items-center justify-center px-[50px] py-[25px]">
       <div className="max-w-6xl w-full flex flex-col lg:flex-row items-start relative">
         <div className="w-full lg:w-1/2 lg:pr-8 mb-8 lg:mb-0 z-10">
           <div className="mb-2">

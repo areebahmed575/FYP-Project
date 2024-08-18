@@ -4,11 +4,11 @@ import Link from 'next/link'
 
 const Navbar = ({ toggleSidebar }) => {
   return (
-    <div className="flex justify-between items-center p-4 bg-white w-full fixed top-0 z-10 border-b border-gray-300 shadow-lg">
+    <div className="flex justify-between items-center p-4 bg-white w-full fixed top-0 z-20 border-b border-gray-300 shadow-lg">
       <div className="flex items-center space-x-4">
         <HiBars3 className="text-2xl cursor-pointer ml-2" onClick={toggleSidebar} size={24} />
         <Link href="/"><div className="text-2xl font-bold text-teal-600">PakiGenTravel</div> </Link>
-       
+
       </div>
       <div>
         <button className="bg-teal-600 text-white px-4 py-2 rounded shadow hover:bg-teal-700 transition duration-300">Sign in</button>

@@ -27,7 +27,7 @@ export default function TripPage() {
   const filteredTrips = selectedCategory === 'all' ? trips : trips.filter(trip => trip.category === selectedCategory)
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen px-[50px] py-[25px]">
       <main className="container mx-auto px-4 py-12">
         <h1 className="text-5xl font-extrabold text-center mb-12 text-gray-800">Discover Your Perfect Trip</h1>
 

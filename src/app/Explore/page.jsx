@@ -31,7 +31,7 @@ export default function ExplorePage() {
   )
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen px-[50px] py-[25px]">
       <main className="container mx-auto px-4 py-12">
         <h1 className="text-5xl font-extrabold text-center mb-12 text-gray-800">Explore Pakistan</h1>
 
