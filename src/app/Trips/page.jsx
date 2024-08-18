@@ -29,8 +29,20 @@ export default function TripPage() {
   return (
     <div className="min-h-screen ">
       <main className="container mx-auto px-4 py-12">
-        <h1 className="text-5xl font-extrabold text-center mb-12 text-gray-800">Discover Your Perfect Trip</h1>
-
+        
+        <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
+          <Image
+            src="/Arang_Kel.jpg"
+            alt="Pakistani Culture"
+            layout="fill"
+            objectFit="cover"
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <h2 className="text-white text-4xl font-bold text-center px-4">
+            Discover Your Perfect Trip
+            </h2>
+          </div>
+        </section>
         
         <section className="mb-16 bg-white rounded-xl shadow-2xl p-8">
           <h2 className="text-3xl font-semibold mb-6 text-gray-700">AI Trip Planner</h2>

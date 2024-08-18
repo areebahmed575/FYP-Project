@@ -5,6 +5,12 @@ import { FaCar, FaUmbrellaBeach } from 'react-icons/fa';
 import { IoSparklesSharp } from "react-icons/io5";
 import { IoGlobeOutline } from "react-icons/io5";
 import { IoIosHeart } from "react-icons/io";
+import { MdHome } from "react-icons/md";
+import { MdOutlineFestival } from 'react-icons/md';
+
+
+
+
 import Link from 'next/link'
 
 
@@ -43,12 +49,15 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   return (
     <div
       className={`h-screen bg-white fixed top-0 left-0 transform ${
-        isOpen ? 'w-52' : 'w-16'
+        isOpen ? 'w-60' : 'w-16'
       } transition-all duration-300 ease-in-out pt-16 border-r border-gray-300 shadow-lg overflow-hidden`}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
     >
       <ul className="mt-6">
+      <Link href={`/`}>
+        <SidebarItem Icon={MdHome} text="Home" isOpen={isOpen} />
+        </Link>  
       <Link href={`/Flight`}>
         <SidebarItem Icon={BiSolidPlaneAlt} text="Flights" isOpen={isOpen} />
         </Link>  
@@ -68,6 +77,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <Link href={`/Explore`}>
         <SidebarItem Icon={IoGlobeOutline } text="Explore" isOpen={isOpen}  />
         </Link>
+        <Link href={`/Cultural`}>
+        <SidebarItem Icon={MdOutlineFestival } text="Cultural Experiences" isOpen={isOpen}  />
+        </Link>
+     
 
       </ul>
     </div>
