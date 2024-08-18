@@ -32,7 +32,7 @@ export default function CulturalExperiences() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen  px-[50px] py-[25px]">
       <Head>
         <title>Cultural Experiences in Pakistan</title>
         <meta name="description" content="Discover the rich cultural heritage of Pakistan" />
@@ -51,7 +51,7 @@ export default function CulturalExperiences() {
         
         <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
           <Image
-            src="/57075ec37792f.jpg"
+            src="/IMG_8262-3-1-1024x768-7.webp"
             alt="Pakistani Culture"
             layout="fill"
             objectFit="cover"
