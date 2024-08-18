@@ -18,8 +18,8 @@ const PackagesPage = () => {
                     </div>
                     <div className='flex justify-between flex-wrap'>
                         {
-                            [1, 2, 3, 4].map((item) => (
-                                <PackageBox />
+                            [1, 2, 3, 4].map((item, index) => (
+                                <PackageBox key={index}/>
                             ))
                         }   
                     </div>
