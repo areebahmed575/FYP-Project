@@ -123,7 +123,7 @@ export default function StayPage() {
           <h2 className="text-4xl font-semibold mb-8 text-gray-800">Stay at Our Top Unique Properties</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {['Treehouse Getaway', 'Underwater Suite'].map((property) => (
-              <UniquePropertyBox property={property}/>
+              <UniquePropertyBox property={property} key={property}/>
             ))}
           </div>
         </section>
