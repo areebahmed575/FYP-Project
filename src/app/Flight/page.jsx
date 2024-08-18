@@ -25,13 +25,27 @@ export default function FlightPage() {
   return (
     <div className="min-h-screen px-[50px] py-[25px]">
       <main className="container mx-auto px-4 py-12">
-        <h1 className="text-5xl font-extrabold text-center mb-12 text-gray-800">Find Your Perfect Flight</h1>
-
-       
-        <div className="bg-white rounded-xl shadow-2xl p-8 mb-12 flex justify-center items-center">
+      <div className="bg-white rounded-xl shadow-2xl p-8 mb-12 flex justify-center items-center">
           <SearchBar />
         </div>
      
+      <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
+          <Image
+            src="/skardu.jpeg"
+            alt="Pakistani Culture"
+            layout="fill"
+            objectFit="cover"
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <h2 className="text-white text-4xl font-bold text-center px-4">
+            Find Your Perfect Flight
+            </h2>
+          </div>
+        </section>
+
+       
+       
+       
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-3xl font-semibold mb-6 text-gray-800">AI Flight Assistant</h2>
