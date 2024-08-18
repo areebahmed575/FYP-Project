@@ -65,14 +65,14 @@ const HomePage = () => {
             <div className="trendingContainer flex items-center justify-between flex-wrap my-[30px]">
                 {
                     ['Karachi', 'Lahore', 'Islamabad', 'Peshawar'].map((city) => (
-                        <CityBox city={city}/>
+                        <CityBox city={city} key={city}/>
                     ))
                 }
             </div>
             <h1 className="text-[32px] font-bold mt-[40px]">Stay at Our Top Unique Properties</h1>
             <div className="grid md:grid-cols-2 gap-8 my-[30px]">
                 {['Treehouse Getaway', 'Underwater Suite'].map((property) => (
-                    <UniquePropertyBox property={property}/>
+                    <UniquePropertyBox property={property} key={property}/>
                 ))}
             </div>
         </main>
