@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
         <div className="flex pt-16">
         <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
         <div className={`flex-1 transition-all duration-300 ease-in-out ${isSidebarOpen ? 'ml-52' : 'ml-16'}`}>
-            <main className="px-[50px] py-[25px]">{children}</main>
+            <main className="">{children}</main>
           </div>
         </div>
       </body>
