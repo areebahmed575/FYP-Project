@@ -28,7 +28,7 @@ const HomePage = () => {
                         <Image src={`/atabadLake.jpg`} fill className="object-cover" />
                     </div>
                     <div className="imageContainer relative w-[33%] h-[90vh] ">
-                        <Image src={`/land.jpg`} fill className="object-cover" />
+                        <Image src={`/Mountains.jpg`} fill className="object-cover" />
                     </div>
                 </div>
                 <div className="searchContainer flex justify-center absolute bottom-20 w-[100%] rounded-xl p-8 mb-12 items-center">
