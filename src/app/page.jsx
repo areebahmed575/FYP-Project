@@ -14,6 +14,9 @@ const HomePage = () => {
 
     return (
         <main className="min-h-screen">
+            
+                   
+              
             <div className="relative w-[100%] h-[100%]">
                 <div className=" absolute z-10 w-[100%] top-8 flex justify-center flex-col items-center gap-7 h-fit mx-auto">
                     <h1 className=" w-fit text-[64px]  text-white text-center font-extrabold px-[5px] drop-shadow-lg bg-teal-500 bg-opacity-30 rounded-2xl shadow-lg shadow-black/10 backdrop-blur-[9.5px] border border-teal-500 border-opacity-22">Discover Your Next Advanture</h1>
@@ -31,12 +34,15 @@ const HomePage = () => {
                         <Image src={`/Mountains.jpg`} fill className="object-cover" />
                     </div>
                 </div>
-                <div className="searchContainer flex justify-center absolute bottom-20 w-[100%] rounded-xl p-8 mb-12 items-center">
-                    <SearchBar />
-                </div>
+                
             </div>
 
+            
+
             <div className="wrapper px-[50px] py-[25px]">
+
+            <SearchBar />
+                
 
                 <h1 className="mt-[90px] mb-[40px] text-center text-[64px] font-bold tracking-widest">Discover Pakistan</h1>
                 <div className="discoverPak flex items-center gap-10 mb-[100px] flex-wrap">
