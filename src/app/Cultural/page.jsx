@@ -32,7 +32,7 @@ export default function CulturalExperiences() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen px-[50px] py-[25px]">
       <Head>
         <title>Cultural Experiences in Pakistan</title>
         <meta name="description" content="Discover the rich cultural heritage of Pakistan" />
