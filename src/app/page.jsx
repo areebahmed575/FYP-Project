@@ -37,13 +37,11 @@ const HomePage = () => {
                 
             </div>
 
+
             
 
             <div className="wrapper px-[50px] py-[25px]">
-
-            <SearchBar />
-                
-
+            <SearchBar />                
                 <h1 className="mt-[90px] mb-[40px] text-center text-[64px] font-bold tracking-widest">Discover Pakistan</h1>
                 <div className="discoverPak flex items-center gap-10 mb-[100px] flex-wrap">
                     <div className="left relative h-[400px] flex-1 rounded">
