@@ -8,9 +8,7 @@ const PackagesPage = () => {
         <div className='flex flex-col min-h-screen px-[50px] py-[25px]'>
             <main className='container mx-auto px-4 py-12'>
                 {/* <h1 className='text-5xl font-extrabold text-center mb-12 text-gray-800'>Find The Best Package</h1> */}
-                <div className="bg-white rounded-xl shadow-xl p-8 mb-12 flex justify-center items-center">
-                    <SearchBar />
-                </div>
+                
                 <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
                     <Image
                         src="/safiulmuluklake.jpg"
@@ -24,6 +22,10 @@ const PackagesPage = () => {
                         </h2>
                     </div>
                 </section>
+
+                <div className='mt-20 mb-32'>
+                    <SearchBar />
+                </div>
                 <div className='mb-16'>
                     <div className="text mb-5">
                         <h1 className='text-4xl font-semibold mb-2 text-gray-800'>Your Wishlist starts here</h1>

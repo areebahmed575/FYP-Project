@@ -1,78 +1,119 @@
-"use client";
+'use client'
+
 import React, { useState } from 'react'
-import { DateRange } from 'react-date-range';
-import { FaSearch } from "react-icons/fa";
-import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file 
-import { format } from "date-fns";
-import OptionBox from './OptionBox';
+import { motion, AnimatePresence } from 'framer-motion'
+import { DateRange } from 'react-date-range'
+import { FaSearch, FaMapMarkerAlt, FaCalendarAlt, FaUsers } from "react-icons/fa"
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
+import { format } from "date-fns"
+import OptionBox from './OptionBox'
 
-
-const SearchBar = () => {
-    const [showDate, setShowDate] = useState(false)
-    const [dates, setDates] = useState([
-        {
-            startDate: new Date(),
-            endDate: new Date(),
-            key: 'selection'
-        }
-    ]);
-    const [showOpitons, setShowOptions] = useState(false)
-    const [options, setOptions] = useState({
-        adults: 1,
-        childern: 0,
-        room: 1,
-    })
-
-    function optionHandler(name, opertation) {
-        setOptions((prev) => {
-            return {
-                ...prev,
-                [name]: opertation === 'inc' ? options[name] + 1 : options[name] - 1
-            }
-        })
+const SearchBar = ({ isCompact = false }) => {
+  const [showDate, setShowDate] = useState(false)
+  const [dates, setDates] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection'
     }
-    return (
-        <>
-            <div className="searchMainBox w-[100%] bg-white drop-shadow-lg my-4 rounded">
-                <div className="wrapper flex items-center justify-between gap-4 pe-4">
-                    <div className="left flex-1 py-4 px-3 hover:bg-slate-200 rounded">
-                        <p className='text-[12px] font-semibold'>Where</p>
-                        <input type="text" placeholder='Search destinations' className='outline-none text-[13px] bg-transparent' />
-                    </div>
-                    <div className="mid flex flex-1 py-4 px-3 hover:bg-slate-200 rounded" onClick={() => setShowDate(!showDate)}>
-                        <div className="checkin relative" >
-                            <p className='text-[12px] font-semibold'>Check-in date - Check-out date</p>
-                            <p className='text-[14px] text-gray-400'>{`${format(dates[0]?.startDate, "dd/MM/yyyy")} to ${format(dates[0]?.endDate, "dd/MM/yyyy")}`}</p>
-                            {
-                                showDate && <DateRange
-                                    editableDateInputs={true}
-                                    onChange={item => setDates([item.selection])}
-                                    moveRangeOnFirstSelection={false}
-                                    ranges={dates}
-                                    className="dateRange absolute left-[-11px]"
-                                    minDate={new Date()}
-                                />
-                            }
-                        </div>
-                    </div>
-                    <div className="right flex-1 py-4 px-3 hover:bg-slate-200 rounded relative" onClick={() => setShowOptions(!showOpitons)}>
-                        <p className='text-[12px] font-semibold'>Who</p>
-                        <p className='text-[14px] text-gray-400'>Add guests</p>
-                        {
+  ])
+  const [showOptions, setShowOptions] = useState(false)
+  const [options, setOptions] = useState({
+    adults: 1,
+    children: 0,
+    rooms: 1,
+  })
+  const [destination, setDestination] = useState('')
 
-                            showOpitons && <OptionBox optionHandler={optionHandler} opitons={options} />
+  function optionHandler(name, operation) {
+    setOptions((prev) => ({
+      ...prev,
+      [name]: operation === 'inc' ? prev[name] + 1 : Math.max(0, prev[name] - 1)
+    }))
+  }
 
-                        }
-                    </div>
-                    <div className="icon bg-teal-500 p-4 rounded-full text-white cursor-pointer hover:bg-teal-600">
-                        <FaSearch />
-                    </div>
-                </div>
-            </div>
-        </>
+  const compactClass = isCompact ? 'py-2 px-4' : 'p-2 my-8';
+  const inputClass = isCompact ? 'text-xs' : 'text-sm';
+  const itemClass = isCompact ? 'flex-shrink-0' : 'flex-1';
 
-    )
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`w-full max-w-4xl mx-auto bg-white rounded-full shadow-lg overflow-visible ${compactClass}`}
+    >
+      <div className="flex items-center justify-between space-x-2">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className={`${itemClass} flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100`}
+        >
+          <FaMapMarkerAlt className="text-teal-500" />
+          <input
+            type="text"
+            placeholder="Where are you going?"
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+            className={`w-full outline-none bg-transparent ${inputClass}`}
+            aria-label="Destination input"
+          />
+        </motion.div>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className={`${itemClass} flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 cursor-pointer`}
+          onClick={() => setShowDate(!showDate)}
+        >
+          <FaCalendarAlt className="text-teal-500" />
+          <span className={inputClass}>
+            {`${format(dates[0].startDate, "MMM dd")} - ${format(dates[0].endDate, "MMM dd")}`}
+          </span>
+        </motion.div>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className={`${itemClass} flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 cursor-pointer relative`}
+          onClick={() => setShowOptions(!showOptions)}
+        >
+          <FaUsers className="text-teal-500" />
+          <span className={inputClass}>
+            {`${options.adults + options.children} guests, ${options.rooms} rooms`}
+          </span>
+          <AnimatePresence>
+            {showOptions && (
+              <OptionBox optionHandler={optionHandler} options={options} />
+            )}
+          </AnimatePresence>
+        </motion.div>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-teal-500 text-white p-4 rounded-full hover:bg-teal-600 transition-colors duration-300"
+          aria-label="Search"
+        >
+          <FaSearch />
+        </motion.button>
+      </div>
+      <AnimatePresence>
+        {showDate && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute left-1/2 transform -translate-x-1/2 mt-2 z-10"
+          >
+            <DateRange
+              editableDateInputs={true}
+              onChange={item => setDates([item.selection])}
+              moveRangeOnFirstSelection={false}
+              ranges={dates}
+              className="shadow-lg rounded-lg overflow-hidden"
+              minDate={new Date()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
 }
 
 export default SearchBar

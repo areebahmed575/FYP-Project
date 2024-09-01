@@ -17,9 +17,7 @@ export default function StayPage() {
       <main className="container mx-auto px-4 py-12">
        
 
-        <div className="bg-white rounded-xl shadow-2xl p-8 mb-12 flex justify-center items-center">
-          <SearchBar />
-        </div>
+        
 
         <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
           <Image
@@ -34,6 +32,10 @@ export default function StayPage() {
             </h2>
           </div>
         </section>
+
+        <div >
+          <SearchBar />
+        </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           <div className="bg-white rounded-xl shadow-lg p-8">
