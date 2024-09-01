@@ -25,9 +25,7 @@ export default function FlightPage() {
   return (
     <div className="min-h-screen px-[50px] py-[25px]">
       <main className="container mx-auto px-4 py-12">
-      <div className="bg-white rounded-xl shadow-2xl p-8 mb-12 flex justify-center items-center">
-          <SearchBar />
-        </div>
+      
      
       <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
           <Image
@@ -42,6 +40,10 @@ export default function FlightPage() {
             </h2>
           </div>
         </section>
+
+        <div >
+          <SearchBar />
+        </div>
 
        
        
