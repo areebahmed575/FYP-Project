@@ -63,53 +63,64 @@ const HomePage = () => {
                 </div>
             </div>
 
+            <div className="wrapper px-12 py-6">
+                <SearchBar />
 
-            
+                <motion.h1 
+                    className="mt-24 mb-10 text-center text-6xl font-bold tracking-widest"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                >
+                    Discover Pakistan
+                </motion.h1>
 
-            <div className="wrapper px-[50px] py-[25px]">
-            <SearchBar />                
-                <h1 className="mt-[90px] mb-[40px] text-center text-[64px] font-bold tracking-widest">Discover Pakistan</h1>
-                <div className="discoverPak flex items-center gap-10 mb-[100px] flex-wrap">
-                    <div className="left relative h-[400px] flex-1 rounded">
-                        <Image src={`/skardu2.jpg`} fill className="object-cover rounded-lg" />
-                    </div>
-                    <div className="right flex-1 flex flex-col items-center gap-5">
-                        <h1 className="text-[32px] font-semibold text-center">
-                            Discover The Vast Lands Of Pakistan
-                        </h1>
-                        <p className="text-justify">
-                            The vast lands of Pakistan encompass diverse landscapes, from the towering peaks of the Himalayas in the north to the arid deserts of Thar in the south. Rich in history and culture, the country boasts lush valleys, expansive plateaus, and vibrant cities, offering a unique blend of natural beauty and cultural heritage.
-                        </p>
-                    </div>
-                </div>
-                <div className="discoverPak flex items-center  gap-10 mb-[100px] flex-wrap">
-                    <div className="right flex-1 flex flex-col items-center gap-5">
-                        <h1 className="text-[32px] font-semibold text-center">
-                            Discover the Magic of Pakistan's Cultural Heritage
-                        </h1>
-                        <p className="text-justify">
-                            The magic of Pakistan's cultural heritage lies in its rich tapestry of traditions, languages, and artistry. From the intricate designs of Mughal architecture to the vibrant festivals celebrating centuries-old customs, Pakistan's cultural legacy is a living testament to its diverse history, blending influences from South Asia, Central Asia, and beyond.
-                        </p>
-                    </div>
-                    <div className="left relative h-[400px] flex-1 rounded">
-                        <Image src={`/art3.jpg`} fill className="object-cover rounded-lg" />
-                    </div>
-                </div>
-                <div className="discoverPak flex items-center  gap-10 mb-[100px] flex-wrap">
-                    <div className="left relative h-[400px] flex-1 rounded">
-                        <Image src={`/Passu-cones.jpg`} fill className="object-cover rounded-lg" />
-                    </div>
-                    <div className="right flex-1 flex flex-col items-center gap-5">
-                        <h1 className="text-[32px] font-semibold text-center">
-                            Plan Your Next Advanture
-                        </h1>
-                        <p className="text-justify">
-                            Plan your next adventure with our generative AI tour planner, designed to create personalized itineraries tailored to your interests. Whether you seek thrilling outdoor activities, cultural explorations, or relaxing getaways, our AI-driven tool crafts the perfect journey, ensuring a seamless and unforgettable travel experience every time.
-                        </p>
-                    </div>
-                </div>
+                {[
+                    {
+                        title: "Discover The Vast Lands Of Pakistan",
+                        description: "The vast lands of Pakistan encompass diverse landscapes, from the towering peaks of the Himalayas in the north to the arid deserts of Thar in the south. Rich in history and culture, the country boasts lush valleys, expansive plateaus, and vibrant cities, offering a unique blend of natural beauty and cultural heritage.",
+                        image: "/skardu2.jpg"
+                    },
+                    {
+                        title: "Discover the Magic of Pakistan's Cultural Heritage",
+                        description: "The magic of Pakistan's cultural heritage lies in its rich tapestry of traditions, languages, and artistry. From the intricate designs of Mughal architecture to the vibrant festivals celebrating centuries-old customs, Pakistan's cultural legacy is a living testament to its diverse history, blending influences from South Asia, Central Asia, and beyond.",
+                        image: "/art3.jpg"
+                    },
+                    {
+                        title: "Plan Your Next Adventure",
+                        description: "Plan your next adventure with our generative AI tour planner, designed to create personalized itineraries tailored to your interests. Whether you seek thrilling outdoor activities, cultural explorations, or relaxing getaways, our AI-driven tool crafts the perfect journey, ensuring a seamless and unforgettable travel experience every time.",
+                        image: "/Passu-cones.jpg"
+                    }
+                ].map((section, index) => (
+                    <motion.div 
+                        key={section.title}
+                        className={`flex items-center gap-10 mb-24 flex-wrap ${index % 2 !== 0 ? 'flex-row-reverse' : ''}`}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                    >
+                        <motion.div 
+                            className="relative h-[400px] flex-1 rounded-lg overflow-hidden"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                        >
+                            <Image src={section.image} fill className="object-cover" alt={section.title} />
+                        </motion.div>
+                        <div className="flex-1 flex flex-col items-center gap-5">
+                            <h2 className="text-3xl font-semibold text-center">{section.title}</h2>
+                            <p className="text-justify">{section.description}</p>
+                        </div>
+                    </motion.div>
+                ))}
 
-                <h1 className="text-[32px] font-bold">Tranding Destinations</h1>
+                <ExploreAndBrowseType />
+                <TripAndDeals />
+                <HolidayRentals />
+
+
+                    {/* <h1 className="text-[32px] font-bold">Tranding Destinations</h1>
                 <p className="text-gray-400">Most popular choices for travellers</p>
                 <div className="trendingContainer flex items-center justify-between flex-wrap my-[30px]">
                     <TrendingBox />
