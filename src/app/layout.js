@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 const roboto = Inter({ subsets: ["latin"], weight: "400" });
 
@@ -14,6 +15,7 @@ const metadata = {
 
 export default function RootLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -27,13 +29,17 @@ export default function RootLayout({ children }) {
     setIsSidebarOpen(false);
   };
   
+  const isPropertyListing = pathname === '/PropertyListing';
+
   return (
     <html lang="en">
       <body className={roboto.className}>
         <Navbar toggleSidebar={toggleSidebar} />
         <div className="flex pt-16">
-        <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
-        <div className={`flex-1 transition-all duration-300 ease-in-out ${isSidebarOpen ? 'ml-52' : 'ml-16'}`}>
+          {!isPropertyListing && (
+            <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+          )}
+          <div className={`flex-1 transition-all duration-300 ease-in-out ${!isPropertyListing && (isSidebarOpen ? 'ml-52' : 'ml-16')}`}>
             <main className="">{children}</main>
           </div>
         </div>
