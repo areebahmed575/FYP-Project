@@ -20,6 +20,8 @@ const Navbar = ({ toggleSidebar }) => {
   }, []);
 
   const isPropertyListing = pathname === '/PropertyListing';
+  const isSinglePropertyListing = pathname === '/SinglePropertyListing';
+  const showSearchBar = isPropertyListing || isSinglePropertyListing;
 
   return (
     <motion.div
@@ -29,7 +31,7 @@ const Navbar = ({ toggleSidebar }) => {
       className="flex justify-between items-center p-4 bg-white/80 backdrop-blur-md w-full fixed top-0 z-20 border-b border-gray-200 shadow-sm"
     >
       <div className="flex items-center space-x-4">
-        {!isPropertyListing && (
+        {!showSearchBar && (
           <motion.div
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -46,12 +48,12 @@ const Navbar = ({ toggleSidebar }) => {
           </motion.div>
         </Link>
       </div>
-      {isPropertyListing && (
+      {showSearchBar && (
         <div className="flex-grow max-w-xl mx-4">
           <SearchBar isCompact={true} />
         </div>
       )}
-      {!isPropertyListing && isScrolled && (
+      {!showSearchBar && isScrolled && (
         <div className="flex-grow max-w-xl mx-4">
           <SearchBar isCompact={true} />
         </div>

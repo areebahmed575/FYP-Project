@@ -30,16 +30,20 @@ export default function RootLayout({ children }) {
   };
   
   const isPropertyListing = pathname === '/PropertyListing';
+  const isSinglePropertyListing = pathname === '/SinglePropertyListing';
+  const hideSidebar = isPropertyListing || isSinglePropertyListing;
 
   return (
     <html lang="en">
       <body className={roboto.className}>
         <Navbar toggleSidebar={toggleSidebar} />
         <div className="flex pt-16">
-          {!isPropertyListing && (
+          {!hideSidebar && (
             <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
           )}
-          <div className={`flex-1 transition-all duration-300 ease-in-out ${!isPropertyListing && (isSidebarOpen ? 'ml-52' : 'ml-16')}`}>
+          <div className={`flex-1 transition-all duration-300 ease-in-out ${
+            !hideSidebar && (isSidebarOpen ? 'ml-52' : 'ml-16')
+          }`}>
             <main className="">{children}</main>
           </div>
         </div>
