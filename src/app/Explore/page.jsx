@@ -33,19 +33,47 @@ export default function ExplorePage() {
   return (
     <div className="min-h-screen px-[50px] py-[25px]">
       <main className="container mx-auto px-4 py-12">
-       
-        <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
+        <section className="relative h-[500px] mb-16 rounded-xl overflow-hidden">
           <Image
-            src="/Passu-cones-Hunza.jpg"
-            alt="Pakistani Culture"
+            src="/explorebackground.png"
+            alt="Pakistan Landscape"
             layout="fill"
             objectFit="cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <h2 className="text-white text-4xl font-bold text-center px-4">
-            Explore Pakistan
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent flex flex-col items-start justify-center p-12 mb-8">
+            <span className="text-white text-sm font-semibold mb-2">Trending Now</span>
+            <h2 className="text-white text-6xl font-bold mb-4">
+              EXPLORE PAKISTAN
             </h2>
+            <p className="text-white text-lg mb-6 max-w-2xl">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            </p>
+            <button className="bg-white text-black py-2 px-6 rounded-full font-semibold hover:bg-opacity-90 transition duration-300">
+              See all →
+            </button>
           </div>
+          <div className="absolute bottom-8 right-8">
+  <div className="flex space-x-4">
+    {['Islamabad', 'Quetta', 'Gilgit'].map((city) => (
+      <div key={city} className="w-32 h-36 bg-white rounded-lg overflow-hidden shadow-lg">
+        <div className="h-full relative">
+          <Image
+            src={`/${city.toLowerCase()}.jpeg`}
+            alt={city}
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+      </div>
+    ))}
+  </div>
+  <div className="flex space-x-4 mt-2">
+    {['Islamabad', 'Quetta', 'Gilgit'].map((city) => (
+      <p key={city} className="text-center text-sm font-semibold w-32 text-white">{city}</p>
+    ))}
+  </div>
+</div>
+
         </section>
 
        

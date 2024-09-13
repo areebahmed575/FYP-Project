@@ -89,8 +89,8 @@ const PropertyListingPage = () => {
   ];
 
   return (
-    <div className="container mx-auto p-4 pt-14"> {/* Added pt-20 for top padding */}
-      <h1 className="text-base font-medium mb-6">102 places in Skardu</h1> {/* Increased font size and weight */}
+    <div className="container mx-auto p-4 pt-14"> 
+      <h1 className="text-base font-medium mb-6">102 places in Skardu</h1> 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
