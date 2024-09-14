@@ -5,8 +5,6 @@ import SearchBar from './SearchBar/SearchBar';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { FiUser } from 'react-icons/fi';
-import { motion } from 'framer-motion';
-import { FiUser } from 'react-icons/fi';
 
 const Navbar = ({ toggleSidebar }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,12 +30,6 @@ const Navbar = ({ toggleSidebar }) => {
       transition={{ type: 'spring', stiffness: 120 }}
       className="flex justify-between items-center p-4 bg-white/80 backdrop-blur-md w-full fixed top-0 z-20 border-b border-gray-200 shadow-sm"
     >
-    <motion.div
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 120 }}
-      className="flex justify-between items-center p-4 bg-white/80 backdrop-blur-md w-full fixed top-0 z-20 border-b border-gray-200 shadow-sm"
-    >
       <div className="flex items-center space-x-4">
         {!showSearchBar && (
           <motion.div
@@ -47,14 +39,6 @@ const Navbar = ({ toggleSidebar }) => {
             <HiBars3 className="text-2xl cursor-pointer ml-2 text-teal-600" onClick={toggleSidebar} size={24} />
           </motion.div>
         )}
-        <Link href="/">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold bg-gradient-to-r from-teal-500 to-blue-500 text-transparent bg-clip-text"
-          >
-            PakiGenTravel
-          </motion.div>
-        </Link>
         <Link href="/">
           <motion.div
             whileHover={{ scale: 1.05 }}
