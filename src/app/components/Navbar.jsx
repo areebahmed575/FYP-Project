@@ -58,15 +58,17 @@ const Navbar = ({ toggleSidebar }) => {
           <SearchBar isCompact={true} />
         </div>
       )}
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <button className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2">
-          <FiUser />
-          <span>Sign in</span>
-        </button>
-      </motion.div>
+      <Link href={"/SignIn"}>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <button className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2">
+            <FiUser />
+            <span>Sign in</span>
+          </button>
+        </motion.div>
+      </Link>
     </motion.div>
   );
 };
