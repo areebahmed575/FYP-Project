@@ -1,7 +1,18 @@
 "use client"
 import { motion } from 'framer-motion';
+import { handleGoogleLogin } from '../utils/handleGoogleLogin';
+import { auth, signIn } from '../utils/auth';
 
-const Register = () => {
+const Register = async () => {
+    const session = await auth()
+    console.log(session)
+
+    // const {data, status} = useSession();
+    const handleGoogleLogin = async () => {
+        "use server"
+        await signIn("google")
+    }
+
     return (
         <div className="min-h-screen px-[50px] py-[25px]">
             <div className="mx-auto px-4 py-12">
@@ -11,9 +22,8 @@ const Register = () => {
                         <p className='text-center text-[14px]'>Sign In or Create Your Account</p>
                     </div>
                     <motion.div className="sso" whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}>
-                        <button className='bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2' >
-
+                        whileTap={{ scale: 0.95 }} onClick={handleGoogleLogin}>
+                        <button className='bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2'>
                             Login With Google
                         </button>
                     </motion.div>
