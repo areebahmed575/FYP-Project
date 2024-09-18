@@ -5,13 +5,13 @@ import { auth, signIn } from '../utils/auth';
 
 const Register = async () => {
     const session = await auth()
-    console.log(session)
+    // console.log(session)
 
     // const {data, status} = useSession();
-    const handleGoogleLogin = async () => {
-        "use server"
-        await signIn("google")
-    }
+    // const handleGoogleLogin = async () => {
+    //     "use server"
+    //     await signIn("google")
+    // }
 
     return (
         <div className="min-h-screen px-[50px] py-[25px]">
