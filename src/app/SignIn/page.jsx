@@ -1,17 +1,23 @@
 "use client"
 import { motion } from 'framer-motion';
-import { handleGoogleLogin } from '../utils/handleGoogleLogin';
-import { auth, signIn } from '../utils/auth';
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
-const Register = async () => {
-    const session = await auth()
-    // console.log(session)
+const Register = () => {
 
-    // const {data, status} = useSession();
-    // const handleGoogleLogin = async () => {
-    //     "use server"
-    //     await signIn("google")
-    // }
+    const {data, status} = useSession();
+    // console.log(data, "===>>>> data")
+    // console.log(status, "===>>>> status")
+
+    const router = useRouter()
+
+    if (status === "loading") {
+        return <div className='loading'>Loading...</div>
+    }
+
+    if (status === 'authenticated') {
+        router.push("/")
+    }
 
     return (
         <div className="min-h-screen px-[50px] py-[25px]">
@@ -22,7 +28,7 @@ const Register = async () => {
                         <p className='text-center text-[14px]'>Sign In or Create Your Account</p>
                     </div>
                     <motion.div className="sso" whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }} onClick={handleGoogleLogin}>
+                        whileTap={{ scale: 0.95 }} onClick={()=> signIn("google")}>
                         <button className='bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2'>
                             Login With Google
                         </button>
@@ -39,7 +45,7 @@ const Register = async () => {
                         <p className='text-end text-theme-orange cursor-pointer mr-1'>Forgot Password</p>
                     </div>
                     <motion.button whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }} className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2">
+                        whileTap={{ scale: 0.95 }} >
                         <span className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2">Sign In</span>
                     </motion.button>
                 </div>

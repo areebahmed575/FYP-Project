@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from 'react';
 import { HiBars3 } from "react-icons/hi2";
 import Link from 'next/link'
@@ -5,10 +6,16 @@ import SearchBar from './SearchBar/SearchBar';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { FiUser } from 'react-icons/fi';
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 const Navbar = ({ toggleSidebar }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const { data, status } = useSession()
+  // console.log(status)
+  // console.log(data)
+  const isLogin = status === 'unauthenticated' ? false : true
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,17 +65,26 @@ const Navbar = ({ toggleSidebar }) => {
           <SearchBar isCompact={true} />
         </div>
       )}
-      <Link href={"/SignIn"}>
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <button className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2">
-            <FiUser />
-            <span>Sign in</span>
-          </button>
-        </motion.div>
-      </Link>
+      {
+        !isLogin ? (
+          <Link href={"/SignIn"}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <button className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2">
+                <FiUser />
+                <span>Sign in</span>
+              </button>
+            </motion.div>
+          </Link>
+        ) : (
+            <div className='relative w-[50px] h-[50px] rounded-full'>
+            <Image src={data?.user.image} fill className='w-[50px] h-[50px] rounded-full object-cover'/>
+          </div>
+        )
+      }
+
     </motion.div>
   );
 };

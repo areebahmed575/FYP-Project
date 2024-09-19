@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
-// import AuthProvider from "./Providers/AuthProvider";
+import AuthProvider from "./Providers/AuthProvider";
 
 const roboto = Inter({ subsets: ["latin"], weight: "400" });
 
@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={roboto.className}>
-        {/* <AuthProvider> */}
+        <AuthProvider>
           <Navbar toggleSidebar={toggleSidebar} />
           <div className="flex pt-16">
             {!hideSidebar && (
@@ -48,7 +48,7 @@ export default function RootLayout({ children }) {
               <main className="">{children}</main>
             </div>
           </div>
-        {/* </AuthProvider> */}
+        </AuthProvider>
       </body>
     </html>
   );
