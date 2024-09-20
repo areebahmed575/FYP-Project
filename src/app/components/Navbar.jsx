@@ -6,7 +6,7 @@ import SearchBar from './SearchBar/SearchBar';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { FiUser } from 'react-icons/fi';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 
 const Navbar = ({ toggleSidebar }) => {
@@ -79,9 +79,12 @@ const Navbar = ({ toggleSidebar }) => {
             </motion.div>
           </Link>
         ) : (
-            <div className='relative w-[50px] h-[50px] rounded-full'>
-            <Image src={data?.user.image} fill className='w-[50px] h-[50px] rounded-full object-cover'/>
-          </div>
+          <>
+            {/* <button>Log Out</button> */}
+            <div className='relative w-[50px] h-[50px] rounded-full cursor-pointer' onClick={signOut}>
+              <Image src={data?.user.image} fill className='w-[50px] h-[50px] rounded-full object-cover' />
+            </div>
+          </>
         )
       }
 
