@@ -7,7 +7,7 @@ const Register = () => {
 
     const {data, status} = useSession();
     // console.log(data, "===>>>> data")
-    // console.log(status, "===>>>> status")
+    console.log(status, "===>>>> status")
 
     const router = useRouter()
 
