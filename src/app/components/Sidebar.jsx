@@ -84,9 +84,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <Link href={`/`}>
           <SidebarItem Icon={MdHome} text="Home" isOpen={isOpen} isSelected={pathname === '/'} />
         </Link>  
-        <Link href={`/Flight`}>
+        {/* <Link href={`/Flight`}>
           <SidebarItem Icon={BiSolidPlaneAlt} text="Flights" isOpen={isOpen} isSelected={pathname === '/Flight'} />
-        </Link>  
+        </Link>   */}
         <Link href={`/Stay`}>
           <SidebarItem Icon={IoBedSharp} text="Stays" isOpen={isOpen} isSelected={pathname === '/Stay'} />
         </Link>
