@@ -1,8 +1,9 @@
 "use client"
 import { motion } from 'framer-motion';
-import { register } from '../utils/action';
+// import { register, login } from '../utils/action';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import RegisterForm from '../components/RegisterForm/RegisterForm'
 
 const Register = () => {
 
@@ -39,16 +40,7 @@ const Register = () => {
                         <p className='text-[18px] font-semibold'>Or</p>
                         <div className='bg-theme-orange h-[3px] w-[33%]'></div>
                     </div>
-                    <form action={register} className="inputs flex flex-col gap-[15px]">
-                        <input type="text" placeholder='Username' name='username' className='w-[300px] py-[5px] px-[10px] rounded bg-white border-teal-500 border-[2px] outline-teal-700 placeholder:text-theme-black' />
-                        <input type="email" placeholder='Email' name='email' className='w-[300px] py-[5px] px-[10px] rounded bg-white border-teal-500 border-[2px] outline-teal-700 placeholder:text-theme-black' />
-                        <input type="password" placeholder='Password' name='password' className='w-[300px] py-[5px] px-[10px] rounded bg-white border-teal-500 border-[2px] outline-teal-700 placeholder:text-theme-black' />
-                        <p className='text-end text-theme-orange cursor-pointer mr-1'>Forgot Password</p>
-                        <motion.button whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }} className=''>
-                            <span className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center space-x-2">Sign In</span>
-                        </motion.button>
-                    </form>
+                    <RegisterForm />
                 </div>
             </div>
         </div>
