@@ -1,9 +1,10 @@
 "use server"
-import { NextResponse } from "next/server";
+// import { NextResponse } from "next/server";
 // import { signIn } from "./auth";
 import { connectToDb } from "./connectToDB"
 import { User } from "./models"
 import bcrypt from "bcryptjs";
+import { signIn } from "./auth";
 
 
 export const register = async (previousState, formData) => {
@@ -38,17 +39,17 @@ export const register = async (previousState, formData) => {
     }
 }
 
-export const login = async (prevState, formData) => {
+export const login = async (previousState, formData) => {
     const { email, password } = Object.fromEntries(formData);
     console.log(formData)
 
     try {
         await signIn("credentials", { email, password });
     } catch (err) {
-        console.log(err);
+        // console.log(err);
 
         if (err.message.includes("CredentialsSignin")) {
-            return { error: "Invalid username or password" };
+            return { success: false, status: 401, error: "Invalid username or password" };
         }
         throw err;
     }
