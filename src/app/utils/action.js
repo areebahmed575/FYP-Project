@@ -13,7 +13,7 @@ export const register = async (previousState, formData) => {
     try {
         connectToDb()
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
         if (user) {
             return {
                 success: false,
@@ -40,13 +40,14 @@ export const register = async (previousState, formData) => {
 }
 
 export const login = async (previousState, formData) => {
-    const { email, password } = Object.fromEntries(formData);
+    const { username, password } = Object.fromEntries(formData);
     console.log(formData)
 
     try {
-        await signIn("credentials", { email, password });
+        await signIn("credentials", { username, password });
+        return true
     } catch (err) {
-        // console.log(err);
+        console.log(err);
 
         if (err.message.includes("CredentialsSignin")) {
             return { success: false, status: 401, error: "Invalid username or password" };

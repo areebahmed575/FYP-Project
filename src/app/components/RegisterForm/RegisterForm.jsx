@@ -25,7 +25,7 @@ const RegisterForm = () => {
                     <p>{registerState?.message}</p>
                 </form>) : (
                 <form action={loginAction} className="inputs flex flex-col gap-[15px]">
-                    <input required type="email" placeholder='Email' name='email' className='w-[300px] py-[5px] px-[10px] rounded bg-white border-teal-500 border-[2px] outline-teal-700 placeholder:text-theme-black' />
+                    <input required type="text" placeholder='username' name='username' className='w-[300px] py-[5px] px-[10px] rounded bg-white border-teal-500 border-[2px] outline-teal-700 placeholder:text-theme-black' />
                     <input required type="password" placeholder='Password' name='password' className='w-[300px] py-[5px] px-[10px] rounded bg-white border-teal-500 border-[2px] outline-teal-700 placeholder:text-theme-black' />
                     <p className='text-end text-theme-orange cursor-pointer mr-1' onClick={() => setLoginForm(!loginForm)}>Create an account</p>
                     <motion.button whileHover={{ scale: 1.05 }}
