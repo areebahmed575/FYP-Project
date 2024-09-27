@@ -31,6 +31,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             clientSecret: process.env.GOOGLE_SECRET,
         }),
         CredentialsProvider({
+            name: "Credentials",
             async authorize(credentials) {
                 try {
                     const user = await loginHandler(credentials);

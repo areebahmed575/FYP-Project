@@ -37,10 +37,10 @@ const Register = () => {
                     </motion.div>
                     <div className="seprator w-[100%] flex items-center justify-center gap-[20px]">
                         <div className='bg-theme-orange h-[3px] w-[33%]'></div>
-                        <p className='text-[18px] font-semibold'>Or</p>
-                        <div className='bg-theme-orange h-[3px] w-[33%]'></div>
+                        {/* <p className='text-[18px] font-semibold'>Or</p>
+                        <div className='bg-theme-orange h-[3px] w-[33%]'></div> */}
                     </div>
-                    <RegisterForm />
+                    {/* <RegisterForm /> */}
                 </div>
             </div>
         </div>
