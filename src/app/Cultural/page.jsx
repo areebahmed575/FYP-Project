@@ -40,7 +40,7 @@ export default function CulturalExperiences() {
       </Head>
 
       <main className="container mx-auto px-4 py-8">
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -49,7 +49,7 @@ export default function CulturalExperiences() {
           Immerse Yourself in Pakistani Culture
         </motion.h1>
 
-        
+
         <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
           <Image
             src="/IMG_8262-3-1-1024x768-7.webp"
@@ -64,7 +64,7 @@ export default function CulturalExperiences() {
           </div>
         </section>
 
-        
+
         <section className="container mx-auto my-16 px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-teal-800">Explore Our Cultural Offerings</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -110,64 +110,64 @@ export default function CulturalExperiences() {
           </div>
         </section>
 
-        
+
         <section className="my-16">
           <h2 className="text-3xl font-bold text-center mb-12 text-teal-800">Featured Experiences</h2>
           <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white rounded-lg shadow-md overflow-hidden"
-          >
-            <div className="relative w-full h-64">
-              <Image
-                src="/1501276-1546364178.jpg"
-                alt="Sufi Music Performance"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-t-lg"
-              />
-            </div>
-            <div className="p-4">
-              <h3 className="text-xl font-semibold mb-2">Sufi Music Experiences</h3>
-              <p>Immerse yourself in the spiritual world of Sufi music at historic shrines and modern venues.</p>
-            </div>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-white rounded-lg shadow-md overflow-hidden"
+            >
+              <div className="relative w-full h-64">
+                <Image
+                  src="/1501276-1546364178.jpg"
+                  alt="Sufi Music Performance"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-t-lg"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="text-xl font-semibold mb-2">Sufi Music Experiences</h3>
+                <p>Immerse yourself in the spiritual world of Sufi music at historic shrines and modern venues.</p>
+              </div>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white rounded-lg shadow-md overflow-hidden"
-          >
-            <div className="relative w-full h-64">
-              <Image
-                src="/Bryani.webp"
-                alt="Pakistani Cuisine"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-t-lg"
-              />
-            </div>
-            <div className="p-4">
-              <h3 className="text-xl font-semibold mb-2">Culinary Delights</h3>
-              <p>Explore the diverse flavors of Pakistani cuisine through cooking classes and food tours.</p>
-            </div>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-white rounded-lg shadow-md overflow-hidden"
+            >
+              <div className="relative w-full h-64">
+                <Image
+                  src="/Bryani.webp"
+                  alt="Pakistani Cuisine"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-t-lg"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="text-xl font-semibold mb-2">Culinary Delights</h3>
+                <p>Explore the diverse flavors of Pakistani cuisine through cooking classes and food tours.</p>
+              </div>
+            </motion.div>
+          </section>
         </section>
-        </section>
 
-        
-        
 
-       
+
+
+
         <section className="bg-white py-16 rounded-xl shadow-lg">
           <div className="container mx-auto text-center px-4">
             <h2 className="text-4xl font-bold mb-8 text-teal-800">Gallery</h2>
             <p className="text-gray-700 mb-8">A glimpse into the cultural experiences of Pakistan</p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              
+
               {['festival.jpg', 'landmark.jpg', 'perfromance2.jpg', 'tribal2.jpg', 'art3.jpg', 'food2.jpg'].map((img, index) => (
                 <motion.div
                   key={index}
@@ -196,7 +196,7 @@ export default function CulturalExperiences() {
           >
             Generate My Cultural Itinerary
           </button>
-          
+
         </section>
       </main>
     </div>

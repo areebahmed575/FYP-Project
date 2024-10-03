@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { DateRange } from 'react-date-range'
 import { FaSearch, FaMapMarkerAlt, FaCalendarAlt, FaUsers } from "react-icons/fa"
@@ -8,16 +8,46 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { format } from "date-fns"
 import OptionBox from './OptionBox'
+import { SearchContext } from '../../context/searchContext'
+
+function getDayAfterTomorrow() {
+  // Create a new Date object for the current date
+  const today = new Date();
+  // console.log(today)
+
+  // Add 2 days to the current date
+  today.setDate(today.getDate() + 2);
+
+  return today;
+}
+
+function getEndDate() {
+  // Create a new Date object for the current date
+  const today = new Date();
+  // console.log(today)
+
+  // Add 3 days to the current date
+  today.setDate(today.getDate() + 3);
+
+  return today;
+}
 
 const SearchBar = ({ isCompact = false }) => {
+  const { dispatch, dates: datesFromLocal, options: optionsFromLocal, destination: destinationFromLocal } = useContext(SearchContext)
+  // console.log(datesFromLocal[0])
+
+  const dayAfterTomorrow = getDayAfterTomorrow();
+  const endDate = getEndDate();
+
   const [showDate, setShowDate] = useState(false)
   const [dates, setDates] = useState([
     {
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: dayAfterTomorrow,
+      endDate: endDate,
       key: 'selection'
     }
   ])
+
   const [showOptions, setShowOptions] = useState(false)
   const [options, setOptions] = useState({
     adults: 1,
@@ -33,9 +63,17 @@ const SearchBar = ({ isCompact = false }) => {
     }))
   }
 
+  // console.log("destination", destination)
+  // console.log("options", options)
+  // console.log("dates", dates)
+
   const compactClass = isCompact ? 'py-2 px-4' : 'p-2 my-8';
   const inputClass = isCompact ? 'text-xs' : 'text-sm';
   const itemClass = isCompact ? 'flex-shrink-0' : 'flex-1';
+
+  function searchHandler() {
+    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } })
+  }
 
   return (
     <motion.div
@@ -89,6 +127,7 @@ const SearchBar = ({ isCompact = false }) => {
           whileTap={{ scale: 0.95 }}
           className="bg-teal-500 text-white p-4 rounded-full hover:bg-teal-600 transition-colors duration-300"
           aria-label="Search"
+          onClick={searchHandler}
         >
           <FaSearch />
         </motion.button>

@@ -12,6 +12,7 @@ import Image from 'next/image';
 const Navbar = ({ toggleSidebar }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  // console.log(pathname)
   const { data, status } = useSession()
   // console.log(status)
   // console.log(data)

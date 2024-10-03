@@ -1,14 +1,19 @@
 'use client'
 
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { motion } from "framer-motion"
 import SearchBar from "./components/SearchBar/SearchBar"
 import ExploreAndBrowseType from "./components/ExploreAndBrowseType/ExploreAndBrowseType"
 import TripAndDeals from "./components/TripAndDeals/TripAndDeals"
 import HolidayRentals from "./components/HolidayRentals/HolidayRentals"
 import Image from "next/image"
+import { SearchContext } from "./context/searchContext"
 
 const HomePage = () => {
+    const { dates, options, destination } = useContext(SearchContext)
+    console.log(options)
+    console.log(dates)
+    console.log(destination)
     const [aiSuggestion, setAiSuggestion] = useState('')
     const generateAiSuggestion = () => {
         setAiSuggestion('AI-generated flight suggestion based on your preferences!')
@@ -17,13 +22,13 @@ const HomePage = () => {
     return (
         <main className="min-h-screen px-[50px] py-[25px]">
             <div className="relative w-full h-screen overflow-hidden">
-                <motion.div 
+                <motion.div
                     className="absolute z-10 w-full h-full flex justify-center flex-col items-center gap-7"
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.5 }}
                 >
-                    <motion.h1 
+                    <motion.h1
                         className="w-fit text-6xl text-white text-center font-extrabold px-5 drop-shadow-lg bg-teal-500 bg-opacity-30 rounded-2xl shadow-lg shadow-black/10 backdrop-blur-[9.5px] border border-teal-500 border-opacity-22"
                         initial={{ scale: 0.5 }}
                         animate={{ scale: 1 }}
@@ -31,7 +36,7 @@ const HomePage = () => {
                     >
                         Discover Your Next Adventure
                     </motion.h1>
-                    <motion.p 
+                    <motion.p
                         className="text-4xl text-white font-extrabold px-5 drop-shadow-lg"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -39,7 +44,7 @@ const HomePage = () => {
                     >
                         with
                     </motion.p>
-                    <motion.p 
+                    <motion.p
                         className="w-fit text-6xl text-white text-center font-extrabold px-5 drop-shadow-lg bg-teal-500 bg-opacity-30 rounded-2xl shadow-lg shadow-black/10 backdrop-blur-[9.5px] border border-teal-500 border-opacity-22"
                         initial={{ scale: 0.5 }}
                         animate={{ scale: 1 }}
@@ -50,7 +55,7 @@ const HomePage = () => {
                 </motion.div>
                 <div className="flex justify-between h-full">
                     {['saifulmulukLake2.jpg', 'atabadLake.jpg', 'Mountains.jpg'].map((img, index) => (
-                        <motion.div 
+                        <motion.div
                             key={img}
                             className="imageContainer relative w-1/3 h-full"
                             initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
@@ -66,7 +71,7 @@ const HomePage = () => {
             <div className="wrapper px-12 py-6">
                 <SearchBar />
 
-                <motion.h1 
+                <motion.h1
                     className="mt-24 mb-10 text-center text-6xl font-bold tracking-widest"
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +98,7 @@ const HomePage = () => {
                         image: "/Passu-cones.jpg"
                     }
                 ].map((section, index) => (
-                    <motion.div 
+                    <motion.div
                         key={section.title}
                         className={`flex items-center gap-10 mb-24 flex-wrap ${index % 2 !== 0 ? 'flex-row-reverse' : ''}`}
                         initial={{ opacity: 0, y: 50 }}
@@ -101,7 +106,7 @@ const HomePage = () => {
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
                     >
-                        <motion.div 
+                        <motion.div
                             className="relative h-[400px] flex-1 rounded-lg overflow-hidden"
                             whileHover={{ scale: 1.05 }}
                             transition={{ type: "spring", stiffness: 300 }}
@@ -120,7 +125,7 @@ const HomePage = () => {
                 <HolidayRentals />
 
 
-                    {/* <h1 className="text-[32px] font-bold">Tranding Destinations</h1>
+                {/* <h1 className="text-[32px] font-bold">Tranding Destinations</h1>
                 <p className="text-gray-400">Most popular choices for travellers</p>
                 <div className="trendingContainer flex items-center justify-between flex-wrap my-[30px]">
                     <TrendingBox />

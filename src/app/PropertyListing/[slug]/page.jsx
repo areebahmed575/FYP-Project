@@ -1,6 +1,8 @@
-import React from 'react';
+"use client"
+import React, { useContext } from 'react';
 import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
+import { SearchContext } from '../../context/searchContext';
 
 const PropertyCard = ({ image, title, subtitle, beds, price, discountedPrice, total }) => (
   <div className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -30,7 +32,7 @@ const PropertyCard = ({ image, title, subtitle, beds, price, discountedPrice, to
   </div>
 );
 
-const getData = async (slug) => {
+const searchDestination = async (slug) => {
   const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination?query=${slug}`;
   const options = {
     method: 'GET',
@@ -55,9 +57,10 @@ const getData = async (slug) => {
 const PropertyListingPage = async ({ params }) => {
   // console.log(params)
   const { slug } = params;
-  const apiCall = await getData(slug)
-  console.log("data ====>>>> ", apiCall)
-  const { dest_id, search_type, hotels, name, country} = apiCall
+  // const { dates, options } = useContext(SearchContext)
+  // const getDestination = await searchDestination(slug)
+  // console.log("data ====>>>> ", getDestination)
+  // const { dest_id, search_type, hotels, name, country} = getDestination
 
 
 
