@@ -33,7 +33,8 @@ function getEndDate() {
 }
 
 const SearchBar = ({ isCompact = false }) => {
-  const { dispatch } = useContext(SearchContext)
+  const { dispatch, dates: datesFromLocal, options: optionsFromLocal, destination: destinationFromLocal } = useContext(SearchContext)
+  // console.log(datesFromLocal[0])
 
   const dayAfterTomorrow = getDayAfterTomorrow();
   const endDate = getEndDate();
