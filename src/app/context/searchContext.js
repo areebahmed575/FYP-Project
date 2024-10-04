@@ -1,3 +1,4 @@
+"use client"
 import { createContext, useReducer, useEffect } from 'react';
 
 function getDayAfterTomorrow() {
@@ -30,8 +31,10 @@ const INITIAL_STATE = {
 
 // Helper function to get initial state from localStorage or use default
 const getInitialState = () => {
-    const savedState = localStorage.getItem('INITIAL_STATE');
-    return savedState ? JSON.parse(savedState) : INITIAL_STATE;
+    if (typeof window !== undefined) {
+        const savedState = localStorage.getItem('INITIAL_STATE');
+        return savedState ? JSON.parse(savedState) : INITIAL_STATE;
+    }
 }
 
 export const SearchContext = createContext(INITIAL_STATE);
