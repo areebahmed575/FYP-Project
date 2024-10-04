@@ -72,13 +72,13 @@ import { createContext, useReducer, useEffect } from 'react';
 function getDayAfterTomorrow() {
     const today = new Date();
     today.setDate(today.getDate() + 2);
-    return today.toDateString();
+    return today;
 }
 
 function getEndDate() {
     const today = new Date();
     today.setDate(today.getDate() + 3);
-    return today.toDateString();
+    return today;
 }
 
 const dayAfterTomorrow = getDayAfterTomorrow();
