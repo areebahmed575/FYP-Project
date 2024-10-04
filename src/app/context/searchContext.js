@@ -31,6 +31,7 @@ const INITIAL_STATE = {
 
 // Helper function to get initial state from localStorage or use default
 const getInitialState = () => {
+    // return typeof window !== "undefined" ? JSON.stringify(localStorage.getItem('INITIAL_STATE')) : null;
     if (typeof window !== undefined) {
         const savedState = localStorage.getItem('INITIAL_STATE');
         return savedState ? JSON.parse(savedState) : INITIAL_STATE;
@@ -55,7 +56,10 @@ export const SearchContextProvider = ({ children }) => {
 
     // Sync state to localStorage whenever state changes
     useEffect(() => {
-        localStorage.setItem('INITIAL_STATE', JSON.stringify(state));
+        return typeof window !== "undefined" ? localStorage.setItem('INITIAL_STATE', JSON.stringify(state)) : undefined;
+        // if (typeof window !== undefined) {
+        //     localStorage.setItem('INITIAL_STATE', JSON.stringify(state));
+        // }
     }, [state]);
 
     return (
