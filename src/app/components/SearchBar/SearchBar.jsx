@@ -10,31 +10,21 @@ import { format } from "date-fns"
 import OptionBox from './OptionBox'
 import { SearchContext } from '../../context/searchContext'
 
-function getDayAfterTomorrow() {
-  // Create a new Date object for the current date
-  const today = new Date();
-  // console.log(today)
-
-  // Add 2 days to the current date
-  today.setDate(today.getDate() + 2);
-
-  return today;
-}
-
-function getEndDate() {
-  // Create a new Date object for the current date
-  const today = new Date();
-  // console.log(today)
-
-  // Add 3 days to the current date
-  today.setDate(today.getDate() + 3);
-
-  return today;
-}
-
 const SearchBar = ({ isCompact = false }) => {
   const { dispatch, dates: datesFromLocal, options: optionsFromLocal, destination: destinationFromLocal } = useContext(SearchContext)
-  // console.log(datesFromLocal[0])
+  // console.log(optionsFromLocal)
+
+  function getDayAfterTomorrow() {
+    const today = new Date();
+    today.setDate(today.getDate() + 2);
+    return today;
+  }
+
+  function getEndDate() {
+    const today = new Date();
+    today.setDate(today.getDate() + 3);
+    return today;
+  }
 
   const dayAfterTomorrow = getDayAfterTomorrow();
   const endDate = getEndDate();
@@ -42,17 +32,17 @@ const SearchBar = ({ isCompact = false }) => {
   const [showDate, setShowDate] = useState(false)
   const [dates, setDates] = useState([
     {
-      startDate: dayAfterTomorrow,
-      endDate: endDate,
+      startDate: datesFromLocal[0].startDate ? datesFromLocal[0].startDate : dayAfterTomorrow,
+      endDate: datesFromLocal[0].endDate ? datesFromLocal[0].endDate : endDate,
       key: 'selection'
     }
   ])
 
   const [showOptions, setShowOptions] = useState(false)
   const [options, setOptions] = useState({
-    adults: 1,
-    children: 0,
-    rooms: 1,
+    adults: 1 || optionsFromLocal.adult,
+    children: 0 || optionsFromLocal.children,
+    rooms: 1 || optionsFromLocal.room,
   })
   const [destination, setDestination] = useState('')
 
@@ -63,9 +53,6 @@ const SearchBar = ({ isCompact = false }) => {
     }))
   }
 
-  // console.log("destination", destination)
-  // console.log("options", options)
-  // console.log("dates", dates)
 
   const compactClass = isCompact ? 'py-2 px-4' : 'p-2 my-8';
   const inputClass = isCompact ? 'text-xs' : 'text-sm';

@@ -1,36 +1,52 @@
-"use client"
-import React, { useContext } from 'react';
 import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
-import { SearchContext } from '../../context/searchContext';
 
-const PropertyCard = ({ image, title, subtitle, beds, price, discountedPrice, total }) => (
+const PropertyCard = ({ data }) => (
   <div className="bg-white rounded-xl shadow-lg overflow-hidden">
     <div className="relative">
-      <img src={image} alt={title} className="w-full h-64 object-cover" />
+      {/* <img src={image} alt={"title"} className="w-full h-64 object-cover" /> */}
       <button className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md">
         <CiHeart className="w-6 h-6 text-gray-600" />
       </button>
     </div>
     <div className="p-4">
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-lg font-semibold">{title}</h3>
+        <h3 className="text-lg font-semibold">{"title"}</h3>
         <span className="flex items-center bg-gray-100 px-2 py-1 rounded-full">
           <FaStar className="w-3 h-3 text-yellow-400 mr-1" />
           <span className="text-xs font-medium">New</span>
         </span>
       </div>
-      <p className="text-sm text-gray-600">{subtitle}</p>
-      <p className="text-sm text-gray-600 mt-1">{beds} {beds > 1 ? 'beds' : 'bed'}</p>
+      <p className="text-sm text-gray-600">{"subtitle"}</p>
+      <p className="text-sm text-gray-600 mt-1">{"beds"} {"beds" > 1 ? 'beds' : 'bed'}</p>
       <div className="mt-3 flex items-end">
-        <span className="text-lg font-bold">${discountedPrice}</span>
-        <span className="text-sm text-gray-500 line-through ml-2">${price}</span>
+        <span className="text-lg font-bold">${"discountedPrice"}</span>
+        <span className="text-sm text-gray-500 line-through ml-2">${"price"}</span>
         <span className="text-sm text-gray-600 ml-1">night</span>
       </div>
-      <p className="text-sm text-gray-600 mt-1">${total} total</p>
+      <p className="text-sm text-gray-600 mt-1">${"total"} total</p>
     </div>
   </div>
 );
+
+const searchHotels = async (dest_id, search_type, arrival_date, departure_date) => {
+  const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels?dest_id=${dest_id}&search_type=${search_type}&arrival_date=${arrival_date}&departure_date=${departure_date}`; //&adults=1&children_age=0%2C17&room_qty=1&page_number=1&units=metric&temperature_unit=c&languagecode=en-us&currency_code=AED (optional)
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
+      'x-rapidapi-host': process.env.NEXT_PUBLIC_RAPIDAPI_HOST
+    },
+    // next: { revalidate: 86400 }
+  };
+
+  const res = await fetch(url, options);
+  if (!res.ok) {
+    throw new Error("Something went wrong!!")
+  }
+  const data = await res.json();
+  return data.data.hotels;
+}
 
 const searchDestination = async (slug) => {
   const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination?query=${slug}`;
@@ -50,19 +66,26 @@ const searchDestination = async (slug) => {
   const data = await res.json();
   // console.log("data ====>>>> ", data.data)
   const filteredData = data.data.filter((city) => (city.country === "Pakistan"))
-  // console.log("Filtereddata ====>>>> ",filteredData)
+  // console.log("Filtereddata ====>>>> ", filteredData)
   return filteredData[0];
 }
 
-const PropertyListingPage = async ({ params }) => {
-  // console.log(params)
+const PropertyListingPage = async ({ params, searchParams }) => {
+  // console.log(searchParams)
   const { slug } = params;
-  // const { dates, options } = useContext(SearchContext)
-  // const getDestination = await searchDestination(slug)
+  const { arrival_date, departure_date } = searchParams;
+  // console.log(arrival_date)
+  // console.log(departure_date)
+  // console.log(slug)
+
+  const getDestination = await searchDestination(slug)
   // console.log("data ====>>>> ", getDestination)
-  // const { dest_id, search_type, hotels, name, country} = getDestination
 
+  const { dest_id, search_type, hotels, name, country } = getDestination
+  // console.log(dest_id)
 
+  const getHotels = await searchHotels(dest_id, search_type, arrival_date, departure_date)
+  console.log("hotels ====>>> ",getHotels)
 
   // const properties = [
   //   {
@@ -123,13 +146,13 @@ const PropertyListingPage = async ({ params }) => {
 
   return (
     <div className="container mx-auto p-4 pt-14">
-      <h1 className="text-base font-medium mb-6">{hotels} places in {slug}</h1>
+      <h1 className="text-base font-medium mb-6">{getHotels.length} Hotels in {slug}</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {/* {properties.map((property, index) => (
-              <PropertyCard key={index} {...property} />
-            ))} */}
+            {getHotels.map((hotel) => (
+              <PropertyCard key={hotel.hotel_id}  data={hotel}/>
+            ))}
           </div>
         </div>
         <div className="hidden lg:block">

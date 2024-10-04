@@ -11,9 +11,6 @@ import { SearchContext } from "./context/searchContext"
 
 const HomePage = () => {
     const { dates, options, destination } = useContext(SearchContext)
-    console.log(options)
-    console.log(dates)
-    console.log(destination)
     const [aiSuggestion, setAiSuggestion] = useState('')
     const generateAiSuggestion = () => {
         setAiSuggestion('AI-generated flight suggestion based on your preferences!')
@@ -120,7 +117,7 @@ const HomePage = () => {
                     </motion.div>
                 ))}
 
-                <ExploreAndBrowseType />
+                <ExploreAndBrowseType dates={dates} options={options}/>
                 <TripAndDeals />
                 <HolidayRentals />
 
