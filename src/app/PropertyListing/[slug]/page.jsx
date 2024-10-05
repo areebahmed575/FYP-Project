@@ -2,19 +2,25 @@ import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 
 const PropertyCard = ({ data }) => {
-  console.log(data)
-  const { property } = data;
-  console.log(property)
-  const { photoUrls, reviewScore, name } = property
+  // console.log(data)
+  const { property, accessibilityLabel } = data;
+  const subtitleArray = accessibilityLabel.split("\n").slice(0, 4).join(" ");
+  const { photoUrls, reviewScore, name, priceBreakdown } = property;
+  const {grossPrice} = priceBreakdown
+  // console.log("grossPrice ===>>> ", grossPrice)
+  const usdCurrency = 278.64;
+  const priceInPKR = Math.round(usdCurrency * grossPrice.value)
+  // console.log(priceInPKR)
+
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-      <div className="relative">
-        <img src={photoUrls[0]} alt={name} className="w-full h-64 object-contain" />
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer flex flex-col">
+      <div className="relative flex-1">
+        <img src={photoUrls[0]} alt={name} className="object-cover aspect-square" />
         <button className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md">
           <CiHeart className="w-6 h-6 text-gray-600" />
         </button>
       </div>
-      <div className="p-4">
+      <div className="p-4 flex flex-col justify-between flex-1">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-semibold">{name}</h3>
           <span className="flex items-center bg-gray-100 px-2 py-1 rounded-full">
@@ -22,14 +28,10 @@ const PropertyCard = ({ data }) => {
             <span className="text-xs font-medium">New</span>
           </span>
         </div>
-        <p className="text-sm text-gray-600">{"subtitle"}</p>
-        <p className="text-sm text-gray-600 mt-1">{"beds"} {"beds" > 1 ? 'beds' : 'bed'}</p>
+        <p className="text-sm text-gray-600">{subtitleArray}</p>
         <div className="mt-3 flex items-end">
-          <span className="text-lg font-bold">${"discountedPrice"}</span>
-          <span className="text-sm text-gray-500 line-through ml-2">${"price"}</span>
-          <span className="text-sm text-gray-600 ml-1">night</span>
+          <span className="text-lg font-bold">PKR {priceInPKR}</span>
         </div>
-        <p className="text-sm text-gray-600 mt-1">${"total"} total</p>
       </div>
     </div>
   )
