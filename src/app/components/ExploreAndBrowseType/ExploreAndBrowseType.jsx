@@ -3,10 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const ExploreDestinations = ({dates, options}) => {
-  console.log(dates)
+  // console.log(dates)
   const arrival = dates[0].startDate.substring(0,10)
   const departure = dates[0].endDate.substring(0,10)
   console.log(departure)
+
   const destinations = [
     { name: 'Nathia Gali', properties: 3, image: '/attabadLake2.jpg' },
     { name: 'Murree', properties: 57, image: '/attabadLake2.jpg' },
@@ -21,7 +22,7 @@ const ExploreDestinations = ({dates, options}) => {
     { name: 'Resorts', image: '/resorts.jpeg' },
     { name: 'Villas', image: '/villas.jpeg' },
   ];
-
+  //?arrival_date=${arrival}&departure_date=${departure}
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <h2 className="text-2xl font-bold mb-4">Explore Pakistan</h2>
