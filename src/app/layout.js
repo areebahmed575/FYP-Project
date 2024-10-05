@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import AuthProvider from "./Providers/AuthProvider";
 import { SearchContextProvider } from "./context/searchContext";
+import SearchProvider from "./Providers/SearchProvider"
 
 const roboto = Inter({ subsets: ["latin"], weight: "400" });
 
@@ -40,16 +41,18 @@ export default function RootLayout({ children }) {
       <body className={roboto.className}>
         <AuthProvider>
           <SearchContextProvider>
-            <Navbar toggleSidebar={toggleSidebar} />
-            <div className="flex pt-16">
-              {!hideSidebar && (
-                <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
-              )}
-              <div className={`flex-1 transition-all duration-300 ease-in-out ${!hideSidebar && (isSidebarOpen ? 'ml-52' : 'ml-16')
-                }`}>
-                <main className="">{children}</main>
+            <SearchProvider>
+              <Navbar toggleSidebar={toggleSidebar} />
+              <div className="flex pt-16">
+                {!hideSidebar && (
+                  <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+                )}
+                <div className={`flex-1 transition-all duration-300 ease-in-out ${!hideSidebar && (isSidebarOpen ? 'ml-52' : 'ml-16')
+                  }`}>
+                  <main className="">{children}</main>
+                </div>
               </div>
-            </div>
+            </SearchProvider>
           </SearchContextProvider>
         </AuthProvider>
       </body>

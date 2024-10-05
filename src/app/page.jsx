@@ -1,5 +1,4 @@
 'use client'
-
 import { useContext, useState } from "react"
 import { motion } from "framer-motion"
 import SearchBar from "./components/SearchBar/SearchBar"
@@ -11,6 +10,7 @@ import { SearchContext } from "./context/searchContext"
 
 const HomePage = () => {
     const { dates, options, destination } = useContext(SearchContext)
+    // console.log(destination)
     const [aiSuggestion, setAiSuggestion] = useState('')
     const generateAiSuggestion = () => {
         setAiSuggestion('AI-generated flight suggestion based on your preferences!')

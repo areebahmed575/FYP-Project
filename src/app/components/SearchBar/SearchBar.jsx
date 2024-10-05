@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useContext, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { DateRange } from 'react-date-range'
@@ -11,8 +10,8 @@ import OptionBox from './OptionBox'
 import { SearchContext } from '../../context/searchContext'
 
 const SearchBar = ({ isCompact = false }) => {
-  const { dispatch, dates: datesFromLocal, options: optionsFromLocal, destination: destinationFromLocal } = useContext(SearchContext)
-  // console.log(optionsFromLocal)
+  // const { dispatch, dates: datesFromLocal, options: optionsFromLocal, destination: destinationFromLocal } = useContext(SearchContext)
+  // console.log(datesFromLocal)
 
   function getDayAfterTomorrow() {
     const today = new Date();
@@ -32,17 +31,17 @@ const SearchBar = ({ isCompact = false }) => {
   const [showDate, setShowDate] = useState(false)
   const [dates, setDates] = useState([
     {
-      startDate: datesFromLocal[0].startDate ? datesFromLocal[0].startDate : dayAfterTomorrow,
-      endDate: datesFromLocal[0].endDate ? datesFromLocal[0].endDate : endDate,
+      startDate: dayAfterTomorrow,
+      endDate: endDate,
       key: 'selection'
     }
   ])
 
   const [showOptions, setShowOptions] = useState(false)
   const [options, setOptions] = useState({
-    adults: 1 || optionsFromLocal.adult,
-    children: 0 || optionsFromLocal.children,
-    rooms: 1 || optionsFromLocal.room,
+    adults: 1,
+    children: 0,
+    rooms: 1,
   })
   const [destination, setDestination] = useState('')
 
