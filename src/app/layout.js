@@ -6,10 +6,18 @@ import Sidebar from "./components/Sidebar";
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import AuthProvider from "./Providers/AuthProvider";
-import { SearchContextProvider } from "./context/searchContext";
-import SearchProvider from "./Providers/SearchProvider"
+// import { SearchContextProvider } from "./context/searchContext";
+// import SearchProvider from "./Providers/SearchProvider"
+import dynamic from "next/dynamic";
 
 const roboto = Inter({ subsets: ["latin"], weight: "400" });
+
+const SearchContextClient = dynamic(
+  () => import("./context/searchContext"),
+  {
+    ssr: false
+  }
+)
 
 const metadata = {
   title: "Create Next App",
@@ -40,8 +48,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={roboto.className}>
         <AuthProvider>
-          <SearchContextProvider>
-            <SearchProvider>
+          <SearchContextClient>
+            {/* <SearchProvider> */}
               <Navbar toggleSidebar={toggleSidebar} />
               <div className="flex pt-16">
                 {!hideSidebar && (
@@ -52,8 +60,8 @@ export default function RootLayout({ children }) {
                   <main className="">{children}</main>
                 </div>
               </div>
-            </SearchProvider>
-          </SearchContextProvider>
+            {/* </SearchProvider> */}
+          </SearchContextClient>
         </AuthProvider>
       </body>
     </html>

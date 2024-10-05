@@ -1,5 +1,4 @@
 "use client"
-// import { ThemeContext } from '@/Context/ThemeContext';
 import { SearchContext } from "../context/searchContext"
 import React, { useContext } from 'react'
 
