@@ -1,27 +1,96 @@
-'use client'
 import Image from 'next/image'
-import { useState } from 'react'
 import { FaShare, FaHeart, FaStar, FaMedal, FaKey, FaSwimmingPool } from 'react-icons/fa'
-import { useAppSelector } from '../../../lib/store/hooks'
+import DatesAndGuest from '../../components/DatesAndGuest/DatesAndGuest'
 
-export default function Home() {
-  const { dates } = useAppSelector(state => state.search)
-  console.log(dates)
-  const [checkInDate, setCheckInDate] = useState('')
-  const [checkOutDate, setCheckOutDate] = useState('')
-  const [guests, setGuests] = useState(2)
-  const [isGuestDropdownOpen, setIsGuestDropdownOpen] = useState(false)
-  const [isReviewsOpen, setIsReviewsOpen] = useState(false)
+const searchHotel = async (hotel_id, arrival_date, departure_date) => {
+  const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/getHotelDetails?hotel_id=${hotel_id}&arrival_date=${arrival_date}&departure_date=${departure_date}`; //&adults=1&children_age=0%2C17&room_qty=1&page_number=1&units=metric&temperature_unit=c&languagecode=en-us&currency_code=AED (optional)
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
+      'x-rapidapi-host': process.env.NEXT_PUBLIC_RAPIDAPI_HOST
+    },
+    // next: { revalidate: 86400 }
+  };
 
-  const handleGuestChange = (newGuests) => {
-    setGuests(newGuests)
-    setIsGuestDropdownOpen(false)
+  const res = await fetch(url, options);
+  if (!res.ok) {
+    throw new Error("Something went wrong!!")
   }
+  const data = await res.json();
+  // console.log(data.data)
+  return data.data;
+}
+
+const searchHotelPhotos = async (hotel_id) => {
+  const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/getHotelPhotos?hotel_id=${hotel_id}`; //&adults=1&children_age=0%2C17&room_qty=1&page_number=1&units=metric&temperature_unit=c&languagecode=en-us&currency_code=AED (optional)
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
+      'x-rapidapi-host': process.env.NEXT_PUBLIC_RAPIDAPI_HOST
+    },
+    // next: { revalidate: 86400 }
+  };
+
+  const res = await fetch(url, options);
+  if (!res.ok) {
+    throw new Error("Something went wrong!!")
+  }
+  const data = await res.json();
+  // console.log(data.data) 
+  return data.data;
+}
+
+const searchHotelDescription = async (hotel_id) => {
+  const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/getDescriptionAndInfo?hotel_id=${hotel_id}`; //&adults=1&children_age=0%2C17&room_qty=1&page_number=1&units=metric&temperature_unit=c&languagecode=en-us&currency_code=AED (optional)
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
+      'x-rapidapi-host': process.env.NEXT_PUBLIC_RAPIDAPI_HOST
+    },
+    // next: { revalidate: 86400 }
+  };
+
+  const res = await fetch(url, options);
+  if (!res.ok) {
+    throw new Error("Something went wrong!!")
+  }
+  const data = await res.json();
+  // console.log(data.data) 
+  return data.data[0];
+}
+
+const SingleProperty = async ({ params, searchParams }) => {
+  const { slug } = params
+  const { arrival_date, departure_date } = searchParams
+  // console.log(slug)
+  // console.log(departure_date)
+
+  const getHotel = await searchHotel(slug, arrival_date, departure_date)
+  const getHotelPhotos = await searchHotelPhotos(slug)
+  const getHotelDescription = await searchHotelDescription(slug)
+  const { description } = getHotelDescription
+  // console.log("getHotelDescription ===>>>", description)
+
+  const { hotel_name, accommodation_type_name, address, city, country_trans, available_rooms, room_recommendation, review_nr, property_highlight_strip, product_price_breakdown } = getHotel
+
+  // const [checkInDate, setCheckInDate] = useState('')
+  // const [checkOutDate, setCheckOutDate] = useState('')
+  // const [guests, setGuests] = useState(2)
+  // const [isGuestDropdownOpen, setIsGuestDropdownOpen] = useState(false)
+  // const [isReviewsOpen, setIsReviewsOpen] = useState(false)
+
+  // const handleGuestChange = (newGuests) => {
+  //   setGuests(newGuests)
+  //   setIsGuestDropdownOpen(false)
+  // }
 
   return (
     <div className="container mx-auto px-4 mt-16 relative">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold">Luxe Hut • Skardu • Gilgit • Snow Desert • Pakistan</h1>
+        <h1 className="text-3xl font-bold">{accommodation_type_name} • {city} • {country_trans}</h1>
         <div className="flex space-x-2">
           <button className="bg-white px-4 py-2 rounded-full shadow text-sm font-semibold flex items-center">
             <FaShare className="mr-2" /> Share
@@ -33,11 +102,11 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-4 grid-rows-2 gap-2 mb-4 h-[500px]">
-        <Image src="/sk1.webp" alt="Resort exterior" width={800} height={600} className="col-span-2 row-span-2 w-full h-full object-cover rounded-l-lg" />
-        <Image src="/sk2.webp" alt="Interior" width={400} height={300} className="w-full h-full object-cover rounded-tr-lg" />
-        <Image src="/sk3.webp" alt="View" width={400} height={300} className="w-full h-full object-cover" />
-        <Image src="/sk4.webp" alt="Guests" width={400} height={300} className="w-full h-full object-cover" />
-        <Image src="/sk5.webp" alt="Additional view" width={400} height={300} className="w-full h-full object-cover rounded-br-lg" />
+        <Image src={getHotelPhotos[0].url} alt="Resort exterior" width={800} height={600} className="col-span-2 row-span-2 w-full h-full object-cover rounded-l-lg" />
+        <Image src={getHotelPhotos[1].url} alt="Interior" width={400} height={300} className="w-full h-full object-cover rounded-tr-lg" />
+        <Image src={getHotelPhotos[2].url} alt="View" width={400} height={300} className="w-full h-full object-cover" />
+        <Image src={getHotelPhotos[3].url} alt="Guests" width={400} height={300} className="w-full h-full object-cover" />
+        <Image src={getHotelPhotos[4].url} alt="Additional view" width={400} height={300} className="w-full h-full object-cover rounded-br-lg" />
       </div>
 
 
@@ -45,27 +114,27 @@ export default function Home() {
         <div className="w-2/3 pr-8">
           <div className="flex justify-between items-center mb-4">
             <div>
-              <h2 className="text-2xl font-semibold">Hut in Skardu, Pakistan</h2>
-              <p className="text-gray-600">2 guests · 1 bedroom · 1 bed · 1 bath</p>
+              <h2 className="text-2xl font-semibold">{hotel_name}</h2>
+              <p className="text-gray-600">{address}</p>
             </div>
             <div className="flex items-center">
               <FaStar className="text-yellow-400 mr-1" />
               <span className="font-semibold">4.9</span>
               <span className="mx-1">·</span>
-              <span className="text-gray-600 underline">24 reviews</span>
+              <span className="text-gray-600 underline">{review_nr} reviews</span>
               <FaMedal className="text-yellow-600 ml-2" />
               <span className="text-sm font-semibold ml-1">Superhost</span>
             </div>
           </div>
 
           <div className="border-t border-b border-gray-200 py-4 my-4">
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <Image src="/oasis.webp" alt="Host" width={56} height={56} className="rounded-full mr-4" />
               <div>
                 <h3 className="font-semibold text-lg">Hosted by Oasis Resort</h3>
                 <p className="text-gray-600">1 month hosting</p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="grid grid-cols-2 gap-4 mb-6">
@@ -88,9 +157,7 @@ export default function Home() {
           <div className="mt-6">
             <h3 className="text-xl font-semibold mb-2">About this space</h3>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Experience the magic of Skardu in our luxurious hut nestled in the heart of the snow desert.
-              This unique retreat offers breathtaking views of the surrounding mountains and a perfect blend of
-              modern comfort and traditional charm. You'll love sharing photos of this one-of-a-kind place with your friends.
+              {description}
             </p>
 
           </div>
@@ -103,49 +170,8 @@ export default function Home() {
         <div className="w-1/3">
           <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 sticky top-4">
             <h2 className="text-2xl font-bold mb-4">PKR 25,000 <span className="text-base font-normal text-gray-500">night</span></h2>
-            <div className="flex mb-4">
-              <div className="w-1/2 pr-1">
-                <h3 className="font-semibold text-gray-700 text-xs uppercase">CHECK-IN</h3>
-                <input
-                  type="date"
-                  value={checkInDate}
-                  onChange={(e) => setCheckInDate(e.target.value)}
-                  className="w-full border rounded-tl-lg rounded-bl-lg p-2 mt-1 text-sm"
-                />
-              </div>
-              <div className="w-1/2 pl-1">
-                <h3 className="font-semibold text-gray-700 text-xs uppercase">CHECKOUT</h3>
-                <input
-                  type="date"
-                  value={checkOutDate}
-                  onChange={(e) => setCheckOutDate(e.target.value)}
-                  className="w-full border rounded-tr-lg rounded-br-lg p-2 mt-1 text-sm"
-                />
-              </div>
-            </div>
-            <div className="mb-4 relative">
-              <h3 className="font-semibold text-gray-700 text-xs uppercase mb-1">GUESTS</h3>
-              <button
-                onClick={() => setIsGuestDropdownOpen(!isGuestDropdownOpen)}
-                className="w-full text-left border rounded-lg p-2 flex justify-between items-center text-sm"
-              >
-                <span>{guests} {guests === 1 ? 'guest' : 'guests'}</span>
-                {/* <span className="text-gray-400">▼</span> */}
-              </button>
-              {isGuestDropdownOpen && (
-                <div className="absolute z-10 mt-1 w-full bg-white border rounded-lg shadow-lg">
-                  {[1, 2, 3, 4].map((num) => (
-                    <button
-                      key={num}
-                      onClick={() => handleGuestChange(num)}
-                      className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-sm"
-                    >
-                      {num} {num === 1 ? 'guest' : 'guests'}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+
+            <DatesAndGuest />
 
             <button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 text-white py-3 rounded-lg font-semibold hover:from-teal-600 hover:to-teal-700 transition-all duration-200 shadow-md">
               Check availability
@@ -169,3 +195,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default SingleProperty;
