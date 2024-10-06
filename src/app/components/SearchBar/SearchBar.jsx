@@ -11,7 +11,7 @@ import { SearchContext } from '../../context/searchContext'
 
 const SearchBar = ({ isCompact = false }) => {
   // const { dispatch, dates: datesFromLocal, options: optionsFromLocal, destination: destinationFromLocal } = useContext(SearchContext)
-  // console.log(datesFromLocal)
+  // console.log(optionsFromLocal)
 
   function getDayAfterTomorrow() {
     const today = new Date();
@@ -31,8 +31,8 @@ const SearchBar = ({ isCompact = false }) => {
   const [showDate, setShowDate] = useState(false)
   const [dates, setDates] = useState([
     {
-      startDate: dayAfterTomorrow,
-      endDate: endDate,
+      startDate: datesFromLocal[0].startDate,
+      endDate: datesFromLocal[0].endDate,
       key: 'selection'
     }
   ])
@@ -58,7 +58,8 @@ const SearchBar = ({ isCompact = false }) => {
   const itemClass = isCompact ? 'flex-shrink-0' : 'flex-1';
 
   function searchHandler() {
-    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } })
+    console.log(dates[0].startDate)
+    // dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } })
   }
 
   return (
