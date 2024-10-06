@@ -31,8 +31,8 @@ const SearchBar = ({ isCompact = false }) => {
   const [showDate, setShowDate] = useState(false)
   const [dates, setDates] = useState([
     {
-      startDate: datesFromLocal[0].startDate,
-      endDate: datesFromLocal[0].endDate,
+      startDate: dayAfterTomorrow,
+      endDate: endDate,
       key: 'selection'
     }
   ])
