@@ -4,8 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
+import { useAppSelector } from "../../../lib/store/hooks";
 
 const PropertyCard = ({ data }) => {
+    const { dates, options } = useAppSelector(state => state.search)
+    console.log(dates)
+    const { startDate, endDate } = dates
     const { property, accessibilityLabel, hotel_id } = data;
     const subtitleArray = accessibilityLabel.split("\n").slice(0, 4).join(" ");
     const { photoUrls, reviewScore, name, priceBreakdown } = property;
@@ -14,7 +18,7 @@ const PropertyCard = ({ data }) => {
     const priceInPKR = Math.round(usdCurrency * grossPrice.value)
 
     return (
-        <Link href={`/SinglePropertyListing/${hotel_id}?`} className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer flex flex-col">
+        <Link href={`/SinglePropertyListing/${hotel_id}?arrival_date=${startDate}&departure_date=${endDate}`} className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer flex flex-col">
             <div className="relative flex-1 aspect-square">
                 <Image src={photoUrls[0]} alt={name} fill className="object-cover aspect-square" />
                 <button className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md">
