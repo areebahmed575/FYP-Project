@@ -6,19 +6,9 @@ import Sidebar from "./components/Sidebar";
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import AuthProvider from "./Providers/AuthProvider";
-import { SearchContextProvider } from "./context/searchContext";
-// import SearchProvider from "./Providers/SearchProvider"
 import StoreProvider from "./Providers/StoreProvider";
-// import dynamic from "next/dynamic";
 
 const roboto = Inter({ subsets: ["latin"], weight: "400" });
-
-// const SearchContextClient = dynamic(
-//   () => import("./context/searchContext"),
-//   {
-//     ssr: false
-//   }
-// )
 
 // const metadata = {
 //   title: "Create Next App",
@@ -50,20 +40,16 @@ export default function RootLayout({ children }) {
       <body className={roboto.className}>
         <AuthProvider>
           <StoreProvider>
-            <SearchContextProvider>
-              {/* <SearchProvider> */}
-                <Navbar toggleSidebar={toggleSidebar} />
-                <div className="flex pt-16">
-                  {!hideSidebar && (
-                    <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
-                  )}
-                  <div className={`flex-1 transition-all duration-300 ease-in-out ${!hideSidebar && (isSidebarOpen ? 'ml-52' : 'ml-16')
-                    }`}>
-                    <main className="">{children}</main>
-                  </div>
-                </div>
-              {/* </SearchProvider> */}
-            </SearchContextProvider>
+            <Navbar toggleSidebar={toggleSidebar} />
+            <div className="flex pt-16">
+              {!hideSidebar && (
+                <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+              )}
+              <div className={`flex-1 transition-all duration-300 ease-in-out ${!hideSidebar && (isSidebarOpen ? 'ml-52' : 'ml-16')
+                }`}>
+                <main className="">{children}</main>
+              </div>
+            </div>
           </StoreProvider>
         </AuthProvider>
       </body>
