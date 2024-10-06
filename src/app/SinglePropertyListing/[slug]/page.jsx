@@ -2,8 +2,11 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { FaShare, FaHeart, FaStar, FaMedal, FaKey, FaSwimmingPool } from 'react-icons/fa'
+import { useAppSelector } from '../../../lib/store/hooks'
 
 export default function Home() {
+  const { dates } = useAppSelector(state => state.search)
+  console.log(dates)
   const [checkInDate, setCheckInDate] = useState('')
   const [checkOutDate, setCheckOutDate] = useState('')
   const [guests, setGuests] = useState(2)
@@ -28,7 +31,7 @@ export default function Home() {
           </button>
         </div>
       </div>
-      
+
       <div className="grid grid-cols-4 grid-rows-2 gap-2 mb-4 h-[500px]">
         <Image src="/sk1.webp" alt="Resort exterior" width={800} height={600} className="col-span-2 row-span-2 w-full h-full object-cover rounded-l-lg" />
         <Image src="/sk2.webp" alt="Interior" width={400} height={300} className="w-full h-full object-cover rounded-tr-lg" />
@@ -37,7 +40,7 @@ export default function Home() {
         <Image src="/sk5.webp" alt="Additional view" width={400} height={300} className="w-full h-full object-cover rounded-br-lg" />
       </div>
 
-     
+
       <div className="mt-8 flex justify-between">
         <div className="w-2/3 pr-8">
           <div className="flex justify-between items-center mb-4">
@@ -54,7 +57,7 @@ export default function Home() {
               <span className="text-sm font-semibold ml-1">Superhost</span>
             </div>
           </div>
-          
+
           <div className="border-t border-b border-gray-200 py-4 my-4">
             <div className="flex items-center">
               <Image src="/oasis.webp" alt="Host" width={56} height={56} className="rounded-full mr-4" />
@@ -85,16 +88,16 @@ export default function Home() {
           <div className="mt-6">
             <h3 className="text-xl font-semibold mb-2">About this space</h3>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Experience the magic of Skardu in our luxurious hut nestled in the heart of the snow desert. 
-              This unique retreat offers breathtaking views of the surrounding mountains and a perfect blend of 
+              Experience the magic of Skardu in our luxurious hut nestled in the heart of the snow desert.
+              This unique retreat offers breathtaking views of the surrounding mountains and a perfect blend of
               modern comfort and traditional charm. You'll love sharing photos of this one-of-a-kind place with your friends.
             </p>
-           
+
           </div>
 
-          
 
-         
+
+
         </div>
 
         <div className="w-1/3">
@@ -103,7 +106,7 @@ export default function Home() {
             <div className="flex mb-4">
               <div className="w-1/2 pr-1">
                 <h3 className="font-semibold text-gray-700 text-xs uppercase">CHECK-IN</h3>
-                <input 
+                <input
                   type="date"
                   value={checkInDate}
                   onChange={(e) => setCheckInDate(e.target.value)}
@@ -112,7 +115,7 @@ export default function Home() {
               </div>
               <div className="w-1/2 pl-1">
                 <h3 className="font-semibold text-gray-700 text-xs uppercase">CHECKOUT</h3>
-                <input 
+                <input
                   type="date"
                   value={checkOutDate}
                   onChange={(e) => setCheckOutDate(e.target.value)}
@@ -122,7 +125,7 @@ export default function Home() {
             </div>
             <div className="mb-4 relative">
               <h3 className="font-semibold text-gray-700 text-xs uppercase mb-1">GUESTS</h3>
-              <button 
+              <button
                 onClick={() => setIsGuestDropdownOpen(!isGuestDropdownOpen)}
                 className="w-full text-left border rounded-lg p-2 flex justify-between items-center text-sm"
               >
@@ -143,7 +146,7 @@ export default function Home() {
                 </div>
               )}
             </div>
-            
+
             <button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 text-white py-3 rounded-lg font-semibold hover:from-teal-600 hover:to-teal-700 transition-all duration-200 shadow-md">
               Check availability
             </button>
@@ -163,6 +166,6 @@ export default function Home() {
         </div>
       </div>
 
-         </div>
+    </div>
   )
 }

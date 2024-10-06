@@ -1,16 +1,58 @@
 'use client'
-import { useContext, useState } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import SearchBar from "./components/SearchBar/SearchBar"
 import ExploreAndBrowseType from "./components/ExploreAndBrowseType/ExploreAndBrowseType"
 import TripAndDeals from "./components/TripAndDeals/TripAndDeals"
 import HolidayRentals from "./components/HolidayRentals/HolidayRentals"
 import Image from "next/image"
-import { SearchContext } from "./context/searchContext"
+import { useAppSelector } from '../lib/store/hooks/index'
 
 const HomePage = () => {
-    const { dates, options, destination } = useContext(SearchContext)
-    // console.log(destination)
+    // const { dispatch, dates, options, destination } = useContext(SearchContext)
+    const { options } = useAppSelector((state) => state.search)
+    // console.log(options)
+
+
+    function getDayAfterTomorrow() {
+        const today = new Date();
+        today.setDate(today.getDate() + 2);
+        return today.toLocaleDateString('en-CA');
+    }
+
+    function getEndDate() {
+        const today = new Date();
+        today.setDate(today.getDate() + 3);
+        // console.log(today)
+        return today.toLocaleDateString('en-CA');
+    }
+
+    const dates = [{
+        startDate: getDayAfterTomorrow(),
+        endDate: getEndDate(),
+        key: 'selection'
+    }]
+
+    function todayDate() {
+        const today = new Date();
+        return today.toLocaleDateString('en-CA');
+    }
+
+    // const today = todayDate()
+
+    // useEffect(() => {
+    //     const dayAfterTomorrow = getDayAfterTomorrow();
+    //     const endDate = getEndDate();
+    //     const dates = [{
+    //         startDate: dayAfterTomorrow,
+    //         endDate: endDate,
+    //         key: 'selection'
+    //     }]
+    //     // console.log(dates)
+    //     dispatch({ type: "NEW_SEARCH", payload: { dates, options, destination } })
+
+    // }, [today])
+
     const [aiSuggestion, setAiSuggestion] = useState('')
     const generateAiSuggestion = () => {
         setAiSuggestion('AI-generated flight suggestion based on your preferences!')
@@ -117,7 +159,7 @@ const HomePage = () => {
                     </motion.div>
                 ))}
 
-                <ExploreAndBrowseType dates={dates} options={options}/>
+                <ExploreAndBrowseType dates={dates} options={options} />
                 <TripAndDeals />
                 <HolidayRentals />
 

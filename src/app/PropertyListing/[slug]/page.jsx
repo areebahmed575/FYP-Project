@@ -1,41 +1,4 @@
-import { CiHeart } from "react-icons/ci";
-import { FaStar } from "react-icons/fa";
-
-const PropertyCard = ({ data }) => {
-  // console.log(data)
-  const { property, accessibilityLabel } = data;
-  const subtitleArray = accessibilityLabel.split("\n").slice(0, 4).join(" ");
-  const { photoUrls, reviewScore, name, priceBreakdown } = property;
-  const {grossPrice} = priceBreakdown
-  // console.log("grossPrice ===>>> ", grossPrice)
-  const usdCurrency = 278.64;
-  const priceInPKR = Math.round(usdCurrency * grossPrice.value)
-  // console.log(priceInPKR)
-
-  return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer flex flex-col">
-      <div className="relative flex-1">
-        <img src={photoUrls[0]} alt={name} className="object-cover aspect-square" />
-        <button className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md">
-          <CiHeart className="w-6 h-6 text-gray-600" />
-        </button>
-      </div>
-      <div className="p-4 flex flex-col justify-between flex-1">
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="text-lg font-semibold">{name}</h3>
-          <span className="flex items-center bg-gray-100 px-2 py-1 rounded-full">
-            <FaStar className="w-3 h-3 text-yellow-400 mr-1" />
-            <span className="text-xs font-medium">New</span>
-          </span>
-        </div>
-        <p className="text-sm text-gray-600">{subtitleArray}</p>
-        <div className="mt-3 flex items-end">
-          <span className="text-lg font-bold">PKR {priceInPKR}</span>
-        </div>
-      </div>
-    </div>
-  )
-};
+import PropertyCard from "../../components/PropertyCard/PropertyCard";
 
 const searchHotels = async (dest_id, search_type, arrival_date, departure_date) => {
   const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels?dest_id=${dest_id}&search_type=${search_type}&arrival_date=${arrival_date}&departure_date=${departure_date}`; //&adults=1&children_age=0%2C17&room_qty=1&page_number=1&units=metric&temperature_unit=c&languagecode=en-us&currency_code=AED (optional)
@@ -89,7 +52,7 @@ const PropertyListingPage = async ({ params, searchParams }) => {
   const getDestination = await searchDestination(slug)
   // console.log("data ====>>>> ", getDestination)
 
-  const { dest_id, search_type, hotels, name, country } = getDestination
+  const { dest_id, search_type } = getDestination
   // console.log(dest_id)
 
   const getHotels = await searchHotels(dest_id, search_type, arrival_date, departure_date)

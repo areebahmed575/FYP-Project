@@ -4,23 +4,28 @@ import { createContext, useReducer, useEffect } from 'react';
 function getDayAfterTomorrow() {
     const today = new Date();
     today.setDate(today.getDate() + 2);
-    return today;
+    // console.log(today)
+    return (today.toLocaleDateString('en-CA'));
 }
 
 function getEndDate() {
     const today = new Date();
     today.setDate(today.getDate() + 3);
-    return today;
+    // console.log(today)
+    return today.toLocaleDateString('en-CA');
 }
 
 const dayAfterTomorrow = getDayAfterTomorrow();
 const endDate = getEndDate();
+
+// console.log(endDate)
 
 const INITIAL_STATE = {
     destination: "",
     dates: [{
         startDate: dayAfterTomorrow,
         endDate: endDate,
+        key: "selection"
     }],
     options: {
         adult: 1,
