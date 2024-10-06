@@ -62,6 +62,26 @@ const searchHotelDescription = async (hotel_id) => {
   return data.data[0];
 }
 
+const searchHotelRating = async (hotel_id) => {
+  const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/getHotelReviewScores?hotel_id=${hotel_id}`; //&adults=1&children_age=0%2C17&room_qty=1&page_number=1&units=metric&temperature_unit=c&languagecode=en-us&currency_code=AED (optional)
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
+      'x-rapidapi-host': process.env.NEXT_PUBLIC_RAPIDAPI_HOST
+    },
+    // next: { revalidate: 86400 }
+  };
+
+  const res = await fetch(url, options);
+  if (!res.ok) {
+    throw new Error("Something went wrong!!")
+  }
+  const data = await res.json();
+  // console.log(data.data) 
+  return data.data;
+}
+
 const SingleProperty = async ({ params, searchParams }) => {
   const { slug } = params
   const { arrival_date, departure_date } = searchParams
@@ -72,7 +92,8 @@ const SingleProperty = async ({ params, searchParams }) => {
   const getHotelPhotos = await searchHotelPhotos(slug)
   const getHotelDescription = await searchHotelDescription(slug)
   const { description } = getHotelDescription
-  // console.log("getHotelDescription ===>>>", description)
+  const getHotelRating = await searchHotelRating(slug)
+  // console.log("getHotelRating ===>>>", getHotelRating[0].score_breakdown[0].average_score)
 
   const { hotel_name, accommodation_type_name, address, city, country_trans, available_rooms, room_recommendation, review_nr, property_highlight_strip, product_price_breakdown } = getHotel
 
@@ -119,7 +140,7 @@ const SingleProperty = async ({ params, searchParams }) => {
             </div>
             <div className="flex items-center">
               <FaStar className="text-yellow-400 mr-1" />
-              <span className="font-semibold">4.9</span>
+              <span className="font-semibold">{getHotelRating[0].score_breakdown[0].average_score}</span>
               <span className="mx-1">·</span>
               <span className="text-gray-600 underline">{review_nr} reviews</span>
               <FaMedal className="text-yellow-600 ml-2" />
