@@ -1,15 +1,18 @@
 'use client'
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import SearchBar from "./components/SearchBar/SearchBar"
 import ExploreAndBrowseType from "./components/ExploreAndBrowseType/ExploreAndBrowseType"
 import TripAndDeals from "./components/TripAndDeals/TripAndDeals"
 import HolidayRentals from "./components/HolidayRentals/HolidayRentals"
 import Image from "next/image"
-import { SearchContext } from "./context/searchContext"
+import { useAppSelector } from '../lib/store/hooks/index'
 
 const HomePage = () => {
     // const { dispatch, dates, options, destination } = useContext(SearchContext)
+    const { options } = useAppSelector((state) => state.search)
+    // console.log(options)
+
 
     function getDayAfterTomorrow() {
         const today = new Date();
@@ -24,12 +27,18 @@ const HomePage = () => {
         return today.toLocaleDateString('en-CA');
     }
 
+    const dates = [{
+        startDate: getDayAfterTomorrow(),
+        endDate: getEndDate(),
+        key: 'selection'
+    }]
+
     function todayDate() {
         const today = new Date();
         return today.toLocaleDateString('en-CA');
     }
 
-    const today = todayDate()
+    // const today = todayDate()
 
     // useEffect(() => {
     //     const dayAfterTomorrow = getDayAfterTomorrow();
@@ -41,7 +50,7 @@ const HomePage = () => {
     //     }]
     //     // console.log(dates)
     //     dispatch({ type: "NEW_SEARCH", payload: { dates, options, destination } })
-    
+
     // }, [today])
 
     const [aiSuggestion, setAiSuggestion] = useState('')

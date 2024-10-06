@@ -3,7 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const ExploreDestinations = ({dates, options}) => {
-  console.log(dates)
+  // console.log(dates)
+  // console.log(options)
   const arrival = dates[0].startDate.substring(0,10)
   const departure = dates[0].endDate.substring(0,10)
   // console.log(departure)
