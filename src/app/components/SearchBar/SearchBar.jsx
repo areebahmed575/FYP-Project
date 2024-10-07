@@ -66,9 +66,13 @@ const SearchBar = ({ isCompact = false }) => {
       dates: dates[0],
       options
     }
-    console.log(payload)
-    dispatch(getSearch(payload))
-    router.push(`/PropertyListing/${payload.destination}?arrival_date=${payload.dates.startDate}&departure_date=${payload.dates.endDate}`)
+    if (payload.destination === '') {
+      return alert("No Destination Selected")
+    } else {
+      // console.log(payload)
+      dispatch(getSearch(payload))
+      router.push(`/PropertyListing/${payload.destination}?arrival_date=${payload.dates.startDate}&departure_date=${payload.dates.endDate}`)
+    }
   }
 
   return (
@@ -91,6 +95,7 @@ const SearchBar = ({ isCompact = false }) => {
             onChange={(e) => setDestination(e.target.value)}
             className={`w-full outline-none bg-transparent ${inputClass}`}
             aria-label="Destination input"
+          // required={true}
           />
         </motion.div>
         <motion.div
