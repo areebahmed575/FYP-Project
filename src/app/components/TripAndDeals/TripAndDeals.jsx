@@ -1,6 +1,11 @@
+'use client'
 import Image from 'next/image';
+import Link from 'next/link';
+import { useAppSelector } from '../../../lib/store/hooks';
 
 const TripPlanner = () => {
+  const {dates, options} = useAppSelector(state => state.search)
+  console.log(dates)
   const vibes = ['Romance', 'City', 'Outdoors'];
   const topDestinations = [
     { name: 'Rawalpindi', distance: '1,123 km away', image: '/Mountains.jpg' },
@@ -35,13 +40,13 @@ const TripPlanner = () => {
       
       <div className="grid grid-cols-2 gap-4 mb-8">
         {topDestinations.map((dest) => (
-          <div key={dest.name} className="relative rounded-lg overflow-hidden">
+          <Link href={`/PropertyListing/${dest.name}?arrival_date=${dates.startDate}&departure_date=${dates.endDate}`} key={dest.name} className="relative rounded-lg overflow-hidden">
             <Image src={dest.image} alt={dest.name} width={300} height={200} className="w-full h-48 object-cover" />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
               <h3 className="text-white font-semibold">{dest.name}</h3>
               <p className="text-white text-sm">{dest.distance}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

@@ -38,20 +38,6 @@ const HomePage = () => {
         return today.toLocaleDateString('en-CA');
     }
 
-    // const today = todayDate()
-
-    // useEffect(() => {
-    //     const dayAfterTomorrow = getDayAfterTomorrow();
-    //     const endDate = getEndDate();
-    //     const dates = [{
-    //         startDate: dayAfterTomorrow,
-    //         endDate: endDate,
-    //         key: 'selection'
-    //     }]
-    //     // console.log(dates)
-    //     dispatch({ type: "NEW_SEARCH", payload: { dates, options, destination } })
-
-    // }, [today])
 
     const [aiSuggestion, setAiSuggestion] = useState('')
     const generateAiSuggestion = () => {
