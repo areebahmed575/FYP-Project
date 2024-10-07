@@ -84,29 +84,17 @@ const searchHotelRating = async (hotel_id) => {
 
 const SingleProperty = async ({ params, searchParams }) => {
   const { slug } = params
-  const { arrival_date, departure_date } = searchParams
-  // console.log(slug)
-  // console.log(departure_date)
-
+  const { arrival_date, departure_date } = searchParams;
   const getHotel = await searchHotel(slug, arrival_date, departure_date)
   const getHotelPhotos = await searchHotelPhotos(slug)
   const getHotelDescription = await searchHotelDescription(slug)
   const { description } = getHotelDescription
   const getHotelRating = await searchHotelRating(slug)
-  // console.log("getHotelRating ===>>>", getHotelRating[0].score_breakdown[0].average_score)
-
   const { hotel_name, accommodation_type_name, address, city, country_trans, available_rooms, room_recommendation, review_nr, property_highlight_strip, product_price_breakdown } = getHotel
+  const { gross_amount_per_night, all_inclusive_amount_hotel_currency, all_inclusive_amount, gross_amount_hotel_currency } = product_price_breakdown
 
-  // const [checkInDate, setCheckInDate] = useState('')
-  // const [checkOutDate, setCheckOutDate] = useState('')
-  // const [guests, setGuests] = useState(2)
-  // const [isGuestDropdownOpen, setIsGuestDropdownOpen] = useState(false)
-  // const [isReviewsOpen, setIsReviewsOpen] = useState(false)
-
-  // const handleGuestChange = (newGuests) => {
-  //   setGuests(newGuests)
-  //   setIsGuestDropdownOpen(false)
-  // }
+  const usdCurrency = 278.64;
+  const priceInPKR = Math.round(usdCurrency * gross_amount_per_night.value.toFixed(2)).toLocaleString('en-US')
 
   return (
     <div className="container mx-auto px-4 mt-16 relative">
@@ -149,13 +137,6 @@ const SingleProperty = async ({ params, searchParams }) => {
           </div>
 
           <div className="border-t border-b border-gray-200 py-4 my-4">
-            {/* <div className="flex items-center">
-              <Image src="/oasis.webp" alt="Host" width={56} height={56} className="rounded-full mr-4" />
-              <div>
-                <h3 className="font-semibold text-lg">Hosted by Oasis Resort</h3>
-                <p className="text-gray-600">1 month hosting</p>
-              </div>
-            </div> */}
           </div>
 
           <div className="grid grid-cols-2 gap-4 mb-6">
@@ -183,16 +164,22 @@ const SingleProperty = async ({ params, searchParams }) => {
 
           </div>
 
-
-
-
         </div>
 
         <div className="w-1/3">
           <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 sticky top-4">
-            <h2 className="text-2xl font-bold mb-4">PKR 25,000 <span className="text-base font-normal text-gray-500">night</span></h2>
+            <div className='mb-4'>
+              <h2 className="text-2xl font-bold ">PKR {priceInPKR} <span className="text-base font-normal text-gray-500"> night </span></h2>
+              <p className="text-base font-normal text-gray-500">*Inclusive Tax</p>
+            </div>
 
-            <DatesAndGuest />
+            <DatesAndGuest arrival_date={arrival_date} departure_date={departure_date} />
+
+            <div>
+              <div className='mb-4'>
+                <h2 className="text-2xl font-bold ">{all_inclusive_amount_hotel_currency.amount_rounded} <span className="text-base font-normal text-gray-500"> Total </span></h2>
+              </div>
+            </div>
 
             <button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 text-white py-3 rounded-lg font-semibold hover:from-teal-600 hover:to-teal-700 transition-all duration-200 shadow-md">
               Check availability

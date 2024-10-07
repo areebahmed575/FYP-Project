@@ -1,9 +1,13 @@
 'use client'
 import React, { useState } from 'react'
+import { useAppSelector } from '../../../lib/store/hooks'
 
-const DatesAndGuest = () => {
-    const [checkInDate, setCheckInDate] = useState('')
-    const [checkOutDate, setCheckOutDate] = useState('')
+const DatesAndGuest = ({ arrival_date, departure_date }) => {
+    // console.log(arrival_date)
+    const { options } = useAppSelector(state => state.search)
+    console.log(options)
+    const [checkInDate, setCheckInDate] = useState(arrival_date)
+    const [checkOutDate, setCheckOutDate] = useState(departure_date)
     const [guests, setGuests] = useState(2)
     const [isGuestDropdownOpen, setIsGuestDropdownOpen] = useState(false)
 
