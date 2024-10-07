@@ -8,14 +8,14 @@ import { useAppSelector } from "../../../lib/store/hooks";
 
 const PropertyCard = ({ data }) => {
     const { dates, options } = useAppSelector(state => state.search)
-    console.log(dates)
+    // console.log(dates)
     const { startDate, endDate } = dates
     const { property, accessibilityLabel, hotel_id } = data;
     const subtitleArray = accessibilityLabel.split("\n").slice(0, 4).join(" ");
     const { photoUrls, reviewScore, name, priceBreakdown } = property;
     const { grossPrice } = priceBreakdown
     const usdCurrency = 278.64;
-    const priceInPKR = Math.round(usdCurrency * grossPrice.value)
+    const priceInPKR = Math.round(usdCurrency * grossPrice.value).toLocaleString('en-US')
 
     return (
         <Link href={`/SinglePropertyListing/${hotel_id}?arrival_date=${startDate}&departure_date=${endDate}`} className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer flex flex-col">

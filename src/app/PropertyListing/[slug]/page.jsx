@@ -53,7 +53,7 @@ const PropertyListingPage = async ({ params, searchParams }) => {
   // console.log("data ====>>>> ", getDestination)
 
   const { dest_id, search_type } = getDestination
-  // console.log(dest_id)
+  console.log(dest_id)
 
   const getHotels = await searchHotels(dest_id, search_type, arrival_date, departure_date)
   // console.log("hotels ====>>> ", getHotels)
