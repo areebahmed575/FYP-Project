@@ -46,6 +46,7 @@ export const searchSlice = createSlice({
     initialState,
     reducers: {
         getSearch: (state, { payload }) => {
+            console.log(payload.dates)
             state.destination = payload.destination
             state.dates = payload.dates
             state.options = payload.options

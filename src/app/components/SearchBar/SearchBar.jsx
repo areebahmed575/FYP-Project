@@ -7,26 +7,29 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { format } from "date-fns"
 import OptionBox from './OptionBox'
-import { SearchContext } from '../../context/searchContext'
+import { useAppDispatch } from '../../../lib/store/hooks'
+import { getSearch } from '../../../lib/store/Slices/searchSlice'
+import { useRouter } from 'next/navigation'
 
 const SearchBar = ({ isCompact = false }) => {
-  // const { dispatch, dates: datesFromLocal, options: optionsFromLocal, destination: destinationFromLocal } = useContext(SearchContext)
-  // console.log(optionsFromLocal)
+  const router = useRouter()
+  const dispatch = useAppDispatch()
 
   function getDayAfterTomorrow() {
     const today = new Date();
     today.setDate(today.getDate() + 2);
-    return today;
+    return today.toLocaleDateString('en-CA');
   }
 
   function getEndDate() {
     const today = new Date();
     today.setDate(today.getDate() + 3);
-    return today;
+    return today.toLocaleDateString('en-CA');
   }
 
   const dayAfterTomorrow = getDayAfterTomorrow();
   const endDate = getEndDate();
+  // console.log(dayAfterTomorrow)
 
   const [showDate, setShowDate] = useState(false)
   const [dates, setDates] = useState([
@@ -58,8 +61,14 @@ const SearchBar = ({ isCompact = false }) => {
   const itemClass = isCompact ? 'flex-shrink-0' : 'flex-1';
 
   function searchHandler() {
-    console.log(dates[0].startDate)
-    // dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } })
+    const payload = {
+      destination,
+      dates: dates[0],
+      options
+    }
+    console.log(payload)
+    dispatch(getSearch(payload))
+    router.push(`/PropertyListing/${payload.destination}?arrival_date=${payload.dates.startDate}&departure_date=${payload.dates.endDate}`)
   }
 
   return (
@@ -92,6 +101,7 @@ const SearchBar = ({ isCompact = false }) => {
           <FaCalendarAlt className="text-teal-500" />
           <span className={inputClass}>
             {`${format(dates[0].startDate, "MMM dd")} - ${format(dates[0].endDate, "MMM dd")}`}
+            {/* {console.log(dates)} */}
           </span>
         </motion.div>
         <motion.div
@@ -129,11 +139,24 @@ const SearchBar = ({ isCompact = false }) => {
           >
             <DateRange
               editableDateInputs={true}
-              onChange={item => setDates([item.selection])}
+              onChange={item => {
+                const formattedSelection = {
+                  ...item.selection,
+                  startDate: item.selection.startDate instanceof Date
+                    ? item.selection.startDate.toLocaleDateString('en-CA')
+                    : new Date(item.selection.startDate).toLocaleDateString('en-CA'),
+                  endDate: item.selection.endDate instanceof Date
+                    ? item.selection.endDate.toLocaleDateString('en-CA')
+                    : new Date(item.selection.endDate).toLocaleDateString('en-CA') // Convert endDate to yyyy-mm-dd
+                  // key: 'selection'
+                };
+                console.log(formattedSelection)
+                setDates([formattedSelection])
+              }}
               moveRangeOnFirstSelection={false}
               ranges={dates}
               className="shadow-lg rounded-lg overflow-hidden"
-              minDate={new Date()}
+            // minDate={new Date()}
             />
           </motion.div>
         )}
