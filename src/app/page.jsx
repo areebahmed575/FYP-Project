@@ -147,7 +147,7 @@ const HomePage = () => {
 
                 <ExploreAndBrowseType dates={dates} options={options} />
                 <TripAndDeals />
-                <HolidayRentals />
+                <HolidayRentals dates={dates}/>
 
 
                 {/* <h1 className="text-[32px] font-bold">Tranding Destinations</h1>

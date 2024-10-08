@@ -5,7 +5,8 @@ import { useAppSelector } from '../../../lib/store/hooks';
 
 const TripPlanner = () => {
   const {dates, options} = useAppSelector(state => state.search)
-  console.log(dates)
+  // console.log(dates)
+  // console.log(options)
   const vibes = ['Romance', 'City', 'Outdoors'];
   const topDestinations = [
     { name: 'Rawalpindi', distance: '1,123 km away', image: '/Mountains.jpg' },
