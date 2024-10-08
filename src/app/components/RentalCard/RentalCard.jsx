@@ -12,7 +12,7 @@ const RentalCard = ({ rental, isUnique = false }) => {
     return (
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="relative">
-                <Image src={photoUrls[0]} alt={name} width={300} height={200} className="w-full h-48 object-cover" />
+                <Image src={photoUrls[0]} alt={name} width={300} height={200} className="w-full h-48 object-cover" unoptimized />
                 <button className="absolute top-2 right-2 text-white bg-opacity-50 bg-gray-700 rounded-full p-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
