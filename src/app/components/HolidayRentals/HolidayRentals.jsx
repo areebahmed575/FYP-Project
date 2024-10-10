@@ -113,7 +113,7 @@ const HolidayRentals = ({ dates }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
         {/* {console.log(highlyRatedHotel)} */}
         {highlyRatedHotel.map((hotel) => (
-          <RentalCard key={hotel.hotel_id} rental={hotel} />
+          <RentalCard key={hotel.hotel_id} rental={hotel} dates={[startDate, endDate]}/>
         ))}
       </div>
 

@@ -93,8 +93,27 @@ const SingleProperty = async ({ params, searchParams }) => {
   const { hotel_name, accommodation_type_name, address, city, country_trans, available_rooms, room_recommendation, review_nr, property_highlight_strip, product_price_breakdown } = getHotel
   const { gross_amount_per_night, all_inclusive_amount_hotel_currency, all_inclusive_amount, gross_amount_hotel_currency } = product_price_breakdown
 
+  // console.log(all_inclusive_amount)
+
+  // console.log(all_inclusive_amount_hotel_currency)
+
+  const currencyChangeHandler = () => {
+    if (all_inclusive_amount_hotel_currency.currency === 'USD') {
+      const usdCurrency = 278.64;
+      const priceInPKR = Math.round(usdCurrency * all_inclusive_amount.value.toFixed(2)).toLocaleString('en-US')
+      // console.log(priceInPKR)
+      return priceInPKR
+    } else {
+      // console.log(all_inclusive_amount_hotel_currency.value.toLocaleString('en-US'))
+      return all_inclusive_amount_hotel_currency.value.toLocaleString('en-US')
+    }
+  }
+  // console.log(gross_amount_per_night)
+  const currencyChange = currencyChangeHandler()
+
   const usdCurrency = 278.64;
   const priceInPKR = Math.round(usdCurrency * gross_amount_per_night.value.toFixed(2)).toLocaleString('en-US')
+  // console.log(priceInPKR)
 
   return (
     <div className="container mx-auto px-4 mt-16 relative">
@@ -177,7 +196,7 @@ const SingleProperty = async ({ params, searchParams }) => {
 
             <div>
               <div className='mb-4'>
-                <h2 className="text-2xl font-bold ">{all_inclusive_amount_hotel_currency.amount_rounded} <span className="text-base font-normal text-gray-500"> Total </span></h2>
+                <h2 className="text-2xl font-bold ">PKR {currencyChange} <span className="text-base font-normal text-gray-500"> Total </span></h2>
               </div>
             </div>
 
