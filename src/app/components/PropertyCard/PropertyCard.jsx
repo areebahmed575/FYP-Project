@@ -16,7 +16,7 @@ const PropertyCard = ({ data }) => {
     const { grossPrice } = priceBreakdown
     const usdCurrency = 278.64;
     const priceInPKR = Math.round(usdCurrency * grossPrice.value).toLocaleString('en-US')
-    // console.log(photoUrls)
+    // console.log(priceInPKR)
 
     return (
         <Link href={`/SinglePropertyListing/${hotel_id}?arrival_date=${startDate}&departure_date=${endDate}`} className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer flex flex-col">
