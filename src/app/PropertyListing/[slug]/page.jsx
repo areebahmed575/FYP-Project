@@ -117,22 +117,11 @@ const PropertyListingPage = async ({ params, searchParams }) => {
 
   return (
     <div className="container mx-auto p-4 pt-14">
-      <h1 className="text-base font-medium mb-6">{getHotels.length} Hotels in {slug}</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {getHotels.map((hotel) => (
-              <PropertyCard key={hotel.hotel_id} data={hotel} />
-            ))}
-          </div>
-        </div>
-        <div className="hidden lg:block">
-          <div className="sticky top-4">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <img src="https://maps.googleapis.com/maps/api/staticmap?center=Skardu,Pakistan&zoom=11&size=400x400&key=YOUR_API_KEY" alt="Map of Skardu" className="w-full h-96 object-cover" />
-            </div>
-          </div>
-        </div>
+      <h1 className="text-3xl font-bold mb-8 text-gray-800">{getHotels.length} Hotels in {slug}</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {getHotels.map((hotel) => (
+          <PropertyCard key={hotel.hotel_id} data={hotel} />
+        ))}
       </div>
     </div>
   );
