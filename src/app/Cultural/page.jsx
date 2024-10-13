@@ -14,6 +14,7 @@ export default function CulturalExperiences() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   const generateItinerary = async () => {
+    await new Promise(resolve => setTimeout(resolve, 2000));
     const itinerary = "Day 1: Visit Badshahi Mosque, explore Lahore Fort\nDay 2: Experience Sufi music at Data Darbar...";
     setAiGeneratedItinerary(itinerary);
   };

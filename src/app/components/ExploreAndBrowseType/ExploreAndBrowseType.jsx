@@ -10,10 +10,10 @@ const ExploreDestinations = ({dates, options}) => {
   // console.log(departure)
 
   const destinations = [
-    { name: 'Nathia Gali', properties: 3, image: '/attabadLake2.jpg' },
-    { name: 'Murree', properties: 57, image: '/attabadLake2.jpg' },
-    { name: 'Skardu', properties: 161, image: '/attabadLake2.jpg' },
-    { name: 'Hunza', properties: 161, image: '/attabadLake2.jpg' },
+    { name: 'Nathia Gali', properties: 3, image: '/Nathiagali.jpg' },
+    { name: 'Murree', properties: 57, image: '/murree.jpg' },
+    { name: 'Skardu', properties: 161, image: '/Shangri-La-skard.jpg' },
+    { name: 'Hunza', properties: 161, image: '/luxuxHunza.jpg' },
 
   ];
 

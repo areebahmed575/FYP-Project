@@ -56,7 +56,7 @@ export default function TripPage() {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/process', {
+      const response = await fetch('https://myaitrippalnnerapp.purplemeadow-0b436928.eastus.azurecontainerapps.io/process', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

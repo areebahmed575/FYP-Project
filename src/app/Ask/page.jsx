@@ -31,7 +31,7 @@ const AskPakTour = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:8000/chat', {
+      const response = await axios.post('https://mycontainerapp.purplemeadow-0b436928.eastus.azurecontainerapps.io/chat', {
         message: inputUserMsg,
       });
 
