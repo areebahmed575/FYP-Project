@@ -7,7 +7,7 @@ const RentalCard = ({ rental, isUnique = false, dates }) => {
     const { hotel_id, property } = rental
     // console.log(property)
     const { name, photoUrls, reviewCount, wishlistName, reviewScore, reviewScoreWord, priceBreakdown } = property
-    console.log(priceBreakdown.grossPrice.value.toFixed(2))
+    // console.log(priceBreakdown.grossPrice.value.toFixed(2))
     const usdCurrency = 278.64;
     const priceInPKR = Math.round(usdCurrency * priceBreakdown.grossPrice.value.toFixed(2)).toLocaleString('en-US')
     return (
