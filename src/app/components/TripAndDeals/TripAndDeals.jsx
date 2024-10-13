@@ -9,13 +9,13 @@ const TripPlanner = () => {
   // console.log(options)
   const vibes = ['Romance', 'City', 'Outdoors'];
   const topDestinations = [
-    { name: 'Rawalpindi', distance: '1,123 km away', image: '/Mountains.jpg' },
+    { name: 'Kashmir', distance: '1,123 km away', image: '/Mountains.jpg' },
     { name: 'Bhurban', distance: '1,174 km away', image: '/Hunza.webp' },
   ];
   const weekendDeals = [
     {
-      name: 'Garlon Residence',
-      location: 'Istanbul, Turkey',
+      name: 'Arang Kel',
+      location: 'Pakistan,Karachi',
       rating: 8.5,
       reviews: 1412,
       oldPrice: 52664,

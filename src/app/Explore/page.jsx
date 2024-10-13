@@ -73,7 +73,7 @@ export default function ExplorePage() {
     setAiRecommendation("");
 
     try {
-      const response = await fetch("http://localhost:8000/process", {
+      const response = await fetch("https://myweatherrecommenderapp.purplemeadow-0b436928.eastus.azurecontainerapps.io/process", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
