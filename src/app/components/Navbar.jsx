@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { FiUser } from 'react-icons/fi';
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
+import Dropdown from '../components/Dropdown/Dropdown'
 
 const Navbar = ({ toggleSidebar }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,6 +18,7 @@ const Navbar = ({ toggleSidebar }) => {
   // console.log(status)
   // console.log(data)
   const isLogin = status === 'unauthenticated' ? false : true
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,8 +84,11 @@ const Navbar = ({ toggleSidebar }) => {
         ) : (
           <>
             {/* <button>Log Out</button> */}
-            <div className='relative w-[50px] h-[50px] rounded-full cursor-pointer' onClick={signOut}>
+              <div className='relative w-[50px] h-[50px] rounded-full cursor-pointer' onClick={() => setOpen(!open)}>
               <Image src={data?.user.image} fill className='w-[50px] h-[50px] rounded-full object-cover' />
+                {
+                  open && <Dropdown />
+                }
             </div>
           </>
         )
