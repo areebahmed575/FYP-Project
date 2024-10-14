@@ -4,9 +4,14 @@ import Image from 'next/image'
 import { useState } from 'react'
 import SearchBar from '../components/SearchBar/SearchBar'
 import UniquePropertyBox from '../components/UniquePropertyBox'
+import Link from 'next/link'
+import { useAppSelector } from '../../lib/store/hooks'
 
 export default function StayPage() {
   const [aiSuggestion, setAiSuggestion] = useState('')
+  const {dates} = useAppSelector(state => state.search)
+  const {startDate, endDate} = dates
+  // console.log(startDate)
 
   const generateAiSuggestion = () => {
     setAiSuggestion('AI-generated suggestion for your perfect stay!')
@@ -15,10 +20,6 @@ export default function StayPage() {
   return (
     <div className="min-h-screen px-[50px] py-[25px]">
       <main className="container mx-auto px-4 py-12">
-       
-
-        
-
         <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
           <Image
             src="/Shangrila.jpg"
@@ -28,7 +29,7 @@ export default function StayPage() {
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <h2 className="text-white text-4xl font-bold text-center px-4">
-            Find Your Perfect Stay
+              Find Your Perfect Stay
             </h2>
           </div>
         </section>
@@ -76,7 +77,7 @@ export default function StayPage() {
           <h2 className="text-4xl font-semibold mb-8 text-gray-800">Explore Pakistan</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {['Karachi', 'Lahore', 'Islamabad', 'Peshawar'].map((city) => (
-              <div key={city} className="relative rounded-lg overflow-hidden group">
+              <Link href={`/PropertyListing/${city}?arrival_date=${startDate}&departure_date=${endDate}`} key={city} className="relative rounded-lg overflow-hidden group">
                 <Image
                   src={`/hunzaValley.jpg`}
                   alt={city}
@@ -87,7 +88,7 @@ export default function StayPage() {
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white text-xl font-bold">{city}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
@@ -139,7 +140,7 @@ export default function StayPage() {
           <h2 className="text-4xl font-semibold mb-8 text-gray-800">Stay at Our Top Unique Properties</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {['Treehouse Getaway', 'Underwater Suite'].map((property) => (
-              <UniquePropertyBox property={property} key={property}/>
+              <UniquePropertyBox property={property} key={property} />
             ))}
           </div>
         </section>

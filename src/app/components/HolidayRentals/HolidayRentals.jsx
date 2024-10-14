@@ -7,7 +7,6 @@ const HolidayRentals = ({ dates }) => {
   const [uniqueProperties, setUniqueProperties] = useState([]);
   const [error, setError] = useState(null);
   const { startDate, endDate } = dates[0]
-  let properties = []
 
   const highlyRatedHotels = async (dest_id, arrival_date, departure_date) => {
     try {
@@ -50,90 +49,34 @@ const HolidayRentals = ({ dates }) => {
         throw new Error("Something went wrong!!")
       }
       const data = await res.json();
-      // console.log(data.data.hotels[0])
-      setUniqueProperties((prev) => [...prev, data.data.hotels[0]])
-      // setUniqueProperties(uniqueProperties.push(data.data.hotels[0]))
-
+      return data.data.hotels[0]
     } catch (error) {
       setError(error.message)
     }
   }
 
+  const uniquePropertyHandler = async () => {
+    const property1 = await getUniqueProperty("-2771255", startDate, endDate, 'property_type::224')
+    const property2 = await getUniqueProperty("-2771255", startDate, endDate, 'property_type::206')
+    const property3 = await getUniqueProperty("-2755649", startDate, endDate, 'property_type::221')
+    const property4 = await getUniqueProperty("-2770324", startDate, endDate, 'property_type::213')
 
+    // console.log(property1)
+    // console.log(property2)
+    // console.log(property3)
+    // console.log(property4)
+
+    if (property1 && property2) {
+      setUniqueProperties([property1, property2, property3, property4])
+    } else {
+      return
+    }
+  }
 
   useEffect(() => {
     highlyRatedHotels("-2762645", startDate, endDate)
-    getUniqueProperty("-2771255", startDate, endDate, 'property_type::224')
-    getUniqueProperty("-2771255", startDate, endDate, 'property_type::206')
+    uniquePropertyHandler()
   }, [startDate, endDate])
-
-  // const highlyRatedRentals = [
-  //   {
-  //     name: 'Masherbrum House',
-  //     location: 'Hunza',
-  //     rating: 9.0,
-  //     reviews: 3016,
-  //     price: 49373,
-  //     image: '/hotel1.webp',
-  //   },
-  //   {
-  //     name: 'Masherbrum House',
-  //     location: 'Hunza',
-  //     rating: 9.1,
-  //     reviews: 3016,
-  //     price: 49373,
-  //     image: '/hotel1.webp',
-  //   },
-  //   {
-  //     name: 'Masherbrum House',
-  //     location: 'Hunza',
-  //     rating: 9.0,
-  //     reviews: 3016,
-  //     price: 39373,
-  //     image: '/hotel1.webp',
-  //   },
-  //   {
-  //     name: 'Masherbrum House',
-  //     location: 'Hunza',
-  //     rating: 9.8,
-  //     reviews: 3016,
-  //     price: 59373,
-  //     image: '/hotel1.webp',
-  //   },
-
-  // ];
-
-  // const uniqueProperties = [
-  //   {
-  //     name: 'Luxus Hunza Attabad Lake Resort',
-  //     location: 'Sweden, Ljungskile',
-  //     rating: 9.3,
-  //     reviews: 133,
-  //     image: '/apartments2.jpeg',
-  //   },
-  //   {
-  //     name: 'Luxus Hunza Attabad Lake Resort',
-  //     location: 'Hunza',
-  //     rating: 9.2,
-  //     reviews: 133,
-  //     image: '/apartments2.jpeg',
-  //   },
-  //   {
-  //     name: 'Luxus Hunza Attabad Lake Resort',
-  //     location: 'Hunza',
-  //     rating: 9.2,
-  //     reviews: 133,
-  //     image: '/apartments2.jpeg',
-  //   },
-  //   {
-  //     name: 'Luxus Hunza Attabad Lake Resort',
-  //     location: 'Hunza',
-  //     rating: 9.3,
-  //     reviews: 133,
-  //     image: '/apartments2.jpeg',
-  //   },
-  // ];
-
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
@@ -145,7 +88,7 @@ const HolidayRentals = ({ dates }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
         {/* {console.log(highlyRatedHotel)} */}
         {highlyRatedHotel.map((hotel) => (
-          <RentalCard key={hotel.hotel_id} rental={hotel} dates={[startDate, endDate]}/>
+          <RentalCard key={hotel.hotel_id} rental={hotel} dates={[startDate, endDate]} />
         ))}
       </div>
 
