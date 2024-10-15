@@ -1,7 +1,7 @@
 import PropertyCard from "../../components/PropertyCard/PropertyCard";
 
-const searchHotels = async (dest_id, search_type, arrival_date, departure_date) => {
-  const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels?dest_id=${dest_id}&search_type=${search_type}&arrival_date=${arrival_date}&departure_date=${departure_date}`; //&adults=1&children_age=0%2C17&room_qty=1&page_number=1&units=metric&temperature_unit=c&languagecode=en-us&currency_code=AED (optional)
+const searchHotels = async (dest_id, search_type, arrival_date, departure_date, categories_filter) => {
+  const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels?dest_id=${dest_id}&search_type=${search_type}&arrival_date=${arrival_date}&departure_date=${departure_date}${categories_filter ? `&categories_filter=${categories_filter}`: ''}`; //&adults=1&children_age=0%2C17&room_qty=1&page_number=1&units=metric&temperature_unit=c&languagecode=en-us&currency_code=AED (optional)
   const options = {
     method: 'GET',
     headers: {
@@ -44,10 +44,11 @@ const searchDestination = async (slug) => {
 const PropertyListingPage = async ({ params, searchParams }) => {
   // console.log(searchParams)
   const { slug } = params;
-  const { arrival_date, departure_date } = searchParams;
+  const { arrival_date, departure_date, categories_filter } = searchParams;
   // console.log(arrival_date)
   // console.log(departure_date)
   // console.log(slug)
+  // console.log(categories_filter)
 
   const getDestination = await searchDestination(slug)
   // console.log("data ====>>>> ", getDestination)
