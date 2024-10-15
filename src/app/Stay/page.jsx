@@ -8,19 +8,36 @@ import Link from 'next/link'
 import { useAppSelector } from '../../lib/store/hooks'
 import { motion } from 'framer-motion';
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { useRouter } from 'next/navigation'
 
-const FormModal = ({ type, setOpenModal }) => {
+const FormModal = ({ type, setOpenModal, dates }) => {
+  const [value, setValue] = useState('')
+  const [valueError, setValueError] = useState('')
+  const { startDate, endDate } = dates
+  const router = useRouter()
+
+  const routeHandler = () => {
+    // console.log(value)
+    // console.log('Hello')
+    if(value === ''){
+      setValueError('Enter the destination');
+      return
+    } else {
+      router.push(`/PropertyListing/${value}?arrival_date=${startDate}&departure_date=${endDate}&categories_filter=${type === 'Hotels' ? 'property_type::204' : type === 'Apartments' ? 'property_type::201' : type === 'Resorts' ? 'property_type::206' : type === 'Villas' ? 'property_type::213' : 'property_type::204'}`)
+    }
+  }
+
   return (
     <div className='bg-white rounded-lg shadow-md p-4 text-center transition-shadow duration-300'>
       <div className='flex items-end justify-end py-[10px]'>
         <IoIosCloseCircleOutline size={25} color='teal' className='cursor-pointer' onClick={() => setOpenModal(false)} />
       </div>
       <div className="inputs flex flex-col items-center justify-center gap-[15px]">
-        <input type="text" placeholder='Enter Destination' className='w-[300px] py-[5px] px-[10px] rounded bg-white border-teal-500 border-[2px] outline-teal-700 placeholder:text-theme-black' />
+        <input type="text" placeholder='Enter Destination' className='w-[300px] py-[5px] px-[10px] rounded bg-white border-teal-500 border-[2px] outline-teal-700 placeholder:text-theme-black' onChange={(e)=> setValue(e.target.value)}/>
         <p className='mr-1'>Property Type: {type}</p>
         <motion.button whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }} className=''>
-          <Link href={`/`} className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center space-x-2">Search</Link>
+          whileTap={{ scale: 0.95 }} className='' onClick={routeHandler}>
+          <span className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center space-x-2">Search</span>
         </motion.button>
       </div>
     </div>
@@ -136,7 +153,7 @@ export default function StayPage() {
             {
               openModal && (
                 <div className=''>
-                  <FormModal type={type} setOpenModal={setOpenModal} />
+                  <FormModal type={type} setOpenModal={setOpenModal} dates={dates}/>
                 </div>
               )
             }
