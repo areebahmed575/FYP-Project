@@ -52,6 +52,25 @@ export default function StayPage() {
   const { startDate, endDate } = dates
   // console.log(startDate)
 
+  const explore = [
+    {
+      name: 'Karachi',
+      img: '/karachi.jpg'
+    },
+    {
+      name: 'Lahore',
+      img: '/lahore.jpg'
+    },
+    {
+      name: 'Islamabad',
+      img: '/islamabad.jpg'
+    },
+    {
+      name: 'Peshawar',
+      img: '/peshawar.webp'
+    }
+  ]
+
   const generateAiSuggestion = () => {
     setAiSuggestion('AI-generated suggestion for your perfect stay!')
   }
@@ -115,17 +134,17 @@ export default function StayPage() {
         <section className="mb-16">
           <h2 className="text-4xl font-semibold mb-8 text-gray-800">Explore Pakistan</h2>
           <div className="grid md:grid-cols-4 gap-6">
-            {['Karachi', 'Lahore', 'Islamabad', 'Peshawar'].map((city) => (
-              <Link href={`/PropertyListing/${city}?arrival_date=${startDate}&departure_date=${endDate}`} key={city} className="relative rounded-lg overflow-hidden group">
+            {explore.map((city) => (
+              <Link href={`/PropertyListing/${city.name}?arrival_date=${startDate}&departure_date=${endDate}`} key={city.name} className="relative rounded-lg overflow-hidden group">
                 <Image
-                  src={`/hunzaValley.jpg`}
+                  src={`${city?.img}`}
                   alt={city}
                   width={300}
                   height={200}
                   className="w-full h-48 object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white text-xl font-bold">{city}</p>
+                  <p className="text-white text-xl font-bold">{city.name}</p>
                 </div>
               </Link>
             ))}
