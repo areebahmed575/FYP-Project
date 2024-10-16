@@ -1,7 +1,7 @@
 "use client"
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SearchBar from '../components/SearchBar/SearchBar'
 import UniquePropertyBox from '../components/UniquePropertyBox'
 import Link from 'next/link'
@@ -9,6 +9,7 @@ import { useAppSelector } from '../../lib/store/hooks'
 import { motion } from 'framer-motion';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useRouter } from 'next/navigation'
+import RentalCard from '../components/RentalCard/RentalCard'
 
 const FormModal = ({ type, setOpenModal, dates }) => {
   const [value, setValue] = useState('')
@@ -19,7 +20,7 @@ const FormModal = ({ type, setOpenModal, dates }) => {
   const routeHandler = () => {
     // console.log(value)
     // console.log('Hello')
-    if(value === ''){
+    if (value === '') {
       setValueError('Enter the destination');
       return
     } else {
@@ -33,7 +34,7 @@ const FormModal = ({ type, setOpenModal, dates }) => {
         <IoIosCloseCircleOutline size={25} color='teal' className='cursor-pointer' onClick={() => setOpenModal(false)} />
       </div>
       <div className="inputs flex flex-col items-center justify-center gap-[15px]">
-        <input type="text" placeholder='Enter Destination' className='w-[300px] py-[5px] px-[10px] rounded bg-white border-teal-500 border-[2px] outline-teal-700 placeholder:text-theme-black' onChange={(e)=> setValue(e.target.value)}/>
+        <input type="text" placeholder='Enter Destination' className='w-[300px] py-[5px] px-[10px] rounded bg-white border-teal-500 border-[2px] outline-teal-700 placeholder:text-theme-black' onChange={(e) => setValue(e.target.value)} />
         <p className='mr-1'>Property Type: {type}</p>
         <motion.button whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }} className='' onClick={routeHandler}>
@@ -50,11 +51,121 @@ export default function StayPage() {
   const [type, setType] = useState('')
   const { dates } = useAppSelector(state => state.search)
   const { startDate, endDate } = dates
+  const [highlyRatedHotel, setHighlyRatedHotel] = useState([]);
+  const [uniqueProperties, setUniqueProperties] = useState([]);
   // console.log(startDate)
+
+  const explore = [
+    {
+      name: 'Karachi',
+      img: '/karachi.jpg'
+    },
+    {
+      name: 'Lahore',
+      img: '/lahore.jpg'
+    },
+    {
+      name: 'Islamabad',
+      img: '/islamabad.jpg'
+    },
+    {
+      name: 'Peshawar',
+      img: '/peshawar.webp'
+    }
+  ]
+
+  const property = [
+    {
+      name: 'Hotels',
+      img: '/hotels.jpg'
+    },
+    {
+      name: 'Apartments',
+      img: '/apartments.jpg'
+    },
+    {
+      name: 'Resorts',
+      img: '/resorts.webp'
+    },
+    {
+      name: 'Villas',
+      img: '/villas.jpg'
+    }
+  ]
+
+  const highlyRatedHotels = async (dest_id, arrival_date, departure_date) => {
+    try {
+      const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels?dest_id=${dest_id}&search_type=CITY&arrival_date=${arrival_date}&departure_date=${departure_date}&sort_by=class_descending&categories_filter=hotels`; //&adults=1&children_age=0%2C17&room_qty=1&page_number=1&units=metric&temperature_unit=c&languagecode=en-us&currency_code=AED (optional)
+      const options = {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
+          'x-rapidapi-host': process.env.NEXT_PUBLIC_RAPIDAPI_HOST
+        },
+        // next: { revalidate: 86400 }
+      };
+
+      const res = await fetch(url, options);
+      if (!res.ok) {
+        throw new Error("Something went wrong!!")
+      }
+      const data = await res.json();
+      // console.log(data.data.hotels.slice(0, 4))
+      setHighlyRatedHotel(data.data.hotels.slice(0, 4))
+    } catch (error) {
+      setError(error.message)
+    }
+  }
+
+  const getUniqueProperty = async (dest_id, arrival_date, departure_date, propertyFilter) => {
+    try {
+      const url = `https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels?dest_id=${dest_id}&search_type=CITY&arrival_date=${arrival_date}&departure_date=${departure_date}&adults=1&children_age=0%2C17&categories_filter=${propertyFilter}`; //&adults=1&children_age=0%2C17&room_qty=1&page_number=1&units=metric&temperature_unit=c&languagecode=en-us&currency_code=AED (optional)
+      const options = {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
+          'x-rapidapi-host': process.env.NEXT_PUBLIC_RAPIDAPI_HOST
+        },
+        // next: { revalidate: 86400 }
+      };
+
+      const res = await fetch(url, options);
+      if (!res.ok) {
+        throw new Error("Something went wrong!!")
+      }
+      const data = await res.json();
+      return data.data.hotels[0]
+    } catch (error) {
+      setError(error.message)
+    }
+  }
+
+  const uniquePropertyHandler = async () => {
+    const property1 = await getUniqueProperty("-2771255", startDate, endDate, 'property_type::224')
+    const property2 = await getUniqueProperty("-2771255", startDate, endDate, 'property_type::206')
+    const property3 = await getUniqueProperty("-2770324", startDate, endDate, 'property_type::221')
+    const property4 = await getUniqueProperty("-2770324", startDate, endDate, 'property_type::213')
+
+    // console.log(property1)
+    // console.log(property2)
+    // console.log(property3)
+    // console.log(property4)
+
+    if (property1 && property2) {
+      setUniqueProperties([property1, property2, property3, property4])
+    } else {
+      return
+    }
+  }
 
   const generateAiSuggestion = () => {
     setAiSuggestion('AI-generated suggestion for your perfect stay!')
   }
+
+  useEffect(() => {
+    highlyRatedHotels("900055706", startDate, endDate);
+    uniquePropertyHandler()
+  }, [startDate, endDate])
 
   return (
     <div className="min-h-screen px-[50px] py-[25px]">
@@ -115,17 +226,17 @@ export default function StayPage() {
         <section className="mb-16">
           <h2 className="text-4xl font-semibold mb-8 text-gray-800">Explore Pakistan</h2>
           <div className="grid md:grid-cols-4 gap-6">
-            {['Karachi', 'Lahore', 'Islamabad', 'Peshawar'].map((city) => (
-              <Link href={`/PropertyListing/${city}?arrival_date=${startDate}&departure_date=${endDate}`} key={city} className="relative rounded-lg overflow-hidden group">
+            {explore.map((city) => (
+              <Link href={`/PropertyListing/${city.name}?arrival_date=${startDate}&departure_date=${endDate}`} key={city.name} className="relative rounded-lg overflow-hidden group">
                 <Image
-                  src={`/hunzaValley.jpg`}
+                  src={`${city?.img}`}
                   alt={city}
                   width={300}
                   height={200}
                   className="w-full h-48 object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white text-xl font-bold">{city}</p>
+                  <p className="text-white text-xl font-bold">{city.name}</p>
                 </div>
               </Link>
             ))}
@@ -135,25 +246,25 @@ export default function StayPage() {
         <section className="mb-16 relative">
           <h2 className="text-4xl font-semibold mb-8 text-gray-800">Browse by Property Type</h2>
           <div className="grid md:grid-cols-4 gap-6">
-            {['Hotels', 'Apartments', 'Resorts', 'Villas'].map((type) => (
-              <div key={type} className="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={() => {
+            {property.map((type) => (
+              <div key={type.name} className="bg-white rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={() => {
                 setOpenModal(true)
-                setType(type)
+                setType(type.name)
               }}>
                 <Image
-                  src={`/${type.toLowerCase()}-icon.svg`}
-                  alt={type}
-                  width={64}
-                  height={64}
-                  className="mx-auto mb-4"
+                  src={type.img}
+                  alt={type.name}
+                  width={300}
+                  height={200}
+                  className="w-full h-48 object-cover mb-4 rounded"
                 />
-                <p className="text-lg font-semibold text-gray-700">{type}</p>
+                <p className="text-lg font-semibold text-gray-700 mb-2">{type.name}</p>
               </div>
             ))}
             {
               openModal && (
                 <div className=''>
-                  <FormModal type={type} setOpenModal={setOpenModal} dates={dates}/>
+                  <FormModal type={type} setOpenModal={setOpenModal} dates={dates} />
                 </div>
               )
             }
@@ -162,40 +273,25 @@ export default function StayPage() {
 
 
         <section className="mb-16">
-          <h2 className="text-4xl font-semibold mb-8 text-gray-800">Book a Highly Rated Holiday Rental</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {['Mountain Retreat', 'Beachfront Villa', 'City Apartment'].map((rental) => (
-              <div key={rental} className="bg-white rounded-xl shadow-lg overflow-hidden">
-                <Image
-                  src={`/hunzaValley.jpg`}
-                  alt={rental}
-                  width={400}
-                  height={300}
-                  className="w-full h-56 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-2xl font-semibold mb-2 text-gray-700">{rental}</h3>
-                  <div className="flex items-center mb-2">
-                    <span className="text-yellow-500 mr-1">★★★★★</span>
-                    <span className="text-gray-600">(4.9)</span>
-                  </div>
-                  <p className="text-gray-600">Exceptional comfort and views</p>
-                </div>
-              </div>
+          <h2 className="text-4xl font-semibold mb-8 text-gray-800">Book a Highly Rated Holiday Rental in Swat</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+            {/* {console.log(highlyRatedHotel)} */}
+            {highlyRatedHotel.map((hotel) => (
+              <RentalCard key={hotel.hotel_id} rental={hotel} dates={[startDate, endDate]} />
             ))}
           </div>
         </section>
 
         <section className="mb-16">
           <h2 className="text-4xl font-semibold mb-8 text-gray-800">Stay at Our Top Unique Properties</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {['Treehouse Getaway', 'Underwater Suite'].map((property) => (
-              <UniquePropertyBox property={property} key={property} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {uniqueProperties.map((property) => (
+              <RentalCard key={property.hotel_id} rental={property} dates={[startDate, endDate]} isUnique={true} />
             ))}
           </div>
         </section>
 
-        <section>
+        {/* <section>
           <h2 className="text-4xl font-semibold mb-8 text-gray-800">Featured Accommodations</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[1, 2, 3].map((item) => (
@@ -218,7 +314,7 @@ export default function StayPage() {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
       </main>
 
       <footer className="bg-teal-800 text-white text-center py-6 mt-16">
