@@ -2,9 +2,76 @@
 import { useState, useEffect } from 'react';
 import RentalCard from '../RentalCard/RentalCard'
 
+const highlyRatedRentals = [
+  {
+    name: 'Masherbrum House',
+    location: 'Hunza',
+    rating: 9.0,
+    reviews: 3016,
+    price: 49373,
+    image: '/hotel1.webp',
+  },
+  {
+    name: 'Masherbrum House',
+    location: 'Hunza',
+    rating: 9.1,
+    reviews: 3016,
+    price: 49373,
+    image: '/hotel1.webp',
+  },
+  {
+    name: 'Masherbrum House',
+    location: 'Hunza',
+    rating: 9.0,
+    reviews: 3016,
+    price: 39373,
+    image: '/hotel1.webp',
+  },
+  {
+    name: 'Masherbrum House',
+    location: 'Hunza',
+    rating: 9.8,
+    reviews: 3016,
+    price: 59373,
+    image: '/hotel1.webp',
+  },
+
+];
+
+const uniqueProperties = [
+  {
+    name: 'Luxus Hunza Attabad Lake Resort',
+    location: 'Sweden, Ljungskile',
+    rating: 9.3,
+    reviews: 133,
+    image: '/apartments2.jpeg',
+  },
+  {
+    name: 'Luxus Hunza Attabad Lake Resort',
+    location: 'Hunza',
+    rating: 9.2,
+    reviews: 133,
+    image: '/apartments2.jpeg',
+  },
+  {
+    name: 'Luxus Hunza Attabad Lake Resort',
+    location: 'Hunza',
+    rating: 9.2,
+    reviews: 133,
+    image: '/apartments2.jpeg',
+  },
+  {
+    name: 'Luxus Hunza Attabad Lake Resort',
+    location: 'Hunza',
+    rating: 9.3,
+    reviews: 133,
+    image: '/apartments2.jpeg',
+  },
+];
+
 const HolidayRentals = ({ dates }) => {
-  const [highlyRatedHotel, setHighlyRatedHotel] = useState([]);
-  const [uniqueProperties, setUniqueProperties] = useState([]);
+  // const [highlyRatedHotel, setHighlyRatedHotel] = useState([]);
+  // const [uniqueProperties, setUniqueProperties] = useState([]);
   const [error, setError] = useState(null);
   const { startDate, endDate } = dates[0]
 
@@ -73,10 +140,10 @@ const HolidayRentals = ({ dates }) => {
     }
   }
 
-  useEffect(() => {
-    highlyRatedHotels("-2762645", startDate, endDate)
-    uniquePropertyHandler()
-  }, [startDate, endDate])
+  // useEffect(() => {
+  //   highlyRatedHotels("-2762645", startDate, endDate)
+  //   uniquePropertyHandler()
+  // }, [startDate, endDate])
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
@@ -87,8 +154,11 @@ const HolidayRentals = ({ dates }) => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
         {/* {console.log(highlyRatedHotel)} */}
-        {highlyRatedHotel.map((hotel) => (
+        {/* {highlyRatedHotel.map((hotel) => (
           <RentalCard key={hotel.hotel_id} rental={hotel} dates={[startDate, endDate]} />
+        ))} */}
+        {highlyRatedRentals.map((hotel) => (
+          <RentalCard key={hotel.name} rental={hotel} dates={[startDate, endDate]} />
         ))}
       </div>
 
@@ -96,8 +166,11 @@ const HolidayRentals = ({ dates }) => {
       <p className="text-gray-600 mb-4">From castles and villas to boats and igloos, we've got it all</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {uniqueProperties.map((property) => (
+        {/* {uniqueProperties.map((property) => (
           <RentalCard key={property.hotel_id} rental={property} dates={[startDate, endDate]} isUnique={true} />
+        ))} */}
+        {uniqueProperties.map((property) => (
+          <RentalCard key={property.name} rental={property} dates={[startDate, endDate]} isUnique={true} />
         ))}
       </div>
     </div>

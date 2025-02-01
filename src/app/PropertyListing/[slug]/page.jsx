@@ -44,85 +44,90 @@ const searchDestination = async (slug) => {
 const PropertyListingPage = async ({ params, searchParams }) => {
   // console.log(searchParams)
   const { slug } = params;
-  const { arrival_date, departure_date, categories_filter } = searchParams;
-  // console.log(arrival_date)
-  // console.log(departure_date)
-  // console.log(slug)
-  // console.log(categories_filter)
 
-  const getDestination = await searchDestination(slug)
-  // console.log("data ====>>>> ", getDestination)
+  // --------------------------------RAPIDAPI WORK--------------------------------
+  // const { arrival_date, departure_date, categories_filter } = searchParams;
 
-  const { dest_id, search_type } = getDestination
-  console.log(dest_id)
+  // const getDestination = await searchDestination(slug)
+  // // console.log("data ====>>>> ", getDestination)
+  // const getHotels = await searchHotels(dest_id, search_type, arrival_date, departure_date)
 
-  const getHotels = await searchHotels(dest_id, search_type, arrival_date, departure_date)
-  // console.log("hotels ====>>> ", getHotels)
+  //-------------------------------------LOCAL WORK-------------------------------------
 
-  // const properties = [
-  //   {
-  //     image: "resort in",
-  //     title: "Resort in Skardu",
-  //     subtitle: "luxe • skardu • gilgit • snow",
-  //     beds: 1,
-  //     price: 57,
-  //     discountedPrice: 46,
-  //     total: 325
-  //   },
-  //   {
-  //     image: "guest ",
-  //     title: "Guesthouse in Skardu",
-  //     subtitle: "family guest room near skardu",
-  //     beds: 1,
-  //     price: 12,
-  //     discountedPrice: 10,
-  //     total: 71
-  //   },
-  //   {
-  //     image: "hotelin ",
-  //     title: "Hotel in Skardu",
-  //     subtitle: "Holiday Homes Skardu",
-  //     beds: 9,
-  //     price: 54,
-  //     discountedPrice: 48,
-  //     total: 338
-  //   },{
-  //     image: "resort in ",
-  //     title: "Resort in Skardu",
-  //     subtitle: "luxe • skardu • gilgit • snow",
-  //     beds: 1,
-  //     price: 57,
-  //     discountedPrice: 46,
-  //     total: 325
-  //   },
-  //   {
-  //     image: "guest ",
-  //     title: "Guesthouse in Skardu",
-  //     subtitle: "family guest room near skardu",
-  //     beds: 1,
-  //     price: 12,
-  //     discountedPrice: 10,
-  //     total: 71
-  //   },
-  //   {
-  //     image: "hotelin",
-  //     title: "Hotel in Skardu",
-  //     subtitle: "Holiday Homes Skardu",
-  //     beds: 9,
-  //     price: 54,
-  //     discountedPrice: 48,
-  //     total: 338
-  //   }
+  const properties = [
+    {
+      image: "resort in",
+      title: "Resort in Skardu",
+      subtitle: "luxe • skardu • gilgit • snow",
+      beds: 1,
+      price: 57,
+      discountedPrice: 46,
+      total: 325
+    },
+    {
+      image: "guest ",
+      title: "Guesthouse in Skardu",
+      subtitle: "family guest room near skardu",
+      beds: 1,
+      price: 12,
+      discountedPrice: 10,
+      total: 71
+    },
+    {
+      image: "hotelin ",
+      title: "Hotel in Skardu",
+      subtitle: "Holiday Homes Skardu",
+      beds: 9,
+      price: 54,
+      discountedPrice: 48,
+      total: 338
+    },{
+      image: "resort in ",
+      title: "Resort in Skardu",
+      subtitle: "luxe • skardu • gilgit • snow",
+      beds: 1,
+      price: 57,
+      discountedPrice: 46,
+      total: 325
+    },
+    {
+      image: "guest ",
+      title: "Guesthouse in Skardu",
+      subtitle: "family guest room near skardu",
+      beds: 1,
+      price: 12,
+      discountedPrice: 10,
+      total: 71
+    },
+    {
+      image: "hotelin",
+      title: "Hotel in Skardu",
+      subtitle: "Holiday Homes Skardu",
+      beds: 9,
+      price: 54,
+      discountedPrice: 48,
+      total: 338
+    }
 
-  // ];
+  ];
 
   return (
     <div className="container mx-auto p-4 pt-14">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">{getHotels.length} Hotels in {slug}</h1>
+      <h1 className="text-3xl font-bold mb-8 text-gray-800">{"getHotels.length"} Hotels in {"slug"}</h1>
+
+      {/* -------------------RAPIDAPI WORK----------------------------- */}
+      {/* <h1 className="text-3xl font-bold mb-8 text-gray-800">{getHotels.length} Hotels in {slug}</h1> */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {getHotels.map((hotel) => (
-          <PropertyCard key={hotel.hotel_id} data={hotel} />
+        {/* ----------------------LOCAL WORK--------------------- */}
+        {properties.map((hotel) => (
+          <PropertyCard key={hotel.title} data={hotel} />
         ))}
+
+        {/* ------------------------RAPIDAPI WORK -------------------------- */}
+
+        {/* {getHotels.map((hotel) => (
+          <PropertyCard key={hotel.hotel_id} data={hotel} />
+        ))} */}
       </div>
     </div>
   );
