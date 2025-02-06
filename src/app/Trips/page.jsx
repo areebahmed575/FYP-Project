@@ -56,7 +56,7 @@ export default function TripPage() {
     }
 
     try {
-      const response = await fetch('https://myaitrippalnnerapp.purplemeadow-0b436928.eastus.azurecontainerapps.io/process', {
+      const response = await fetch('http://localhost:8000/process', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -70,21 +70,13 @@ export default function TripPage() {
 
       const data = await response.json()
       
-     
-      for (let i = 0; i < steps.length; i++) {
-        await new Promise(resolve => {
-          const interval = setInterval(() => {
-            setProgress(prev => {
-              if (prev >= (i + 1) * 25) {
-                clearInterval(interval)
-                resolve()
-                return prev
-              }
-              return prev + 1
-            })
-          }, 40) 
-        })
-        setAiSuggestion(prev => prev + '\n\n' + data.tasks_output[i].task_output)
+      
+      setAiSuggestion(data.combined_output)
+
+    
+      for (let i = 0; i <= 100; i++) {
+        await new Promise(resolve => setTimeout(resolve, 20))
+        setProgress(i)
       }
 
     } catch (error) {
@@ -100,8 +92,6 @@ export default function TripPage() {
   return (
     <div className="min-h-screen px-[50px] py-[25px]">
       <main className="container mx-auto px-4 py-12">
-
-        
         <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
           <Image
             src="/Arang_Kel.jpg"
@@ -116,7 +106,6 @@ export default function TripPage() {
           </div>
         </section>
 
-        
         <motion.section 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -204,7 +193,6 @@ export default function TripPage() {
           )}
         </motion.section>
 
-        
         <section className="mb-12">
           <h2 className="text-3xl font-semibold mb-6 text-gray-800">Explore Trip Categories</h2>
           <div className="flex flex-wrap gap-4 justify-center">
@@ -224,7 +212,6 @@ export default function TripPage() {
           </div>
         </section>
 
-       
         <section className="mb-16">
           <h2 className="text-4xl font-semibold mb-8 text-gray-800">Featured Trips</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -250,7 +237,6 @@ export default function TripPage() {
           </div>
         </section>
 
-        
         <section>
           <h2 className="text-4xl font-semibold mb-8 text-gray-800">Trip Planning Tips</h2>
           <div className="bg-white rounded-xl shadow-lg p-8">
@@ -272,7 +258,6 @@ export default function TripPage() {
         </section>
       </main>
 
-    
       <footer className="bg-teal-800 text-white text-center py-6 mt-16">
         <p>&copy; 2024 AI-Powered Tourism. All rights reserved.</p>
       </footer>
