@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <StoreProvider>
             <Navbar toggleSidebar={toggleSidebar} />
-            <div className="flex pt-16">
+            <div className="flex relative pt-16">
               {!hideSidebar && (
                 <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
               )}

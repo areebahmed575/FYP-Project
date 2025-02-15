@@ -52,7 +52,7 @@ const Navbar = ({ toggleSidebar }) => {
         <Link href="/">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold bg-gradient-to-r from-teal-500 to-blue-500 text-transparent bg-clip-text"
+            className="hidden lg:flex text-2xl font-bold bg-gradient-to-r from-teal-500 to-blue-500 text-transparent bg-clip-text"
           >
             PakiGenTravel
           </motion.div>
@@ -75,7 +75,7 @@ const Navbar = ({ toggleSidebar }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <button className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2">
+              <button className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-2 lg:px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-1 lg:space-x-2 text-sm lg:text-base">
                 <FiUser />
                 <span>Sign in</span>
               </button>
