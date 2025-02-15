@@ -45,7 +45,7 @@ const HomePage = () => {
     }
 
     return (
-        <main className="min-h-screen px-[50px] py-[25px]">
+        <main className="min-h-screen md:px-[20px] lg:px-[50px] lg:py-[25px]">
             <div className="relative w-full h-screen overflow-hidden">
                 <motion.div
                     className="absolute z-10 w-full h-full flex justify-center flex-col items-center gap-7"
@@ -54,7 +54,7 @@ const HomePage = () => {
                     transition={{ duration: 1, delay: 0.5 }}
                 >
                     <motion.h1
-                        className="w-fit text-6xl text-white text-center font-extrabold px-5 drop-shadow-lg bg-teal-500 bg-opacity-30 rounded-2xl shadow-lg shadow-black/10 backdrop-blur-[9.5px] border border-teal-500 border-opacity-22"
+                        className="w-fit text-4xl lg:text-6xl text-white text-center font-extrabold px-5 md:py-3 drop-shadow-lg bg-teal-500 bg-opacity-30 rounded-2xl shadow-lg shadow-black/10 backdrop-blur-[9.5px] border border-teal-500 border-opacity-22"
                         initial={{ scale: 0.5 }}
                         animate={{ scale: 1 }}
                         transition={{ type: "spring", stiffness: 100, delay: 1 }}
@@ -70,7 +70,7 @@ const HomePage = () => {
                         with
                     </motion.p>
                     <motion.p
-                        className="w-fit text-6xl text-white text-center font-extrabold px-5 drop-shadow-lg bg-teal-500 bg-opacity-30 rounded-2xl shadow-lg shadow-black/10 backdrop-blur-[9.5px] border border-teal-500 border-opacity-22"
+                        className="w-fit text-4xl lg:text-6xl text-white text-center font-extrabold px-5 md:py-3 drop-shadow-lg bg-teal-500 bg-opacity-30 rounded-2xl shadow-lg shadow-black/10 backdrop-blur-[9.5px] border border-teal-500 border-opacity-22"
                         initial={{ scale: 0.5 }}
                         animate={{ scale: 1 }}
                         transition={{ type: "spring", stiffness: 100, delay: 2 }}
@@ -93,11 +93,11 @@ const HomePage = () => {
                 </div>
             </div>
 
-            <div className="wrapper px-12 py-6">
+            <div className="wrapper lg:px-12 py-6">
                 <SearchBar />
 
                 <motion.h1
-                    className="mt-24 mb-10 text-center text-6xl font-bold tracking-widest"
+                    className="mt-24 mb-10 text-center text-3xl md:text-6xl font-bold tracking-widest"
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
@@ -125,18 +125,18 @@ const HomePage = () => {
                 ].map((section, index) => (
                     <motion.div
                         key={section.title}
-                        className={`flex items-center gap-10 mb-24 flex-wrap ${index % 2 !== 0 ? 'flex-row-reverse' : ''}`}
+                        className={`flex flex-col md:flex-row items-center gap-10 mb-24 flex-wrap ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
                     >
                         <motion.div
-                            className="relative h-[400px] flex-1 rounded-lg overflow-hidden"
+                            className="relative h-[300px] w-full md:h-[400px] md:w-[200px] flex-1 rounded-lg overflow-hidden"
                             whileHover={{ scale: 1.05 }}
                             transition={{ type: "spring", stiffness: 300 }}
                         >
-                            <Image src={section.image} fill className="object-cover" alt={section.title} />
+                            <Image src={section.image} fill className="object-cover" layout="fill" objectFit="cover" alt={section.title} />
                         </motion.div>
                         <div className="flex-1 flex flex-col items-center gap-5">
                             <h2 className="text-3xl font-semibold text-center">{section.title}</h2>

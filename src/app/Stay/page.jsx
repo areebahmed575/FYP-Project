@@ -168,7 +168,7 @@ export default function StayPage() {
   }, [startDate, endDate])
 
   return (
-    <div className="min-h-screen px-[50px] py-[25px]">
+    <div className="min-h-screen md:px-[20px] lg:px-[50px] lg:py-[25px]">
       <main className="container mx-auto px-4 py-12">
         <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
           <Image
@@ -224,7 +224,7 @@ export default function StayPage() {
           </div>
         </div>
         <section className="mb-16">
-          <h2 className="text-4xl font-semibold mb-8 text-gray-800">Explore Pakistan</h2>
+          <h2 className="text-2xl lg:text-4xl font-semibold mb-8 text-gray-800">Explore Pakistan</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {explore.map((city) => (
               <Link href={`/PropertyListing/${city.name}?arrival_date=${startDate}&departure_date=${endDate}`} key={city.name} className="relative rounded-lg overflow-hidden group">
@@ -244,7 +244,7 @@ export default function StayPage() {
         </section>
 
         <section className="mb-16 relative">
-          <h2 className="text-4xl font-semibold mb-8 text-gray-800">Browse by Property Type</h2>
+          <h2 className="text-2xl lg:text-4xl font-semibold mb-8 text-gray-800">Browse by Property Type</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {property.map((type) => (
               <div key={type.name} className="bg-white rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={() => {
@@ -273,7 +273,7 @@ export default function StayPage() {
 
 
         <section className="mb-16">
-          <h2 className="text-4xl font-semibold mb-8 text-gray-800">Book a Highly Rated Holiday Rental in Swat</h2>
+          <h2 className="text-2xl lg:text-4xl font-semibold mb-8 text-gray-800">Book a Highly Rated Holiday Rental in Swat</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
             {/* {console.log(highlyRatedHotel)} */}
             {highlyRatedHotel.map((hotel) => (
@@ -283,7 +283,7 @@ export default function StayPage() {
         </section>
 
         <section className="mb-16">
-          <h2 className="text-4xl font-semibold mb-8 text-gray-800">Stay at Our Top Unique Properties</h2>
+          <h2 className="text-2xl lg:text-4xl font-semibold mb-8 text-gray-800">Stay at Our Top Unique Properties</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {uniqueProperties.map((property) => (
               <RentalCard key={property.hotel_id} rental={property} dates={[startDate, endDate]} isUnique={true} />

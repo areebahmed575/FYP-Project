@@ -33,7 +33,7 @@ export default function CulturalExperiences() {
   }, []);
 
   return (
-    <div className="min-h-screen  px-[50px] py-[25px]">
+    <div className="min-h-screen  md:px-[20px] lg:px-[50px] lg:py-[25px]">
 
       <Head>
         <title>Cultural Experiences in Pakistan</title>
@@ -45,7 +45,7 @@ export default function CulturalExperiences() {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl font-bold text-center mb-8 text-teal-800"
+          className="text-2xl lg:text-5xl font-bold text-center mb-8 text-teal-800"
         >
           Immerse Yourself in Pakistani Culture
         </motion.h1>
@@ -59,7 +59,7 @@ export default function CulturalExperiences() {
             objectFit="cover"
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <h2 className="text-white text-4xl font-bold text-center px-4">
+            <h2 className="text-white text-2xl lg:text-4xl font-bold text-center px-4">
               Discover the Magic of Pakistan's Cultural Heritage
             </h2>
           </div>
@@ -67,7 +67,7 @@ export default function CulturalExperiences() {
 
 
         <section className="container mx-auto my-16 px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-teal-800">Explore Our Cultural Offerings</h2>
+          <h2 className="text-2xl lg:text-3xl font-bold text-center mb-12 text-teal-800">Explore Our Cultural Offerings</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { icon: MdOutlineFestival, title: "Traditional Festivals", description: "Experience vibrant and colorful festivals", color: "blue" },
@@ -189,8 +189,8 @@ export default function CulturalExperiences() {
         </section>
 
         <section className="my-16 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-teal-800">Ready to Experience Pakistan's Culture?</h2>
-          <p className="text-xl mb-8">Let our AI create a personalized cultural itinerary just for you!</p>
+          <h2 className="text-xl lg:text-3xl font-bold mb-4 text-teal-800">Ready to Experience Pakistan's Culture?</h2>
+          <p className="text-lg lg:text-xl mb-8">Let our AI create a personalized cultural itinerary just for you!</p>
           <button
             onClick={generateItinerary}
             className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300"

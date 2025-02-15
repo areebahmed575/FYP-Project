@@ -71,7 +71,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       transition={{ type: 'spring', stiffness: 120 }}
       className={`h-screen bg-white/80 backdrop-blur-md fixed top-0 left-0 transform ${
         isOpen ? 'w-60' : 'w-16'
-      } transition-all duration-300 ease-in-out pt-16 border-r border-gray-200 shadow-md overflow-hidden`}
+      } transition-all duration-300 ease-in-out pt-16 border-r border-gray-200 shadow-md overflow-hidden z-[15]`}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
     >

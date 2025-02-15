@@ -56,7 +56,7 @@ const SearchBar = ({ isCompact = false }) => {
   }
 
 
-  const compactClass = isCompact ? 'py-2 px-4' : 'p-2 my-8';
+  const compactClass = isCompact ? 'p-2' : 'p-2 my-8';
   const inputClass = isCompact ? 'text-xs' : 'text-sm';
   const itemClass = isCompact ? 'flex-shrink-0' : 'flex-1';
 
@@ -80,7 +80,7 @@ const SearchBar = ({ isCompact = false }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`w-full max-w-4xl mx-auto bg-white rounded-full shadow-lg overflow-visible ${compactClass}`}
+      className={`md:w-full md:max-w-4xl w-sm mx-auto bg-white rounded-full shadow-lg overflow-visible ${compactClass}`}
     >
       <div className="flex items-center justify-between space-x-2">
         <motion.div
@@ -100,7 +100,7 @@ const SearchBar = ({ isCompact = false }) => {
         </motion.div>
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className={`${itemClass} flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 cursor-pointer`}
+          className={`${itemClass} hidden md:flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 cursor-pointer`}
           onClick={() => setShowDate(!showDate)}
         >
           <FaCalendarAlt className="text-teal-500" />
@@ -111,7 +111,7 @@ const SearchBar = ({ isCompact = false }) => {
         </motion.div>
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className={`${itemClass} flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 cursor-pointer relative`}
+          className={`${itemClass} hidden md:flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 cursor-pointer relative`}
           onClick={() => setShowOptions(!showOptions)}
         >
           <FaUsers className="text-teal-500" />
