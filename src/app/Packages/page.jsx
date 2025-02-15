@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 const PackagesPage = () => {
     return (
-        <div className='flex flex-col min-h-screen px-[50px] py-[25px]'>
+        <div className='flex flex-col min-h-screen md:px-[20px] lg:px-[50px] lg:py-[25px]'>
             <main className='container mx-auto px-4 py-12'>
                 {/* <h1 className='text-5xl font-extrabold text-center mb-12 text-gray-800'>Find The Best Package</h1> */}
                 
@@ -28,10 +28,10 @@ const PackagesPage = () => {
                 </div>
                 <div className='mb-16'>
                     <div className="text mb-5">
-                        <h1 className='text-4xl font-semibold mb-2 text-gray-800'>Your Wishlist starts here</h1>
+                        <h1 className='text-2xl lg:text-4xl font-semibold mb-2 text-gray-800'>Your Wishlist starts here</h1>
                         <p className='text-gray-500'>Save destinations all in one place—even if you're not ready to book</p>
                     </div>
-                    <div className='flex justify-between flex-wrap'>
+                    <div className='grid grid-col-1 lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 gap-8'>
                         {
                             [1, 2, 3, 4].map((item, index) => (
                                 <PackageBox key={index}/>
@@ -40,8 +40,8 @@ const PackagesPage = () => {
                     </div>
                 </div>
                 <section className="mb-16">
-                    <h2 className="text-4xl font-semibold mb-8 text-gray-800">Special Offers</h2>
-                    <div className="grid md:grid-cols-3 gap-8">
+                    <h2 className="text-2xl lg:text-4xl font-semibold mb-8 text-gray-800">Special Offers</h2>
+                    <div className="grid md:grid-cols-2 gap-8">
                         {['Summer Sale', 'Solo Package', 'Family Package'].map((offer) => (
                             <div key={offer} className="bg-white rounded-xl shadow-lg overflow-hidden">
                                 <Image

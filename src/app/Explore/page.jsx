@@ -140,7 +140,7 @@ Best time to visit: March to May, September to November
   };
 
   return (
-    <div className="min-h-screen px-[50px] py-[25px]">
+    <div className="min-h-screen md:px-[20px] lg:px-[50px] lg:py-[25px]">
       <main className="container mx-auto px-4 py-12">
         {/* Hero Section */}
         <section className="relative h-[500px] mb-16 rounded-xl overflow-hidden">
@@ -150,14 +150,14 @@ Best time to visit: March to May, September to November
             layout="fill"
             objectFit="cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent flex flex-col items-start justify-center p-12 mb-8">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent flex flex-col items-start justify-center p-5 md:p-12 mb-8">
             <span className="text-white text-sm font-semibold mb-2">
               Trending Now
             </span>
-            <h2 className="text-white text-6xl font-bold mb-4">
+            <h2 className="text-white text-3xl lg:text-6xl font-bold mb-4">
               EXPLORE PAKISTAN
             </h2>
-            <p className="text-white text-lg mb-6 max-w-2xl">
+            <p className="text-white lg:text-lg mb-6 max-w-2xl">
               Discover the beauty and diversity of Pakistan's landscapes,
               culture, and heritage. From towering mountains to historic sites,
               there's something for every traveler.
@@ -167,7 +167,7 @@ Best time to visit: March to May, September to November
             </button>
           </div>
           <div className="absolute bottom-8 right-8">
-            <div className="flex space-x-4">
+            <div className="hidden md:flex space-x-4">
               {["Islamabad", "Quetta", "Gilgit"].map((city) => (
                 <div
                   key={city}
@@ -184,7 +184,7 @@ Best time to visit: March to May, September to November
                 </div>
               ))}
             </div>
-            <div className="flex space-x-4 mt-2">
+            <div className="hidden md:flex space-x-4 mt-2">
               {["Islamabad", "Quetta", "Gilgit"].map((city) => (
                 <p
                   key={city}
@@ -198,13 +198,13 @@ Best time to visit: March to May, September to November
         </section>
 
         {/* AI Weather-Based Activity Recommender */}
-        <motion.section 
+        <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="mb-16 bg-white rounded-xl shadow-2xl p-8 overflow-hidden"
         >
-          <h2 className="text-3xl font-semibold mb-6 text-gray-700">
+          <h2 className="text-xl lg:text-3xl font-semibold mb-6 text-gray-700">
             AI Weather-Based Activity Recommender
           </h2>
           <p className="mb-6 text-gray-600">
@@ -231,7 +231,7 @@ Best time to visit: March to May, September to November
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={generateAiRecommendation}
-              className="bg-teal-600 text-white py-3 px-8 rounded-lg hover:bg-teal-700 transition duration-300 text-lg font-semibold shadow-md"
+              className="bg-teal-600 text-white py-3 px-8 rounded-lg hover:bg-teal-700 transition duration-300  md:text-lg font-semibold shadow-md"
               disabled={isGeneratingContent}
             >
               {isGeneratingContent ? (
@@ -246,7 +246,7 @@ Best time to visit: March to May, September to November
             </motion.button>
           </div>
           {weather && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="bg-gradient-to-r from-blue-100 to-teal-100 p-4 rounded-lg mb-6 flex items-center justify-between"
@@ -262,7 +262,7 @@ Best time to visit: March to May, September to November
             </motion.div>
           )}
           {aiRecommendation && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="bg-teal-50 border border-teal-200 p-6 rounded-lg animate-fade-in shadow-inner"
@@ -275,7 +275,7 @@ Best time to visit: March to May, September to November
 
         {/* Explore by Region */}
         <section className="mb-12">
-          <h2 className="text-3xl font-semibold mb-6 text-gray-800">
+          <h2 className="text-2xl lg:text-3xl font-semibold mb-6 text-gray-800">
             Explore by Region
           </h2>
           <div className="flex flex-wrap gap-4 justify-center">
@@ -283,11 +283,10 @@ Best time to visit: March to May, September to November
               <button
                 key={region}
                 onClick={() => setSelectedRegion(region)}
-                className={`px-6 py-2 rounded-full text-lg font-semibold transition duration-300 ${
-                  selectedRegion === region
+                className={`px-6 py-2 rounded-full text-lg font-semibold transition duration-300 ${selectedRegion === region
                     ? "bg-teal-600 text-white"
                     : "bg-white text-teal-600 hover:bg-teal-100"
-                }`}
+                  }`}
               >
                 {region.charAt(0).toUpperCase() + region.slice(1)}
               </button>
@@ -297,10 +296,10 @@ Best time to visit: March to May, September to November
 
         {/* Discover Amazing Places */}
         <section className="mb-16">
-          <h2 className="text-4xl font-semibold mb-8 text-gray-800">
+          <h2 className="text-2xl lg:text-4xl font-semibold mb-8 text-gray-800">
             Discover Amazing Places
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredDestinations.map((dest) => (
               <div
                 key={dest.id}
@@ -333,7 +332,7 @@ Best time to visit: March to May, September to November
         {/* Generated Destination Content */}
         {selectedDestination && (
           <section className="mb-16 bg-white rounded-xl shadow-2xl p-8">
-            <h2 className="text-3xl font-semibold mb-6 text-gray-700">
+            <h2 className="text-2xl lg:text-3xl font-semibold mb-6 text-gray-700">
               Discover {selectedDestination.name}
             </h2>
             {isGeneratingContent ? (
@@ -350,10 +349,10 @@ Best time to visit: March to May, September to November
 
         {/* Travel Insights */}
         <section>
-          <h2 className="text-4xl font-semibold mb-8 text-gray-800">
+          <h2 className="text-2xl lg:text-4xl font-semibold mb-8 text-gray-800">
             Travel Insights
           </h2>
-          <div className="bg-white rounded-xl shadow-lg p-8">
+          <div className="bg-white rounded-xl shadow-lg p-3 md:p-8">
             <ul className="space-y-4 text-gray-600">
               <li className="flex items-start">
                 <svg

@@ -38,7 +38,7 @@ const Navbar = ({ toggleSidebar }) => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 120 }}
-      className="flex justify-between items-center p-4 bg-white/80 backdrop-blur-md w-full fixed top-0 z-20 border-b border-gray-200 shadow-sm"
+      className="flex justify-between items-center p-2 gap-2 md:p-4 bg-white/80 backdrop-blur-md w-full fixed top-0 z-20 border-b border-gray-200 shadow-sm"
     >
       <div className="flex items-center space-x-4">
         {!showSearchBar && (
@@ -59,12 +59,12 @@ const Navbar = ({ toggleSidebar }) => {
         </Link>
       </div>
       {showSearchBar && (
-        <div className="flex-grow max-w-xl mx-4">
+        <div className="flex-grow max-w-xl md:mx-4">
           <SearchBar isCompact={true} />
         </div>
       )}
       {!showSearchBar && isScrolled && (
-        <div className="flex-grow max-w-xl mx-4">
+        <div className="flex-grow max-w-xl md:mx-4">
           <SearchBar isCompact={true} />
         </div>
       )}
@@ -76,7 +76,7 @@ const Navbar = ({ toggleSidebar }) => {
               whileTap={{ scale: 0.95 }}
             >
               <button className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-2 lg:px-4 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-1 lg:space-x-2 text-sm lg:text-base">
-                <FiUser />
+                <FiUser className='hidden md:flex'/>
                 <span>Sign in</span>
               </button>
             </motion.div>

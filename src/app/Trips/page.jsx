@@ -90,7 +90,7 @@ export default function TripPage() {
   const filteredTrips = selectedCategory === 'all' ? trips : trips.filter(trip => trip.category === selectedCategory)
 
   return (
-    <div className="min-h-screen px-[50px] py-[25px]">
+    <div className="min-h-screen md:px-[20px] lg:px-[50px] lg:py-[25px]">
       <main className="container mx-auto px-4 py-12">
         <section className="relative h-96 mb-16 rounded-xl overflow-hidden">
           <Image
@@ -100,7 +100,7 @@ export default function TripPage() {
             objectFit="cover"
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <h2 className="text-white text-4xl font-bold text-center px-4">
+            <h2 className="text-white text-2xl lg:text-4xl font-bold text-center px-4">
               Discover Your Perfect Trip
             </h2>
           </div>
@@ -194,7 +194,7 @@ export default function TripPage() {
         </motion.section>
 
         <section className="mb-12">
-          <h2 className="text-3xl font-semibold mb-6 text-gray-800">Explore Trip Categories</h2>
+          <h2 className="text-2xl lg:text-3xl font-semibold mb-6 text-gray-800">Explore Trip Categories</h2>
           <div className="flex flex-wrap gap-4 justify-center">
             {['all', 'adventure', 'culture', 'relaxation', 'urban'].map((category) => (
               <button
@@ -213,8 +213,8 @@ export default function TripPage() {
         </section>
 
         <section className="mb-16">
-          <h2 className="text-4xl font-semibold mb-8 text-gray-800">Featured Trips</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-2xl lg:text-4xl font-semibold mb-8 text-gray-800">Featured Trips</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredTrips.map((trip) => (
               <div key={trip.id} className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
                 <Image
@@ -238,7 +238,7 @@ export default function TripPage() {
         </section>
 
         <section>
-          <h2 className="text-4xl font-semibold mb-8 text-gray-800">Trip Planning Tips</h2>
+          <h2 className="text-2xl lg:text-4xl font-semibold mb-8 text-gray-800">Trip Planning Tips</h2>
           <div className="bg-white rounded-xl shadow-lg p-8">
             <ul className="space-y-4 text-gray-600">
               <li className="flex items-start">
