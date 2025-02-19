@@ -85,11 +85,11 @@ export default function ExplorePage() {
 
       if (response.ok) {
         setAiRecommendation(data.combined_output);
-        // Simulate weather data (replace with actual API call in production)
-        setWeather({
-          temp: Math.floor(Math.random() * 30) + 10,
-          condition: ["Sunny", "Partly Cloudy", "Cloudy", "Rainy", "Snowy"][Math.floor(Math.random() * 5)]
-        });
+        
+        // setWeather({
+        //   temp: Math.floor(Math.random() * 30) + 10,
+        //   condition: ["Sunny", "Partly Cloudy", "Cloudy", "Rainy", "Snowy"][Math.floor(Math.random() * 5)]
+        // });
       } else {
         setAiRecommendation("Sorry, could not fetch recommendations at this time.");
       }
@@ -260,7 +260,7 @@ Best time to visit: March to May, September to November
               </div>
               <p className="text-3xl font-bold">{weather.temp}°C</p>
             </motion.div>
-          )}
+          )} 
           {aiRecommendation && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}

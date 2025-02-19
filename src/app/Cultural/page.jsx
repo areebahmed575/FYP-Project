@@ -190,12 +190,14 @@ export default function CulturalExperiences() {
 
         <section className="my-16 text-center">
           <h2 className="text-xl lg:text-3xl font-bold mb-4 text-teal-800">Ready to Experience Pakistan's Culture?</h2>
-          <p className="text-lg lg:text-xl mb-8">Let our AI create a personalized cultural itinerary just for you!</p>
+          <p className="text-lg lg:text-xl mb-8">Let our custom gpt create a personalized cultural itinerary just for you!</p>
           <button
-            onClick={generateItinerary}
+            onClick={() =>
+              window.location.href = "https://chatgpt.com/g/g-67b4a1853ed88191a4dc1e5fb956e9f5-pakigentravel-tourism"
+            }
             className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300"
           >
-            Generate My Cultural Itinerary
+            Try PakiGenTravel GPT
           </button>
 
         </section>

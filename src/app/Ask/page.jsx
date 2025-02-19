@@ -72,29 +72,31 @@ const AskPakTour = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-100 p-4 lg:p-8 flex items-center justify-center">
       <div className="max-w-6xl w-full flex flex-col lg:flex-row items-start relative bg-white rounded-xl shadow-2xl overflow-hidden">
-        <div className="w-full lg:w-1/2 p-8">
+        
+        {/* Left Panel (Chat) */}
+        <div className="w-full lg:w-1/2 p-4 lg:p-8">
           {/* Header */}
           <div className="mb-6">
             <div className="inline-block bg-teal-500 text-white text-xs px-2 py-1 rounded-full mb-2">BETA</div>
-            <h1 className="text-5xl font-bold text-gray-800 leading-tight">
+            <h1 className="text-3xl lg:text-5xl font-bold text-gray-800 leading-tight">
               Ask PakiGenTravel<span className="text-teal-500">.</span>
             </h1>
-            <p className="text-gray-600 mt-2 text-lg">
+            <p className="text-gray-600 mt-2 text-base lg:text-lg">
               Meet your new favorite travel planning tool. Powered by our data and AI,
               we'll help you discover your next vacation.
             </p>
           </div>
 
           {/* Chat messages */}
-          <div className="chat-container mb-6 max-h-80 overflow-y-auto bg-gray-50 rounded-lg p-4">
+          <div className="chat-container mb-6 max-h-60 sm:max-h-80 overflow-y-auto bg-gray-50 rounded-lg p-4">
             {messages.map((msg, index) => (
               <div
                 key={index}
                 className={`chat-message ${
-                  msg.role === 'user' ? 'bg-teal-100 text-left' : 'bg-white text-left'
-                } p-3 mb-2 rounded-lg shadow`}
+                  msg.role === 'user' ? 'bg-teal-100' : 'bg-white'
+                } text-left p-3 mb-2 rounded-lg shadow`}
               >
                 <p className="text-gray-800 whitespace-pre-wrap">{msg.content}</p>
               </div>
@@ -110,14 +112,17 @@ const AskPakTour = () => {
           <form onSubmit={handleSubmit} className="flex items-center mb-4">
             <input
               type="text"
-              className="flex-grow p-4 text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-500 border border-gray-300 rounded-l-lg"
+              // Smaller text & padding on mobile, larger on bigger screens
+              className="flex-grow p-2 text-sm md:p-4 md:text-base text-gray-700 bg-gray-50
+                         focus:outline-none focus:ring-2 focus:ring-teal-500
+                         border border-gray-300 rounded-l-lg"
               placeholder="What are you looking for in your next trip?"
               value={inputUserMsg}
               onChange={(e) => setInputUserMsg(e.target.value)}
             />
             <button
               type="submit"
-              className="bg-teal-500 text-white p-4 rounded-r-lg hover:bg-teal-600 transition duration-300"
+              className="bg-teal-500 text-white p-2 md:p-4 rounded-r-lg hover:bg-teal-600 transition duration-300"
             >
               <FaSearch />
             </button>
@@ -128,13 +133,17 @@ const AskPakTour = () => {
           </div>
         </div>
 
-        {/* Map */}
+        {/* Right Panel (Map) */}
         <div className="w-full lg:w-1/2">
-          <div className="relative w-full h-[600px]">
+          <div className="relative w-full h-64 sm:h-[600px]">
             <Map
               {...mapState}
               onMove={(evt) => setMapState(evt.viewState)}
-              mapStyle={isDarkMode ? "mapbox://styles/mapbox/dark-v11" : "mapbox://styles/mapbox/light-v11"}
+              mapStyle={
+                isDarkMode
+                  ? 'mapbox://styles/mapbox/dark-v11'
+                  : 'mapbox://styles/mapbox/light-v11'
+              }
               mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
               style={{ width: '100%', height: '100%' }}
             >
@@ -147,7 +156,12 @@ const AskPakTour = () => {
               >
                 <div
                   className="text-4xl cursor-pointer animate-bounce"
-                  onClick={() => setSelectedLocation({ latitude: mapState.latitude, longitude: mapState.longitude })}
+                  onClick={() =>
+                    setSelectedLocation({
+                      latitude: mapState.latitude,
+                      longitude: mapState.longitude,
+                    })
+                  }
                 >
                   📍
                 </div>
@@ -169,14 +183,23 @@ const AskPakTour = () => {
                 </Popup>
               )}
             </Map>
+
+            {/* Zoom Info */}
             <div className="absolute bottom-4 left-4 bg-white bg-opacity-80 p-2 rounded-lg shadow-md">
               <p className="text-sm font-semibold">Zoom: {mapState.zoom.toFixed(2)}</p>
             </div>
+
+            {/* Toggle Map Style Button */}
             <button
               onClick={toggleMapStyle}
-              className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition duration-300"
+              className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md
+                         hover:bg-gray-100 transition duration-300"
             >
-              {isDarkMode ? <FaSun className="text-yellow-500" /> : <FaMoon className="text-gray-700" />}
+              {isDarkMode ? (
+                <FaSun className="text-yellow-500" />
+              ) : (
+                <FaMoon className="text-gray-700" />
+              )}
             </button>
           </div>
         </div>
