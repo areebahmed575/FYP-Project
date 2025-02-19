@@ -16,7 +16,7 @@ const OptionBox = ({ optionHandler, options }) => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="absolute left-0 top-full mt-2 w-72 py-4 px-6 rounded-lg shadow-xl bg-white z-10"
+      className="absolute left-0 sm:left-auto right-0 sm:right-auto top-full mt-2 w-72 max-w-[95vw] py-4 px-6 rounded-lg shadow-xl bg-white z-10"
     >
       {optionConfig.map(({ name, icon: Icon, label, min }) => (
         <div key={name} className="option flex justify-between items-center my-4">
@@ -29,7 +29,7 @@ const OptionBox = ({ optionHandler, options }) => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               disabled={options[name] <= min}
-              className="optionCounterMinus w-8 h-8 rounded-full bg-teal-500 text-white flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              className="optionCounterMinus w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-teal-500 text-white flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={() => optionHandler(name, "dec")}
               aria-label={`Decrease ${label}`}
             >
@@ -41,7 +41,7 @@ const OptionBox = ({ optionHandler, options }) => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="optionCounterNumber font-bold text-lg"
+                className="optionCounterNumber font-bold text-base sm:text-lg"
               >
                 {options[name]}
               </motion.span>
@@ -49,7 +49,7 @@ const OptionBox = ({ optionHandler, options }) => {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="optionCounterPlus w-8 h-8 rounded-full bg-teal-500 text-white flex items-center justify-center"
+              className="optionCounterPlus w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-teal-500 text-white flex items-center justify-center"
               onClick={() => optionHandler(name, "inc")}
               aria-label={`Increase ${label}`}
             >

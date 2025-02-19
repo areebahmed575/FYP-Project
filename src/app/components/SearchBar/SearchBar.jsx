@@ -29,7 +29,6 @@ const SearchBar = ({ isCompact = false }) => {
 
   const dayAfterTomorrow = getDayAfterTomorrow();
   const endDate = getEndDate();
-  // console.log(dayAfterTomorrow)
 
   const [showDate, setShowDate] = useState(false)
   const [dates, setDates] = useState([
@@ -55,10 +54,24 @@ const SearchBar = ({ isCompact = false }) => {
     }))
   }
 
-
-  const compactClass = isCompact ? 'p-2' : 'p-2 my-8';
-  const inputClass = isCompact ? 'text-xs' : 'text-sm';
+  const compactClass = isCompact ? 'p-2' : 'p-2 my-4 sm:my-8';
+  const inputClass = isCompact ? 'text-xs sm:text-xs' : 'text-xs sm:text-sm';
   const itemClass = isCompact ? 'flex-shrink-0' : 'flex-1';
+  
+  // Close date and options pickers when clicking outside
+  const handleWindowClick = (e) => {
+    if (!e.target.closest('.date-picker-trigger') && !e.target.closest('.date-picker-container')) {
+      setShowDate(false);
+    }
+    if (!e.target.closest('.options-trigger') && !e.target.closest('.options-container')) {
+      setShowOptions(false);
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('click', handleWindowClick);
+    return () => window.removeEventListener('click', handleWindowClick);
+  }, []);
 
   function searchHandler() {
     const payload = {
@@ -69,7 +82,6 @@ const SearchBar = ({ isCompact = false }) => {
     if (payload.destination === '') {
       return alert("No Destination Selected")
     } else {
-      // console.log(payload)
       dispatch(getSearch(payload))
       router.push(`/PropertyListing/${payload.destination}?arrival_date=${payload.dates.startDate}&departure_date=${payload.dates.endDate}`)
     }
@@ -80,14 +92,14 @@ const SearchBar = ({ isCompact = false }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`md:w-full md:max-w-4xl w-sm mx-auto bg-white rounded-full shadow-lg overflow-visible ${compactClass}`}
+      className={`w-full max-w-xs sm:max-w-sm md:max-w-4xl mx-auto bg-white rounded-full shadow-lg overflow-visible ${compactClass}`}
     >
-      <div className="flex items-center justify-between space-x-2">
+      <div className="flex items-center justify-between space-x-1 sm:space-x-2">
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className={`${itemClass} flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100`}
+          className={`${itemClass} flex items-center space-x-1 sm:space-x-2 p-2 rounded-full hover:bg-gray-100`}
         >
-          <FaMapMarkerAlt className="text-teal-500" />
+          <FaMapMarkerAlt className="text-teal-500 text-sm sm:text-base" />
           <input
             type="text"
             placeholder="Where are you going?"
@@ -95,43 +107,51 @@ const SearchBar = ({ isCompact = false }) => {
             onChange={(e) => setDestination(e.target.value)}
             className={`w-full outline-none bg-transparent ${inputClass}`}
             aria-label="Destination input"
-          // required={true}
           />
         </motion.div>
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className={`${itemClass} hidden md:flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 cursor-pointer`}
-          onClick={() => setShowDate(!showDate)}
+          className={`${itemClass} hidden sm:flex items-center space-x-1 sm:space-x-2 p-2 rounded-full hover:bg-gray-100 cursor-pointer date-picker-trigger`}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowDate(!showDate);
+            setShowOptions(false);
+          }}
         >
-          <FaCalendarAlt className="text-teal-500" />
+          <FaCalendarAlt className="text-teal-500 text-sm sm:text-base" />
           <span className={inputClass}>
-            {`${format(dates[0].startDate, "MMM dd")} - ${format(dates[0].endDate, "MMM dd")}`}
-            {/* {console.log(dates)} */}
+            {`${format(new Date(dates[0].startDate), "MMM dd")} - ${format(new Date(dates[0].endDate), "MMM dd")}`}
           </span>
         </motion.div>
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className={`${itemClass} hidden md:flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 cursor-pointer relative`}
-          onClick={() => setShowOptions(!showOptions)}
+          className={`${itemClass} hidden sm:flex items-center space-x-1 sm:space-x-2 p-2 rounded-full hover:bg-gray-100 cursor-pointer options-trigger relative`}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowOptions(!showOptions);
+            setShowDate(false);
+          }}
         >
-          <FaUsers className="text-teal-500" />
+          <FaUsers className="text-teal-500 text-sm sm:text-base" />
           <span className={inputClass}>
             {`${options.adults + options.children} guests, ${options.rooms} rooms`}
           </span>
           <AnimatePresence>
             {showOptions && (
-              <OptionBox optionHandler={optionHandler} options={options} />
+              <div className="options-container">
+                <OptionBox optionHandler={optionHandler} options={options} />
+              </div>
             )}
           </AnimatePresence>
         </motion.div>
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-teal-500 text-white p-4 rounded-full hover:bg-teal-600 transition-colors duration-300"
+          className="bg-teal-500 text-white p-2 sm:p-3 md:p-4 rounded-full hover:bg-teal-600 transition-colors duration-300"
           aria-label="Search"
           onClick={searchHandler}
         >
-          <FaSearch />
+          <FaSearch className="text-sm sm:text-base" />
         </motion.button>
       </div>
       <AnimatePresence>
@@ -140,7 +160,7 @@ const SearchBar = ({ isCompact = false }) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute left-1/2 transform -translate-x-1/2 mt-2 z-10"
+            className="absolute left-1/2 transform -translate-x-1/2 mt-2 z-10 date-picker-container"
           >
             <DateRange
               editableDateInputs={true}
@@ -152,16 +172,17 @@ const SearchBar = ({ isCompact = false }) => {
                     : new Date(item.selection.startDate).toLocaleDateString('en-CA'),
                   endDate: item.selection.endDate instanceof Date
                     ? item.selection.endDate.toLocaleDateString('en-CA')
-                    : new Date(item.selection.endDate).toLocaleDateString('en-CA') // Convert endDate to yyyy-mm-dd
-                  // key: 'selection'
+                    : new Date(item.selection.endDate).toLocaleDateString('en-CA')
                 };
-                console.log(formattedSelection)
                 setDates([formattedSelection])
               }}
               moveRangeOnFirstSelection={false}
-              ranges={dates}
+              ranges={dates.map(date => ({
+                ...date,
+                startDate: new Date(date.startDate),
+                endDate: new Date(date.endDate)
+              }))}
               className="shadow-lg rounded-lg overflow-hidden"
-            // minDate={new Date()}
             />
           </motion.div>
         )}

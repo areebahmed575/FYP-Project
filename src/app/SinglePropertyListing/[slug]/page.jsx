@@ -114,58 +114,81 @@ const SingleProperty = async ({ params, searchParams }) => {
   return (
 
     // -------------------LOCAL WORK----------------------------
-    <div className="container mx-auto px-4 mt-16 relative">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold">Luxe Hut • Skardu • Gilgit • Snow Desert • Pakistan</h1>
+    <div className="container mx-auto px-4 mt-8 md:mt-16 relative">
+     
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
+        <h1 className="text-2xl md:text-3xl font-bold">Luxe Hut • Skardu • Gilgit • Snow Desert • Pakistan</h1>
         <div className="flex space-x-2">
-          <button className="bg-white px-4 py-2 rounded-full shadow text-sm font-semibold flex items-center">
+          <button className="bg-white px-3 md:px-4 py-2 rounded-full shadow text-sm font-semibold flex items-center">
             <FaShare className="mr-2" /> Share
           </button>
-          <button className="bg-white px-4 py-2 rounded-full shadow text-sm font-semibold flex items-center">
+          <button className="bg-white px-3 md:px-4 py-2 rounded-full shadow text-sm font-semibold flex items-center">
             <FaHeart className="mr-2" /> Save
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-4 grid-rows-2 gap-2 mb-4 h-[500px]">
-        <Image src={"/sk1.webp"} alt="Resort exterior" width={800} height={600} className="col-span-2 row-span-2 w-full h-full object-cover rounded-l-lg" />
-        <Image src={"/sk2.webp"} alt="Interior" width={400} height={300} className="w-full h-full object-cover rounded-tr-lg" />
-        <Image src={"/sk3.webp"} alt="View" width={400} height={300} className="w-full h-full object-cover" />
-        <Image src={"/sk4.webp"} alt="Guests" width={400} height={300} className="w-full h-full object-cover" />
-        <Image src={"/sk5.webp"} alt="Additional view" width={400} height={300} className="w-full h-full object-cover rounded-br-lg" />
+      
+      <div className="relative">
+      
+        <div className="block md:hidden mb-6">
+          <Image 
+            src={"/sk1.webp"} 
+            alt="Resort exterior" 
+            width={800} 
+            height={600} 
+            className="w-full h-[300px] object-cover rounded-lg"
+          />
+        </div>
+
+      
+        <div className="hidden md:grid md:grid-cols-4 md:grid-rows-2 gap-2 mb-4 md:h-[500px]">
+          <Image src={"/sk1.webp"} alt="Resort exterior" width={800} height={600} 
+            className="col-span-2 row-span-2 w-full h-full object-cover rounded-l-lg" />
+          <Image src={"/sk2.webp"} alt="Interior" width={400} height={300} 
+            className="w-full h-full object-cover rounded-tr-lg" />
+          <Image src={"/sk3.webp"} alt="View" width={400} height={300} 
+            className="w-full h-full object-cover" />
+          <Image src={"/sk4.webp"} alt="Guests" width={400} height={300} 
+            className="w-full h-full object-cover" />
+          <Image src={"/sk5.webp"} alt="Additional view" width={400} height={300} 
+            className="w-full h-full object-cover rounded-br-lg" />
+        </div>
       </div>
 
-
-      <div className="mt-8 flex justify-between">
-        <div className="w-2/3 pr-8">
-          <div className="flex justify-between items-center mb-4">
+      
+      <div className="mt-8 flex flex-col md:flex-row justify-between">
+      
+        <div className="w-full md:w-2/3 md:pr-8">
+      
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
             <div>
-              <h2 className="text-2xl font-semibold">Hut in Skardu, Pakistan</h2>
+              <h2 className="text-xl md:text-2xl font-semibold">Hut in Skardu, Pakistan</h2>
               <p className="text-gray-600">Hut in Skardu, Pakistan</p>
             </div>
-            <div className="flex items-center">
-              <FaStar className="text-yellow-400 mr-1" />
+            <div className="flex items-center flex-wrap gap-2 mt-2 md:mt-0">
+              <FaStar className="text-yellow-400" />
               <span className="font-semibold">4.9</span>
               <span className="mx-1">·</span>
               <span className="text-gray-600 underline">24 reviews</span>
               <FaMedal className="text-yellow-600 ml-2" />
-              <span className="text-sm font-semibold ml-1">Superhost</span>
+              <span className="text-sm font-semibold">Superhost</span>
             </div>
           </div>
 
-          <div className="border-t border-b border-gray-200 py-4 my-4">
-          </div>
+          <div className="border-t border-b border-gray-200 py-4 my-6"></div>
 
-          <div className="grid grid-cols-2 gap-4 mb-6">
+      
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div className="flex items-start">
-              <FaKey className="text-2xl mr-4 text-gray-600" />
+              <FaKey className="text-2xl mr-4 text-gray-600 flex-shrink-0" />
               <div>
                 <h4 className="font-semibold">Self check-in</h4>
                 <p className="text-gray-600">Check yourself in with the keypad.</p>
               </div>
             </div>
             <div className="flex items-start">
-              <FaSwimmingPool className="text-2xl mr-4 text-gray-600" />
+              <FaSwimmingPool className="text-2xl mr-4 text-gray-600 flex-shrink-0" />
               <div>
                 <h4 className="font-semibold">Dive right in</h4>
                 <p className="text-gray-600">This is one of the few places in the area with a pool.</p>
@@ -173,29 +196,27 @@ const SingleProperty = async ({ params, searchParams }) => {
             </div>
           </div>
 
+      
           <div className="mt-6">
-            <h3 className="text-xl font-semibold mb-2">About this space</h3>
-            <p className="text-gray-700 leading-relaxed mb-4">
+            <h3 className="text-xl font-semibold mb-3">About this space</h3>
+            <p className="text-gray-700 leading-relaxed">
               This is one of the few places in the area with a pool
             </p>
-
           </div>
-
         </div>
 
-        <div className="w-1/3">
-          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 sticky top-4">
-            <div className='mb-4'>
-              <h2 className="text-2xl font-bold ">PKR {'90,000'} <span className="text-base font-normal text-gray-500"> night </span></h2>
+
+        <div className="w-full md:w-1/3 mt-8 md:mt-0">
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 sticky md:top-4">
+            <div className="mb-4">
+              <h2 className="text-2xl font-bold">PKR {'90,000'} <span className="text-base font-normal text-gray-500">night</span></h2>
               <p className="text-base font-normal text-gray-500">*Inclusive Tax</p>
             </div>
 
             <DatesAndGuest arrival_date={arrival_date} departure_date={departure_date} />
 
-            <div>
-              <div className='mb-4'>
-                <h2 className="text-2xl font-bold ">PKR {'90,000'} <span className="text-base font-normal text-gray-500"> Total </span></h2>
-              </div>
+            <div className="mb-4">
+              <h2 className="text-2xl font-bold">PKR {'90,000'} <span className="text-base font-normal text-gray-500">Total</span></h2>
             </div>
 
             <button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 text-white py-3 rounded-lg font-semibold hover:from-teal-600 hover:to-teal-700 transition-all duration-200 shadow-md">
@@ -205,8 +226,8 @@ const SingleProperty = async ({ params, searchParams }) => {
             <div className="mt-4 text-sm text-gray-500 text-center">You won't be charged yet</div>
 
             <div className="mt-4 p-4 bg-teal-50 rounded-lg">
-              <div className="flex items-center">
-                <span className="text-teal-500 text-2xl mr-3">⏰</span>
+              <div className="flex items-start md:items-center">
+                <span className="text-teal-500 text-2xl mr-3 flex-shrink-0">⏰</span>
                 <div>
                   <h3 className="font-semibold text-teal-700">Special offer: save PKR 5000</h3>
                   <p className="text-teal-600 text-sm">This Host is offering a deal on their first 3 bookings.</p>

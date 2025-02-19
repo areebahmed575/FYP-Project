@@ -14,6 +14,7 @@ export default function TripPage() {
   const [interests, setInterests] = useState('')
   const [budget, setBudget] = useState('')
   const [duration, setDuration] = useState('')
+  const [places, setPlaces] = useState('')  // New state for places to visit
   const [loading, setLoading] = useState(false)
   const [progress, setProgress] = useState(0)
 
@@ -36,7 +37,7 @@ export default function TripPage() {
   }, [])
 
   const generateAiSuggestion = async () => {
-    if (!interests || !budget || !duration) {
+    if (!interests || !budget || !duration || !places) {
       alert('Please fill in all fields.')
       return
     }
@@ -50,9 +51,8 @@ export default function TripPage() {
       budget: budget,
       interest: interests,
       duration: duration,
-      flight_search: '',
-      hotel_search: '',
-      restaurant_search: ''
+      hotel_search: places,
+      restaurant_search: places
     }
 
     try {
@@ -121,7 +121,7 @@ export default function TripPage() {
             <motion.input
               whileFocus={{ scale: 1.05 }}
               type="text"
-              placeholder="Interests (e.g., adventure, culture)"
+              placeholder="Interests (e.g., adventure)"
               className="flex-grow p-3 border rounded bg-teal-600 text-white placeholder-teal-200 focus:outline-none focus:ring-2 focus:ring-teal-300"
               value={interests}
               onChange={(e) => setInterests(e.target.value)}
@@ -141,6 +141,14 @@ export default function TripPage() {
               className="flex-grow p-3 border rounded bg-teal-600 text-white placeholder-teal-200 focus:outline-none focus:ring-2 focus:ring-teal-300"
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
+            />
+            <motion.input
+              whileFocus={{ scale: 1.05 }}
+              type="text"
+              placeholder="Cities or landmarks to visit"
+              className="flex-grow p-3 border rounded bg-teal-600 text-white placeholder-teal-200 focus:outline-none focus:ring-2 focus:ring-teal-300"
+              value={places}
+              onChange={(e) => setPlaces(e.target.value)}
             />
           </div>
           <motion.button

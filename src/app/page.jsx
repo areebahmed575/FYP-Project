@@ -125,20 +125,29 @@ const HomePage = () => {
                 ].map((section, index) => (
                     <motion.div
                         key={section.title}
-                        className={`flex flex-col md:flex-row items-center gap-10 mb-24 flex-wrap ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+                        className={`flex flex-col md:flex-row items-center gap-10 mb-24 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
                     >
-                        <motion.div
-                            className="relative h-[300px] w-full md:h-[400px] md:w-[200px] flex-1 rounded-lg overflow-hidden"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ type: "spring", stiffness: 300 }}
-                        >
-                            <Image src={section.image} fill className="object-cover" layout="fill" objectFit="cover" alt={section.title} />
-                        </motion.div>
-                        <div className="flex-1 flex flex-col items-center gap-5">
+                        <div className="w-full md:w-1/2">
+                            <motion.div
+                                className="relative w-full aspect-[4/3] rounded-lg overflow-hidden"
+                                whileHover={{ scale: 1.05 }}
+                                transition={{ type: "spring", stiffness: 300 }}
+                            >
+                                <Image 
+                                    src={section.image} 
+                                    fill 
+                                    className="object-cover"
+                                    alt={section.title}
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    priority
+                                />
+                            </motion.div>
+                        </div>
+                        <div className="w-full md:w-1/2 flex flex-col items-center gap-5 px-4 md:px-0">
                             <h2 className="text-3xl font-semibold text-center">{section.title}</h2>
                             <p className="text-justify">{section.description}</p>
                         </div>
